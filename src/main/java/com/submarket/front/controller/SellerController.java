@@ -1,4 +1,4 @@
-package com.submarket.front.controller.seller;
+package com.submarket.front.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

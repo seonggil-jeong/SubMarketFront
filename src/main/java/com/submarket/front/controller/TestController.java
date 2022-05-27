@@ -14,17 +14,15 @@ import java.util.*;
 @RestController
 public class TestController {
     @RequestMapping("/test")
-    public Map<String, Object> test() throws Exception {
+    public List<Map<String, Object>> test() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<CategoryDto> response =  restTemplate.exchange("http://127.0.0.1:11000/category", HttpMethod.GET, null, CategoryDto.class);
-        CategoryDto categoryDto = new CategoryDto();
+        ResponseEntity<CategoryDto> response =  restTemplate.exchange("http://127.0.0.1:55460/category", HttpMethod.GET, null, CategoryDto.class);
+        CategoryDto categoryDto = response.getBody();
 
-        categoryDto.setResponse(response.getBody().getResponse());
-        categoryDto.setHeader(categoryDto.getResponse().get("header"));
-        categoryDto.setBody(categoryDto.getResponse().get("body"));
-        categoryDto.setCategorys((List<Map<String, Object>>) categoryDto.getBody().get("categorys"));
+        // Back 에서 받을 값을 response : <List> 로 Map 타입으로 변환해서 전송, Front : DTO로 받아 이름으로 response 에 값 저장
 
 
-        return categoryDto.getCategorys().get(1);
+
+       return response.getBody().getResponse();
     }
 }

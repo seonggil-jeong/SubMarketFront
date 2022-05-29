@@ -12,18 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class UserController {
 
-    @RequestMapping("/user/info/user-info")
+    @RequestMapping("/user/sign-up")
     public String userInfo(HttpServletResponse response) {
-        return "/user/info/user_info";
+        log.info("go to user sign-up");
+        return "/user/user-reg";
     }
 
-    @RequestMapping("/user/main/user-main")
-    public String userMain() {
-        return "/user/main/user_main";
-    }
-
-    @RequestMapping("/user/setting/user-setting")
-    public String userSetting() {
-        return "/user/setting/user_setting";
+    @RequestMapping("/user/profile")
+    public String userProfile() {
+        return "user/user-profile";
     }
 }

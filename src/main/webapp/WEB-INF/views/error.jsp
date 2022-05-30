@@ -11,15 +11,15 @@
     <meta name="description" content="Guido - Directory & Listing HTML Template">
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- Responsive stylesheet -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="/css/responsive.css">
     <!-- Title -->
     <title>Guido - Directory & Listing HTML Template</title>
     <!-- Favicon -->
-    <link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-    <link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +39,7 @@
             <nav>
                 <!-- Menu Toggle btn-->
                 <div class="menu-toggle">
-                    <img class="nav_logo_img img-fluid" src="images/header-logo.svg" alt="header-logo.svg">
+                    <img class="nav_logo_img img-fluid" src="/images/header-logo.svg" alt="header-logo.svg">
                     <button type="button" id="menu-btn">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -47,8 +47,8 @@
                     </button>
                 </div>
                 <a href="index.html" class="navbar_brand float-left dn-smd">
-                    <img class="logo1 img-fluid" src="images/header-logo2.svg" alt="header-logo.svg">
-                    <img class="logo2 img-fluid" src="images/header-logo2.svg" alt="header-logo2.svg">
+                    <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
+                    <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
                     <span>Guido</span>
                 </a>
                 <!-- Responsive Menu Structure-->
@@ -567,7 +567,7 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1 text-center">
                     <div class="error_page footer_apps_widget">
-                        <img class="img-fluid" src="images/resource/error.png" alt="error.png">
+                        <img class="img-fluid" src="/images/resource/error.png" alt="error.png">
                         <div class="erro_code"><h1>Ohh! Page Not Found</h1></div>
                         <p>We can’t seem to find the page you’re looking for</p>
                         <form class="form-inline mailchimp_form">
@@ -672,24 +672,24 @@
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->
-<script src="js/jquery-3.6.0.js"></script>
-<script src="js/jquery-migrate-3.0.0.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.mmenu.all.js"></script>
-<script src="js/ace-responsive-menu.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/snackbar.min.js"></script>
-<script src="js/simplebar.js"></script>
-<script src="js/parallax.js"></script>
-<script src="js/scrollto.js"></script>
-<script src="js/jquery-scrolltofixed-min.js"></script>
-<script src="js/jquery.counterup.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/progressbar.js"></script>
-<script src="js/slider.js"></script>
-<script src="js/timepicker.js"></script>
+<script src="/js/jquery-3.6.0.js"></script>
+<script src="/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.mmenu.all.js"></script>
+<script src="/js/ace-responsive-menu.js"></script>
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/snackbar.min.js"></script>
+<script src="/js/simplebar.js"></script>
+<script src="/js/parallax.js"></script>
+<script src="/js/scrollto.js"></script>
+<script src="/js/jquery-scrolltofixed-min.js"></script>
+<script src="/js/jquery.counterup.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/progressbar.js"></script>
+<script src="/js/slider.js"></script>
+<script src="/js/timepicker.js"></script>
 <!-- Custom script for all pages -->
-<script src="js/script.js"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>

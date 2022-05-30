@@ -1,5 +1,6 @@
+<%@ page import="com.submarket.front.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -67,10 +68,14 @@
 					</ul>
 				</div>
 				<ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-					<% if (session.getAttribute("token").toString().length() > 10){ %>
+					<%
+						if (session.getAttribute("TOKEN") != null) {
+
+					%>
 					<li class="user_setting" style="margin-bottom: 1%;">
 						<div class="dropdown">
-							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"> Cameron Williamson <span class="fa fa-angle-down"></span></span></a>
+							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"> Cameron Williamson <span
+									class="fa fa-angle-down"></span></span></a>
 							<div class="dropdown-menu">
 								<div class="user_set_header">
 									<p>Cameron Williamson <br><span class="address">alitufan@gmail.com</span></p>
@@ -83,16 +88,15 @@
 							</div>
 						</div>
 					</li>
+					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
+							class="dn-lg"> Profile</span></a></li>
 					<%
-					} else{
+						} else {
 					%>
 					<li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
-
 					<%
 						}
 					%>
-
-					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span class="dn-lg"> Profile</span></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -123,12 +127,12 @@
 								<div class="login_form">
 									<p class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">User Login</p>
 									<%-- 사용자 로그인 창 --%>
-									<form action="#">
+									<form action="/user/login" method="post">
 										<div class="input-group mb-2 mr-sm-2">
-											<input type="text" class="form-control" id="userId" placeholder="User Id">
+											<input type="text" class="form-control" id="userId" name="userId" placeholder="User Id">
 										</div>
 										<div class="input-group form-group mb5">
-											<input type="password" class="form-control" id="userPassword" placeholder="Password">
+											<input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
 										</div>
 										<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
 										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/user/sign-up">Sign up</a></p>
@@ -1126,178 +1130,6 @@
 		</div>
 	</section>
 
-<%--	<!-- Our Testimonials -->--%>
-<%--	<section class="our-testimonials">--%>
-<%--		<div class="container ovh max1800">--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-lg-6 offset-lg-3">--%>
-<%--					<div class="main-title text-center">--%>
-<%--						<h2>Testimonials From Our Customers</h2>--%>
-<%--						<p>Lorem ipsum dolor sit amet elit, sed do eiusmod tempor</p>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-lg-12">--%>
-<%--					<div class="testimonial_slider_home1">--%>
-<%--						<div class="item">--%>
-<%--							<div class="testimonial_post text-center">--%>
-<%--								<div class="thumb">--%>
-<%--									<img src="images/testimonial/1.png" alt="1.png">--%>
-<%--									<h4 class="title">Alison Dawn</h4>--%>
-<%--									<div class="client-postn">WordPress Developer</div>--%>
-<%--								</div>--%>
-<%--								<div class="details">--%>
-<%--									<div class="icon"><span>“</span></div>--%>
-<%--									<p>“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>--%>
-<%--								</div>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--						<div class="item">--%>
-<%--							<div class="testimonial_post text-center">--%>
-<%--								<div class="thumb">--%>
-<%--									<img src="images/testimonial/2.png" alt="2.png">--%>
-<%--									<h4 class="title">Albert Cole</h4>--%>
-<%--									<div class="client-postn">Designer</div>--%>
-<%--								</div>--%>
-<%--								<div class="details">--%>
-<%--									<div class="icon"><span>“</span></div>--%>
-<%--									<p>“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>--%>
-<%--								</div>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--						<div class="item">--%>
-<%--							<div class="testimonial_post text-center">--%>
-<%--								<div class="thumb">--%>
-<%--									<img src="images/testimonial/3.png" alt="3.png">--%>
-<%--									<h4 class="title">Daniel Parker</h4>--%>
-<%--									<div class="client-postn">Front-end Developer</div>--%>
-<%--								</div>--%>
-<%--								<div class="details">--%>
-<%--									<div class="icon"><span>“</span></div>--%>
-<%--									<p>“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>--%>
-<%--								</div>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--						<div class="item">--%>
-<%--							<div class="testimonial_post text-center">--%>
-<%--								<div class="thumb">--%>
-<%--									<img src="images/testimonial/2.png" alt="2.png">--%>
-<%--									<h4 class="title">Alison Dawn</h4>--%>
-<%--									<div class="client-postn">WordPress Developer</div>--%>
-<%--								</div>--%>
-<%--								<div class="details">--%>
-<%--									<div class="icon"><span>“</span></div>--%>
-<%--									<p>“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>--%>
-<%--								</div>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--						<div class="item">--%>
-<%--							<div class="testimonial_post text-center">--%>
-<%--								<div class="thumb">--%>
-<%--									<img src="images/testimonial/1.png" alt="1.png">--%>
-<%--									<h4 class="title">Albert Cole</h4>--%>
-<%--									<div class="client-postn">Designer</div>--%>
-<%--								</div>--%>
-<%--								<div class="details">--%>
-<%--									<div class="icon"><span>“</span></div>--%>
-<%--									<p>“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>--%>
-<%--								</div>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--	</section>--%>
-
-<%--	<!-- Our Divider -->--%>
-<%--	<section class="divider home-style1 parallax" data-stellar-background-ratio="0.2">--%>
-<%--		<div class="container">--%>
-<%--			<div class="row justify-content-center">--%>
-<%--				<div class="col-lg-8">--%>
-<%--					<div class="business_exposer text-center">--%>
-<%--						<h2 class="title text-white mb20">Get Business Exposure</h2>--%>
-<%--						<p class="text-white mb35">Your business deserves efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>--%>
-<%--						<a class="btn exposer_btn" href="#">How It Works</a>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--	</section>--%>
-
-<%--	<!-- Our Blog -->--%>
-<%--	<section class="our-blog pb70">--%>
-<%--		<div class="container">--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-lg-6 offset-lg-3">--%>
-<%--					<div class="main-title text-center">--%>
-<%--						<h2>News & Tips</h2>--%>
-<%--						<p>Checkout Latest News And Articles From Our Blog.</p>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-md-6 col-lg-4 col-xl-4">--%>
-<%--					<div class="for_blog feat_property">--%>
-<%--						<div class="thumb">--%>
-<%--							<img class="img-whp" src="images/blog/1.jpg" alt="1.jpg">--%>
-<%--							<div class="tag bgc-thm"><a class="text-white" href="#">Health & Care</a></div>--%>
-<%--						</div>--%>
-<%--						<div class="details">--%>
-<%--							<div class="tc_content">--%>
-<%--								<div class="bp_meta">--%>
-<%--									<ul>--%>
-<%--										<li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>--%>
-<%--										<li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>--%>
-<%--									</ul>--%>
-<%--								</div>--%>
-<%--								<h4>The Top 25 Bike Stores in Toronto by Neighbourhood</h4>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-md-6 col-lg-4 col-xl-4">--%>
-<%--					<div class="for_blog feat_property">--%>
-<%--						<div class="thumb">--%>
-<%--							<img class="img-whp" src="images/blog/2.jpg" alt="2.jpg">--%>
-<%--							<div class="tag bgc-thm"><a class="text-white" href="#">Culture</a></div>--%>
-<%--						</div>--%>
-<%--						<div class="details">--%>
-<%--							<div class="tc_content">--%>
-<%--								<div class="bp_meta">--%>
-<%--									<ul>--%>
-<%--										<li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>--%>
-<%--										<li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>--%>
-<%--									</ul>--%>
-<%--								</div>--%>
-<%--								<h4>How to Wear a Headscarf Like a Gucci Muse</h4>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-md-6 col-lg-4 col-xl-4">--%>
-<%--					<div class="for_blog feat_property">--%>
-<%--						<div class="thumb">--%>
-<%--							<img class="img-whp" src="images/blog/3.jpg" alt="3.jpg">--%>
-<%--							<div class="tag bgc-thm"><a class="text-white" href="#">Travelling</a></div>--%>
-<%--						</div>--%>
-<%--						<div class="details">--%>
-<%--							<div class="tc_content">--%>
-<%--								<div class="bp_meta">--%>
-<%--									<ul>--%>
-<%--										<li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>--%>
-<%--										<li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>--%>
-<%--									</ul>--%>
-<%--								</div>--%>
-<%--								<h4>Quisque sed eros mollis, pretium odio feugiat dictum</h4>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--	</section>--%>
 
 	<!-- Start Partners -->
 	<section class="start-partners home1 bgc-thm pt60 pb60">
@@ -1317,94 +1149,6 @@
 			</div>
 		</div>
 	</section>
-
-<%--	<!-- Our Footer -->--%>
-<%--	<section class="footer_one home1">--%>
-<%--		<div class="container pb70">--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">--%>
-<%--					<div class="footer_contact_widget">--%>
-<%--						<h4>Contact Us</h4>--%>
-<%--						<ul class="list-unstyled">--%>
-<%--							<li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry Street, North Melbourne VIC 3051, Australia.</a></li>--%>
-<%--							<li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456 7890</a></li>--%>
-<%--							<li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a></li>--%>
-<%--						</ul>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-sm-6 col-md-6 col-lg-2 col-xl-3">--%>
-<%--					<div class="footer_qlink_widget">--%>
-<%--						<h4>Company</h4>--%>
-<%--						<ul class="list-unstyled">--%>
-<%--							<li><a href="#">Help Center</a></li>--%>
-<%--							<li><a href="#">About</a></li>--%>
-<%--							<li><a href="#">Career</a></li>--%>
-<%--							<li><a href="#">How It Works</a></li>--%>
-<%--							<li><a href="#">Article & Tips</a></li>--%>
-<%--							<li><a href="#">Terms & Service</a></li>--%>
-<%--						</ul>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-sm-5 col-md-6 col-lg-2 col-xl-2">--%>
-<%--					<div class="footer_qlink_widget pl0">--%>
-<%--						<h4>Discover</h4>--%>
-<%--						<ul class="list-unstyled">--%>
-<%--							<li><a href="#">Chicago</a></li>--%>
-<%--							<li><a href="#">Los Angels</a></li>--%>
-<%--							<li><a href="#">Miami</a></li>--%>
-<%--							<li><a href="#">New York</a></li>--%>
-<%--							<li><a href="#">Florida</a></li>--%>
-<%--							<li><a href="#">Boston</a></li>--%>
-<%--						</ul>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-sm-7 col-md-6 col-lg-4 col-xl-4">--%>
-<%--					<div class="footer_social_widget">--%>
-<%--						<h4>Subscribe</h4>--%>
-<%--						<p class="text-white mb20">We don’t send spam so don’t worry.</p>--%>
-<%--						<form class="footer_mailchimp_form">--%>
-<%--							<div class="form-row align-items-center">--%>
-<%--								<div class="col-auto">--%>
-<%--									<input type="email" class="form-control" id="inlineFormInput" placeholder="Enter your email">--%>
-<%--									<button type="submit" class="btn btn-primary">Subscribe</button>--%>
-<%--								</div>--%>
-<%--							</div>--%>
-<%--						</form>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--		<hr>--%>
-<%--		<div class="container pt20 pb30">--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-md-4 col-lg-4">--%>
-<%--					<div class="copyright-widget mt10 mb15-767">--%>
-<%--						<p>© Guido - All rights reserved.</p>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-md-4 col-lg-4">--%>
-<%--					<div class="footer_logo_widget text-center mb15-767">--%>
-<%--						<div class="wrapper">--%>
-<%--							<div class="logo text-center">--%>
-<%--								<img src="images/footer-logo.svg" alt="footer-logo.svg">--%>
-<%--								<span class="logo_title text-white pl15">Guido</span>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--				<div class="col-md-4 col-lg-4">--%>
-<%--					<div class="footer_social_widget text-right tac-smd mt10">--%>
-<%--						<ul class="mb0">--%>
-<%--							<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>--%>
-<%--							<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>--%>
-<%--							<li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>--%>
-<%--							<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>--%>
-<%--						</ul>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--	</section>--%>
 
 	<a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>

@@ -3,7 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
-	ResponseUser responseUser = (ResponseUser) request.getAttribute("userDto");
+	ResponseUser responseUser = (ResponseUser) session.getAttribute("SS_USERINFO");
+
+	if (responseUser == null) {
+		responseUser = new ResponseUser();
+	}
 %>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -56,20 +60,6 @@
 				</a>
 				<!-- Responsive Menu Structure-->
 				<!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-				<div class="ht_left_widget float-left">
-					<ul>
-						<li class="list-inline-item">
-							<div class="ht_search_widget">
-								<div class="header_search_widget home1">
-									<form class="form-inline mailchimp_form">
-										<input type="text" class="custom_search_with_menu_trigger form-control" placeholder="What are you looking for?" data-toggle="modal" data-target="#staticBackdrop">
-										<button type="submit" class="btn"><span class="flaticon-loupe"></span></button>
-									</form>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
 				<ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
 					<%
 						if (session.getAttribute("TOKEN") != null) {
@@ -222,15 +212,29 @@
 				</div>
 				<ul class="menu_bar_home2">
 					<li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>
-					<li class="list-inline-item"><a class="muser_icon" href="/user/"><span class="flaticon-avatar"></span></a></li>
+					<li class="list-inline-item"><a class="muser_icon" href="/user/profile"><span class="flaticon-avatar"></span></a></li>
 					<li class="list-inline-item"><a class="menubar" href="#menu"><span></span></a></li>
 				</ul>
 			</div>
 		</div><!-- /.mobile-menu -->
 		<nav id="menu" class="stylehome1">
 			<ul>
-				<li><a href="page-login.html"><span class="flaticon-avatar"></span> Login</a></li>
-				<li><a href="page-register.html"><span class="flaticon-edit"></span> Register</a></li>
+				<%
+					if (session.getAttribute("TOKEN") != null) {
+				%>
+
+				<li><a href="/logout"><span class="flaticon-edit"></span> Logout</a></li>
+
+				<%
+					} else {
+				%>
+
+				<li><a href="page-login.html"><span class="flaticon-avatar"></span>Login</a></li>
+				<li><a href="/user/regForm"><span class="flaticon-edit"></span>Register</a></li>
+
+				<%
+					}
+				%>
 				<li class="cl_btn"><a class="btn btn-block btn-lg btn-thm rounded" href="#"><span class="icon">+</span> Create Listing</a></li>
 			</ul>
 		</nav>
@@ -266,7 +270,7 @@
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-shopping-bag"></span></div>
 										<div class="content-details">
-											<div class="title">음료</div>
+											<div class="title">쇼핑</div>
 										</div>
 									</div>
 								</div>
@@ -282,7 +286,7 @@
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-desk-bell"></span></div>
 										<div class="content-details">
-											<div class="title">뷰티</div>
+											<div class="title">건강</div>
 										</div>
 									</div>
 								</div>
@@ -290,7 +294,7 @@
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-mirror"></span></div>
 										<div class="content-details">
-											<div class="title">건강</div>
+											<div class="title">뷰티</div>
 										</div>
 									</div>
 								</div>
@@ -393,7 +397,7 @@
 										<div class="item">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-shopping-bag"></span></div>
-												<p>음료</p>
+												<p>쇼핑</p>
 											</div>
 										</div>
 										<div class="item">
@@ -405,13 +409,13 @@
 										<div class="item">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-desk-bell"></span></div>
-												<p>뷰티</p>
+												<p>건강</p>
 											</div>
 										</div>
 										<div class="item">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-mirror"></span></div>
-												<p>건강</p>
+												<p>뷰티</p>
 											</div>
 										</div>
 										<div class="item">
@@ -452,7 +456,7 @@
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-shopping-bag"></span></div>
 							<div class="content-details">
-								<div class="title">음료</div>
+								<div class="title">쇼핑</div>
 							</div>
 						</div>
 					</div>
@@ -468,7 +472,7 @@
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-desk-bell"></span></div>
 							<div class="content-details">
-								<div class="title">뷰티</div>
+								<div class="title">건강</div>
 							</div>
 						</div>
 					</div>
@@ -476,7 +480,7 @@
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-mirror"></span></div>
 							<div class="content-details">
-								<div class="title">건강</div>
+								<div class="title">뷰티</div>
 							</div>
 						</div>
 					</div>

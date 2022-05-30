@@ -1,7 +1,9 @@
 package com.submarket.front.controller;
 
+import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
 import com.submarket.front.vo.RequestLogin;
+import com.submarket.front.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
@@ -31,33 +33,49 @@ import java.util.Map;
 public class UserController {
     private final Environment env;
     private final RestTemplate restTemplate;
-
+    private final UserService userService;
     @RequestMapping("/user/sign-up")
     public String userInfo(HttpServletResponse response) {
         log.info("go to user sign-up");
         return "/user/user-reg";
     }
 
+    @RequestMapping("/user/regForm")
+    public String userRegForm() throws Exception {
+        return "/user/user-reg";
+    }
     @RequestMapping("/user/profile")
-    public String userProfile() {
-        return "user/user-profile";
+    public String userProfile(HttpSession session) throws Exception {
+        if (CmmUtil.nvl((String) session.getAttribute("TOKEN")).length() > 1) {
+            return "/user/user-profile";
+        } else {
+
+        return "/user/user-login";
+        }
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // 사용자 로그인
     @PostMapping("/user/login")
     public String userLogin(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
 
         log.info(this.getClass().getName() + ".login Start!");
-        String url = "http://127.0.0.1:8000/user-service/login";
+        String url = env.getProperty("gateway.ip") + "/user-service/login";
 
         try {
-
-            log.info("url : " + url);
             String userId = CmmUtil.nvl(request.getParameter("userId"));
             String userPassword = CmmUtil.nvl(request.getParameter("userPassword"));
-
-            log.info("userId : " + userId);
-            log.info("userPassword : " + userPassword);
-
             HttpHeaders headers = new HttpHeaders();
 
             RequestLogin body = new RequestLogin();
@@ -67,10 +85,14 @@ public class UserController {
             HttpEntity<RequestLogin> entity = new HttpEntity<>(body, headers);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
+
+            ResponseUser responseUser = userService.getUserInfo(response.getHeaders().get("token").get(0));
+
+            session.setAttribute("TOKEN", response.getHeaders().get("token").get(0));
+            session.setAttribute("SS_USERINFO", responseUser);
+
             model.addAttribute("msg", "환영합니다");
             model.addAttribute("url", "/index");
-            session.setAttribute("TOKEN", response.getHeaders().get("token").get(0));
-            log.info("token : " + response.getHeaders().get("token").get(0));
 
         } catch (Exception e) { // 로그인 오류
             model.addAttribute("msg", "비밀번호 또는 아이디를 확인해 주세요");

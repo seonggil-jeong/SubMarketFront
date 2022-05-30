@@ -11,15 +11,15 @@
 	<meta name="description" content="Guido - Directory & Listing HTML Template">
 	<meta name="CreativeLayers" content="ATFN">
 	<!-- css file -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<!-- Responsive stylesheet -->
-	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="/css/responsive.css">
 	<!-- Title -->
 	<title>Guido - Directory & Listing HTML Template</title>
 	<!-- Favicon -->
-	<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-	<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+	<link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="/image/x-icon" />
+	<link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +39,7 @@
 			<nav>
 				<!-- Menu Toggle btn-->
 				<div class="menu-toggle">
-					<img class="nav_logo_img img-fluid" src="images/header-logo.svg" alt="header-logo.svg">
+					<img class="nav_logo_img img-fluid" src="/images/header-logo.svg" alt="header-logo.svg">
 					<button type="button" id="menu-btn">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -47,8 +47,8 @@
 					</button>
 				</div>
 				<a href="index.html" class="navbar_brand float-left dn-smd">
-					<img class="logo1 img-fluid" src="images/header-logo2.svg" alt="header-logo.svg">
-					<img class="logo2 img-fluid" src="images/header-logo2.svg" alt="header-logo2.svg">
+					<img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
+					<img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
 					<span>Guido</span>
 				</a>
 				<!-- Responsive Menu Structure-->
@@ -302,7 +302,7 @@
 		<div class="mobile-menu">
 			<div class="header stylehome1">
 				<div class="main_logo_home2 text-left">
-					<img class="nav_logo_img img-fluid mt15" src="images/header-logo2.svg" alt="header-logo2.svg">
+					<img class="nav_logo_img img-fluid mt15" src="/images/header-logo2.svg" alt="header-logo2.svg">
 					<span class="mt15">Guido</span>
 				</div>
 				<ul class="menu_bar_home2">
@@ -419,7 +419,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-lg-12">
-									<a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img src="images/icons/close.svg" alt=""></span></a>
+									<a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img src="/images/icons/close.svg" alt=""></span></a>
 								</div>
 							</div>
 						</div>
@@ -483,7 +483,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc18.jpg" alt="pc18.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc18.jpg" alt="pc18.jpg"></div>
 										<div class="details">
 											<h4>Miami</h4>
 											<p>62 Listings</p>
@@ -492,7 +492,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc19.jpg" alt="pc19.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc19.jpg" alt="pc19.jpg"></div>
 										<div class="details">
 											<h4>Roma</h4>
 											<p>92 Listings</p>
@@ -501,7 +501,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc20.jpg" alt="pc20.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc20.jpg" alt="pc20.jpg"></div>
 										<div class="details">
 											<h4>New Delhi</h4>
 											<p>12 Listings</p>
@@ -510,7 +510,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc21.jpg" alt="pc21.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc21.jpg" alt="pc21.jpg"></div>
 										<div class="details">
 											<h4>London</h4>
 											<p>74 Listings</p>
@@ -519,7 +519,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc22.jpg" alt="pc22.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc22.jpg" alt="pc22.jpg"></div>
 										<div class="details">
 											<h4>Amsterdam</h4>
 											<p>62 Listings</p>
@@ -528,7 +528,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc23.jpg" alt="pc23.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc23.jpg" alt="pc23.jpg"></div>
 										<div class="details">
 											<h4>Berlin</h4>
 											<p>92 Listings</p>
@@ -537,7 +537,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc24.jpg" alt="pc24.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc24.jpg" alt="pc24.jpg"></div>
 										<div class="details">
 											<h4>Paris</h4>
 											<p>12 Listings</p>
@@ -546,7 +546,7 @@
 								</div>
 								<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 									<div class="property_city_home6 tac-xsd">
-										<div class="thumb"><img class="w100" src="images/property/pc25.jpg" alt="pc25.jpg"></div>
+										<div class="thumb"><img class="w100" src="/images/property/pc25.jpg" alt="pc25.jpg"></div>
 										<div class="details">
 											<h4>New Zealand</h4>
 											<p>74 Listings</p>
@@ -701,7 +701,7 @@
 					<div class="footer_logo_widget text-center mb15-767">
 						<div class="wrapper">
 							<div class="logo text-center">
-								<img src="images/footer-logo.svg" alt="footer-logo.svg">
+								<img src="/images/footer-logo.svg" alt="footer-logo.svg">
 								<span class="logo_title text-white pl15">Guido</span>
 							</div>
 						</div>
@@ -723,25 +723,25 @@
 	<a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->
-<script src="js/jquery-3.6.0.js"></script>
-<script src="js/jquery-migrate-3.0.0.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.mmenu.all.js"></script>
-<script src="js/ace-responsive-menu.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/snackbar.min.js"></script>
-<script src="js/simplebar.js"></script>
-<script src="js/parallax.js"></script>
-<script src="js/scrollto.js"></script>
-<script src="js/jquery-scrolltofixed-min.js"></script>
-<script src="js/jquery.counterup.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/progressbar.js"></script>
-<script src="js/slider.js"></script>
-<script src="js/timepicker.js"></script>
-<script src="js/wow.min.js"></script>
+<script src="/js/jquery-3.6.0.js"></script>
+<script src="/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.mmenu.all.js"></script>
+<script src="/js/ace-responsive-menu.js"></script>
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/snackbar.min.js"></script>
+<script src="/js/simplebar.js"></script>
+<script src="/js/parallax.js"></script>
+<script src="/js/scrollto.js"></script>
+<script src="/js/jquery-scrolltofixed-min.js"></script>
+<script src="/js/jquery.counterup.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/progressbar.js"></script>
+<script src="/js/slider.js"></script>
+<script src="/js/timepicker.js"></script>
+<script src="/js/wow.min.js"></script>
 <!-- Custom script for all pages -->
-<script src="js/script.js"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>

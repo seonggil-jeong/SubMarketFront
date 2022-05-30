@@ -24,16 +24,8 @@ import java.util.Map;
 public class MainController {
     private final UserService userService;
     @RequestMapping("/index")
-    public String index(HttpSession session, ModelMap model) throws Exception {
-        String token = CmmUtil.nvl((String) session.getAttribute("TOKEN"));
+    public String index() throws Exception {
 
-        ResponseUser responseUser = new ResponseUser();
-
-        if (token.length() > 1) {
-           responseUser = userService.getUserInfo(session.getAttribute("TOKEN").toString());
-
-        }
-        model.addAttribute("userDto", responseUser);
         return "/index";
 
     }

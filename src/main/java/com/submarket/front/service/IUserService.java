@@ -1,5 +1,6 @@
 package com.submarket.front.service;
 
+import com.submarket.front.vo.RequestLogin;
 import com.submarket.front.vo.ResponseUser;
 
 public interface IUserService {

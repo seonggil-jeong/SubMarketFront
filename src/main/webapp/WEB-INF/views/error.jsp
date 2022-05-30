@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a href="index.html" class="navbar_brand float-left dn-smd">
+                <a href="/index" class="navbar_brand float-left dn-smd">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
                     <span>Guido</span>
@@ -72,7 +72,7 @@
                         <a href="#"><span class="title">Home</span></a>
                         <!-- Level Two-->
                         <ul>
-                            <li><a href="index.html">Home V1</a></li>
+                            <li><a href="/index">Home V1</a></li>
                             <li><a href="index2.html">Home V2</a></li>
                             <li><a href="index3.html">Home V3</a></li>
                         </ul>
@@ -316,7 +316,7 @@
             <ul>
                 <li><span>Home</span>
                     <ul>
-                        <li><a href="index.html">Home V1</a></li>
+                        <li><a href="/index">Home V1</a></li>
                         <li><a href="index2.html">Home V2</a></li>
                         <li><a href="index3.html">Home V3</a></li>
                     </ul>
@@ -501,7 +501,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="images/property/pc20.jpg" alt="pc20.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg" alt="pc20.jpg"></div>
                                         <div class="details">
                                             <h4>New Delhi</h4>
                                             <p>12 Listings</p>
@@ -510,7 +510,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="images/property/pc21.jpg" alt="pc21.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg" alt="pc21.jpg"></div>
                                         <div class="details">
                                             <h4>London</h4>
                                             <p>74 Listings</p>
@@ -519,7 +519,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="images/property/pc22.jpg" alt="pc22.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg" alt="pc22.jpg"></div>
                                         <div class="details">
                                             <h4>Amsterdam</h4>
                                             <p>62 Listings</p>
@@ -528,7 +528,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="images/property/pc23.jpg" alt="pc23.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg" alt="pc23.jpg"></div>
                                         <div class="details">
                                             <h4>Berlin</h4>
                                             <p>92 Listings</p>
@@ -537,7 +537,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="images/property/pc24.jpg" alt="pc24.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg" alt="pc24.jpg"></div>
                                         <div class="details">
                                             <h4>Paris</h4>
                                             <p>12 Listings</p>
@@ -546,7 +546,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="images/property/pc25.jpg" alt="pc25.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg" alt="pc25.jpg"></div>
                                         <div class="details">
                                             <h4>New Zealand</h4>
                                             <p>74 Listings</p>
@@ -576,7 +576,7 @@
                             <button type="submit" class="btn btn-primary mb-2">Subscribe</button>
                         </form>
                     </div>
-                    <a class="btn_error" href="index.html">Back To Home</a>
+                    <a class="btn_error" href="/index">Back To Home</a>
                 </div>
             </div>
         </div>
@@ -650,7 +650,7 @@
                     <div class="footer_logo_widget text-center mb15-767">
                         <div class="wrapper">
                             <div class="logo text-center">
-                                <img src="images/footer-logo.svg" alt="footer-logo.svg">
+                                <img src="/images/footer-logo.svg" alt="footer-logo.svg">
                                 <span class="logo_title text-white pl15">Guido</span>
                             </div>
                         </div>

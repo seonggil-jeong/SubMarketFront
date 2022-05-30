@@ -16,7 +16,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class MainController {
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index(HttpSession session) {
         // TODO: 2022/05/29 사용자 정보가 없다면 Login / Sing Up or User Info
 

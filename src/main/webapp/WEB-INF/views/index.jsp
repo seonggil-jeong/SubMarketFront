@@ -1,6 +1,10 @@
 <%@ page import="com.submarket.front.util.CmmUtil" %>
+<%@ page import="com.submarket.front.vo.ResponseUser" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+<%
+	ResponseUser responseUser = (ResponseUser) request.getAttribute("userDto");
+%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -31,7 +35,6 @@
 <body>
 <div class="wrapper">
 	<div class="preloader"></div>
-
 	<!-- Main Header Nav -->
 	<header class="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
 		<div class="container-fluid p0">
@@ -74,22 +77,22 @@
 					%>
 					<li class="user_setting" style="margin-bottom: 1%;">
 						<div class="dropdown">
-							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"> Cameron Williamson <span
+							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(responseUser.getUserName())%><span
 									class="fa fa-angle-down"></span></span></a>
 							<div class="dropdown-menu">
 								<div class="user_set_header">
-									<p>Cameron Williamson <br><span class="address">alitufan@gmail.com</span></p>
+									<p><%=CmmUtil.nvl(responseUser.getUserName())%><br><span class="address"><%=CmmUtil.nvl(responseUser.getUserEmail())%></span></p>
 								</div>
 								<div class="user_setting_content">
 									<a class="dropdown-item active" href="#" style="color: black">내 정보</a>
 									<a class="dropdown-item" href="#" style="color: black">내 구독 정보</a>
-									<a class="dropdown-item" href="#" style="color: black">Log out</a>
+									<a class="dropdown-item" href="/logout" style="color: black">Log out</a>
 								</div>
 							</div>
 						</div>
 					</li>
 					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
-							class="dn-lg"> Profile</span></a></li>
+							class="dn-lg" style="border: #000000">내 정보</span></a></li>
 					<%
 						} else {
 					%>

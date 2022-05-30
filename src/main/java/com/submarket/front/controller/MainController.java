@@ -1,11 +1,16 @@
 package com.submarket.front.controller;
 
+import com.submarket.front.service.impl.UserService;
+import com.submarket.front.util.CmmUtil;
+import com.submarket.front.vo.ResponseUser;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,11 +20,20 @@ import java.util.Map;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class MainController {
+    private final UserService userService;
     @RequestMapping("/index")
-    public String index(HttpSession session) {
-        // TODO: 2022/05/29 사용자 정보가 없다면 Login / Sing Up or User Info
+    public String index(HttpSession session, ModelMap model) throws Exception {
+        String token = CmmUtil.nvl((String) session.getAttribute("TOKEN"));
 
+        ResponseUser responseUser = new ResponseUser();
+
+        if (token.length() > 1) {
+           responseUser = userService.getUserInfo(session.getAttribute("TOKEN").toString());
+
+        }
+        model.addAttribute("userDto", responseUser);
         return "/index";
 
     }

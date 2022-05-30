@@ -68,12 +68,13 @@ public class UserController {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
             model.addAttribute("msg", "환영합니다");
-            model.addAttribute("url", "/");
-            session.setAttribute("TOKEN", response.getHeaders().get("token"));
-            log.info("token : " + session.getAttribute("TOKEN"));
+            model.addAttribute("url", "/index");
+            session.setAttribute("TOKEN", response.getHeaders().get("token").get(0));
+            log.info("token : " + response.getHeaders().get("token").get(0));
+
         } catch (Exception e) { // 로그인 오류
             model.addAttribute("msg", "비밀번호 또는 아이디를 확인해 주세요");
-            model.addAttribute("url", "/");
+            model.addAttribute("url", "/index");
 
         }
 

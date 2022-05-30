@@ -16,4 +16,10 @@ public class SubMarketFrontApplication {
         SpringApplication.run(SubMarketFrontApplication.class, args);
     }
 
+    @Bean
+    public RestTemplate restTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate;
+    }
+
 }

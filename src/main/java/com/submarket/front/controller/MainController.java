@@ -2,7 +2,6 @@ package com.submarket.front.controller;
 
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
-import com.submarket.front.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;

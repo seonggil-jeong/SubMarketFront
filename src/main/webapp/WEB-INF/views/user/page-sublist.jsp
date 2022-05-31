@@ -2,10 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
-    UserDto responseUser = (UserDto) session.getAttribute("SS_USERINFO");
+    UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
 
-    if (responseUser == null) {
-        responseUser = new UserDto();
+    if (userInfo == null) {
+        userInfo = new UserDto();
     }
 %>
 
@@ -40,9 +40,9 @@
 
     <script type="text/javascript">
         function doOnload() {
-            if ('<%=String.valueOf(session.getAttribute("TOKEN"))%>'.length < 10) {
+            if ('<%=String.valueOf(session.getAttribute("SS_USER_TOKEN"))%>'.length < 10) {
                 alert("로그인된 사용자만 접근 가능합니다.");
-                top.location.href = "/user/userLogin";
+                top.location.href = "/user/page-login";
             }
         }
     </script>
@@ -82,19 +82,19 @@
                 </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
                     <%
-                        if (session.getAttribute("TOKEN") != null) {
+                        if (session.getAttribute("SS_USER_TOKEN") != null) {
 
                     %>
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
-                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1366"><%=responseUser.getUserName()%><span class="fa fa-angle-down"></span></span></a>
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1366"><%=userInfo.getUserName()%><span class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
                                 <div class="user_set_header">
-                                    <p><%=responseUser.getUserName()%><br><span class="address"><%=responseUser.getUserEmail()%></span></p>
+                                    <p><%=userInfo.getUserName()%><br><span class="address"><%=userInfo.getUserEmail()%></span></p>
                                 </div>
                                 <div class="user_setting_content" style="margin-bottom: 10%">
                                     <a class="dropdown-item active" href="/user/profile">내 정보</a>
-                                    <a class="dropdown-item" href="/user/sub-list">내 구독 정보</a>
+                                    <a class="dropdown-item" href="/user/sublist">내 구독 정보</a>
                                     <a class="dropdown-item" href="/logout">Log out</a>
                                 </div>
                             </div>

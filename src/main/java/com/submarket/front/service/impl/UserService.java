@@ -3,7 +3,6 @@ package com.submarket.front.service.impl;
 import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.IUserService;
 import com.submarket.front.util.CmmUtil;
-import com.submarket.front.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;

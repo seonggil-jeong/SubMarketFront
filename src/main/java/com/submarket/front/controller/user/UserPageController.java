@@ -1,4 +1,4 @@
-package com.submarket.front.controller;
+package com.submarket.front.controller.user;
 
 import com.submarket.front.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -14,31 +14,26 @@ public class UserPageController {
 
     /**
      * page 이동 Controller
-     * @param response
      * @return pageInfo
      */
 
-
-
-
-    @RequestMapping("/user/sign-up")
-    public String userInfo(HttpServletResponse response) {
-        log.info("go to user sign-up");
-        return "/user/user-reg";
-    }
-
     @RequestMapping("/user/profile")
     public String userProfile(HttpSession session) throws Exception {
-            return "/user/user-profile";
+            return "/user/page-profile";
     }
 
-    @RequestMapping("/user/sub-list")
+    @RequestMapping("/user/sublist")
     public String subList(HttpSession session) {
-        return "/user/sub-list";
+        return "/user/page-sublist";
     }
 
-    @RequestMapping("/user/userLogin")
-    public String userUserLogin(HttpSession session) {
-        return "/user/user-login";
+    @RequestMapping("/user/reviewlist")
+    public String reviewList(HttpSession session) {
+        return "/user/page-reviewlist";
+    }
+
+    @RequestMapping("/user/page-login")
+    public String userPageLogin(HttpSession session) {
+        return "/user/page-login";
     }
 }

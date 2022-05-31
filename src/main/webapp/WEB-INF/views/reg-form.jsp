@@ -46,30 +46,15 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a href="index.html" class="navbar_brand float-left dn-smd">
+                <a href="index.html" class="navbar_brand float-left dn-smd" style="margin-bottom: 1%">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
-                    <span>Guido</span>
+                    <span>SubMarket</span>
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-                <div class="ht_left_widget style2 float-left">
-                    <ul>
-                        <li class="list-inline-item">
-                            <div class="ht_search_widget">
-                                <div class="header_search_widget inner_page">
-                                    <form class="form-inline mailchimp_form">
-                                        <input type="text" class="custom_search_with_menu_trigger form-control" placeholder="What are you looking for?" data-toggle="modal" data-target="#staticBackdrop">
-                                        <button type="submit" class="btn"><span class="flaticon-loupe"></span></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-                    <li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
-                    <li class="list-inline-item add_listing"><a href="page-add-new-listing.html"><span class="icon">+</span><span class="dn-lg"> Add Listing</span></a></li>
+                    <li class="list-inline-item add_listing"><a href="/index"><span class="dn-lg">HOME</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -463,7 +448,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="breadcrumb_content">
-                        <h2 class="breadcrumb_title">사용자 회원가입</h2>
+                        <h2 class="breadcrumb_title">Register</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Register</li>
@@ -501,15 +486,6 @@
                                         <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
                                     </div>
                                     <button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <button type="submit" class="btn btn-block btn-fb"><i class="fa fa-facebook float-left mt5"></i> Log In via Facebook</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button type="submit" class="btn btn-block btn-googl"><i class="fa fa-google float-left mt5"></i> Log In via Google+</button>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="pills-profile2" role="tabpanel" aria-labelledby="pills-profile-tab2">
@@ -524,15 +500,6 @@
                                         <input type="password" class="form-control" id="exampleInputPassword5" placeholder="Password">
                                     </div>
                                     <button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <button type="submit" class="btn btn-block btn-fb"><i class="fa fa-facebook float-left mt5"></i> Log In via Facebook</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button type="submit" class="btn btn-block btn-googl"><i class="fa fa-google float-left mt5"></i> Log In via Google+</button>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -542,7 +509,25 @@
         </div>
     </section>
 
-    <!-- Our Footer -->
+    <!-- Start Partners -->
+    <section class="start-partners home1 bgc-thm pt60 pb60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="start_partner tac-smd">
+                        <h2>Submit Your Property Today!</h2>
+                        <p>Explore some of the best tips from around the city from our partners and friends.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 pr10">
+                    <div class="parner_reg_btn text-right tac-smd">
+                        <a class="btn" href="#">Submit Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->

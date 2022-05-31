@@ -1,13 +1,12 @@
 <%@ page import="com.submarket.front.util.CmmUtil" %>
-<%@ page import="com.submarket.front.vo.ResponseUser" %>
 <%@ page import="com.submarket.front.dto.UserDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
-	UserDto responseUser = (UserDto) session.getAttribute("SS_USERINFO");
+	UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
 
-	if (responseUser == null) {
-		responseUser = new UserDto();
+	if (userInfo == null) {
+		userInfo = new UserDto();
 	}
 %>
 <!DOCTYPE html>
@@ -25,7 +24,7 @@
 	<!-- Responsive stylesheet -->
 	<link rel="stylesheet" href="/css/responsive.css">
 	<!-- Title -->
-	<title>Guido - Directory & Listing HTML Template</title>
+	<title>SubMarket</title>
 	<!-- Favicon -->
 	<link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
 	<link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
@@ -54,7 +53,7 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<a href="/" class="navbar_brand float-left dn-smd">
+				<a href="/index" class="navbar_brand float-left dn-smd">
 					<img class="logo1 img-fluid" src="/images/header-logo.svg" alt="header-logo.svg">
 					<img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
 					<span>SubMarket</span>
@@ -63,20 +62,20 @@
 				<!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
 				<ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
 					<%
-						if (session.getAttribute("TOKEN") != null) {
+						if (session.getAttribute("SS_USER_TOKEN") != null) {
 
 					%>
 					<li class="user_setting" style="margin-bottom: 1%;">
 						<div class="dropdown">
-							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(responseUser.getUserName())%><span
+							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(userInfo.getUserName())%><span
 									class="fa fa-angle-down"></span></span></a>
 							<div class="dropdown-menu">
 								<div class="user_set_header">
-									<p><%=CmmUtil.nvl(responseUser.getUserName())%><br><span class="address"><%=CmmUtil.nvl(responseUser.getUserEmail())%></span></p>
+									<p><%=CmmUtil.nvl(userInfo.getUserName())%><br><span class="address"><%=CmmUtil.nvl(userInfo.getUserEmail())%></span></p>
 								</div>
 								<div class="user_setting_content" style="margin-bottom: 10%">
 									<a class="dropdown-item active" href="/user/profile" style="color: black">내 정보</a>
-									<a class="dropdown-item" href="/user/sub-list" style="color: black">내 구독 정보</a>
+									<a class="dropdown-item" href="/user/sublist" style="color: black">내 구독 정보</a>
 									<a class="dropdown-item" href="/logout" style="color: black">Log out</a>
 								</div>
 							</div>
@@ -143,12 +142,12 @@
 									<div class="tab-content" id="pills-tabContent">
 										<%-- 사업자 로그인 창 --%>
 										<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-											<form action="#">
+											<form action="/seller/login", method="post">
 												<div class="input-group mb-2 mr-sm-2">
-													<input type="text" class="form-control" id="SellerId" placeholder="Seller Id">
+													<input type="text" class="form-control" id="SellerId" placeholder="Seller Id" name="sellerId">
 												</div>
 												<div class="input-group form-group mb5">
-													<input type="password" class="form-control" id="SellerPassword" placeholder="Seller Password">
+													<input type="password" class="form-control" id="SellerPassword" placeholder="Seller Password" name="sellerPassword">
 												</div>
 												<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>
 												<a class="btn-fpswd float-right" href="#">Forgot id?</a>
@@ -194,7 +193,7 @@
 		<div class="mobile-menu">
 			<div class="header stylehome1">
 				<div class="main_logo_home2 text-left">
-					<img class="nav_logo_img img-fluid mt15" src="images/header-logo2.svg" alt="header-logo2.svg">
+					<img class="nav_logo_img img-fluid mt15" src="/images/header-logo2.svg" alt="header-logo2.svg">
 					<span class="mt15">SubMarket</span>
 				</div>
 				<ul class="menu_bar_home2">
@@ -207,22 +206,24 @@
 		<nav id="menu" class="stylehome1">
 			<ul>
 				<%
-					if (session.getAttribute("TOKEN") != null) {
+					if (session.getAttribute("SS_USER_TOKEN") != null) {
 				%>
 
-				<li><a href="/logout"><span class="flaticon-edit"></span> Logout</a></li>
+				<li><a href="/user/profile"><span class="flaticon-avatar"></span> Profile</a></li>
+				<li><a href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
+				<li><a href="/user/reviewlist"><span class="flaticon-note"></span> My Reviews</a></li>
+				<li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
 
 				<%
 					} else {
 				%>
 
-				<li><a href="page-login.html"><span class="flaticon-avatar"></span>Login</a></li>
+				<li><a href="/user/page-login"><span class="flaticon-avatar"></span>Login</a></li>
 				<li><a href="/regForm"><span class="flaticon-edit"></span>Register</a></li>
 
 				<%
 					}
 				%>
-				<li class="cl_btn"><a class="btn btn-block btn-lg btn-thm rounded" href="#"><span class="icon">+</span> Create Listing</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -290,19 +291,6 @@
 										<div class="icon"><span class="flaticon-brake"></span></div>
 										<div class="content-details">
 											<div class="title">모든 상품 보기</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-12 mb30">
-									<h3>Utility</h3>
-								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
-									<div class="icon-box text-center">
-										<div class="icon"><span class="flaticon-brake"></span></div>
-										<div class="content-details">
-											<div class="title">내 정보</div>
 										</div>
 									</div>
 								</div>
@@ -517,7 +505,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent1.svg" alt="agent1.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg" alt="agent1.svg"></a></div>
 										<h4>Adventure High Ropes</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -527,7 +515,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon3.svg" alt="icon3.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Outdoor Activities</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -541,7 +529,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp2.jpg" alt="fp2.jpg">
+									<img class="img-whp" src="/images/property/fp2.jpg" alt="fp2.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -559,7 +547,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent2.svg" alt="agent2.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent2.svg" alt="agent2.svg"></a></div>
 										<h4>Amrutha Lounge</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -569,7 +557,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon4.svg" alt="icon4.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon4.svg" alt="icon4.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Restaurant</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -583,7 +571,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp3.jpg" alt="fp3.jpg">
+									<img class="img-whp" src="/images/property/fp3.jpg" alt="fp3.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -601,7 +589,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent3.svg" alt="agent3.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent3.svg" alt="agent3.svg"></a></div>
 										<h4>The Waldorf Hilton</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -611,7 +599,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon5.svg" alt="icon5.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon5.svg" alt="icon5.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Restaurant</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -625,7 +613,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg">
+									<img class="img-whp" src="/images/property/fp1.jpg" alt="fp1.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -646,7 +634,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent1.svg" alt="agent1.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg" alt="agent1.svg"></a></div>
 										<h4>Adventure High Ropes</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -656,7 +644,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon3.svg" alt="icon3.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Outdoor Activities</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -670,7 +658,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp2.jpg" alt="fp2.jpg">
+									<img class="img-whp" src="/images/property/fp2.jpg" alt="fp2.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -688,7 +676,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent2.svg" alt="agent2.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent2.svg" alt="agent2.svg"></a></div>
 										<h4>Amrutha Lounge</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -698,7 +686,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon4.svg" alt="icon4.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon4.svg" alt="icon4.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Restaurant</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -712,7 +700,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp3.jpg" alt="fp3.jpg">
+									<img class="img-whp" src="/images/property/fp3.jpg" alt="fp3.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -730,7 +718,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent3.svg" alt="agent3.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent3.svg" alt="agent3.svg"></a></div>
 										<h4>The Waldorf Hilton</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -740,7 +728,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon5.svg" alt="icon5.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon5.svg" alt="icon5.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Restaurant</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -754,7 +742,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg">
+									<img class="img-whp" src="/images/property/fp1.jpg" alt="fp1.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -775,7 +763,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent1.svg" alt="agent1.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg" alt="agent1.svg"></a></div>
 										<h4>Adventure High Ropes</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -785,7 +773,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon3.svg" alt="icon3.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Outdoor Activities</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -799,7 +787,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp2.jpg" alt="fp2.jpg">
+									<img class="img-whp" src="/images/property/fp2.jpg" alt="fp2.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -817,7 +805,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent2.svg" alt="agent2.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent2.svg" alt="agent2.svg"></a></div>
 										<h4>Amrutha Lounge</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -827,7 +815,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon4.svg" alt="icon4.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon4.svg" alt="icon4.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Restaurant</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -841,7 +829,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp3.jpg" alt="fp3.jpg">
+									<img class="img-whp" src="/images/property/fp3.jpg" alt="fp3.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -859,7 +847,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent3.svg" alt="agent3.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent3.svg" alt="agent3.svg"></a></div>
 										<h4>The Waldorf Hilton</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -869,7 +857,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon5.svg" alt="icon5.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon5.svg" alt="icon5.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Restaurant</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -883,7 +871,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg">
+									<img class="img-whp" src="/images/property/fp1.jpg" alt="fp1.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -904,7 +892,7 @@
 								</div>
 								<div class="details">
 									<div class="tc_content">
-										<div class="badge_icon"><a href="#"><img src="images/icons/agent1.svg" alt="agent1.svg"></a></div>
+										<div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg" alt="agent1.svg"></a></div>
 										<h4>Adventure High Ropes</h4>
 										<p>But I must explain to you how all this mistaken idea...</p>
 										<ul class="prop_details mb0">
@@ -914,7 +902,7 @@
 									</div>
 									<div class="fp_footer">
 										<ul class="fp_meta float-left mb0">
-											<li class="list-inline-item"><a href="#"><img src="images/icons/icon3.svg" alt="icon3.svg"></a></li>
+											<li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
 											<li class="list-inline-item"><a href="#">Outdoor Activities</a></li>
 										</ul>
 										<ul class="fp_meta float-right mb0">
@@ -928,7 +916,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp2.jpg" alt="fp2.jpg">
+									<img class="img-whp" src="/images/property/fp2.jpg" alt="fp2.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>
@@ -1032,7 +1020,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc2.jpg" alt="pc2.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>Miami</h4>
+								<h4>Top Picks</h4>
 								<p>62 Listing</p>
 							</div>
 						</div>
@@ -1043,7 +1031,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc1.jpg" alt="pc1.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>Los Angeles</h4>
+								<h4>Men bought a lot</h4>
 								<p>45 Listing</p>
 							</div>
 						</div>
@@ -1054,7 +1042,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc4.jpg" alt="pc4.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>Florida</h4>
+								<h4>Women bought a lot</h4>
 								<p>86 Listing</p>
 							</div>
 						</div>
@@ -1065,7 +1053,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc3.jpg" alt="pc3.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>New York</h4>
+								<h4>The most popular product right now</h4>
 								<p>21 Listing</p>
 							</div>
 						</div>
@@ -1082,7 +1070,7 @@
 				<div class="col-lg-6 offset-lg-3">
 					<div class="main-title text-center">
 						<h2>How it Works</h2>
-						<p>Bringing business and community members together.</p>
+						<p>we recommend the best product for you</p>
 					</div>
 				</div>
 			</div>
@@ -1093,19 +1081,8 @@
 							<span class="flaticon-find-location"></span>
 						</div>
 						<div class="details">
-							<h4>Find Businesses</h4>
-							<p>Discover & connect with great local businesses in your local neighborhood like dentists, hair stylists and more.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4 col-xl-4">
-					<div class="why_chose_us">
-						<div class="icon">
-							<span class="flaticon-comment"></span>
-						</div>
-						<div class="details">
-							<h4>Review Listings</h4>
-							<p>Discover & connect with great local businesses in your local neighborhood like dentists, hair stylists and more.</p>
+							<h4>Find Sub</h4>
+							<p>Find your favorite product & item</p>
 						</div>
 					</div>
 				</div>
@@ -1115,8 +1092,19 @@
 							<span class="flaticon-date"></span>
 						</div>
 						<div class="details">
-							<h4>Make a Reservation</h4>
-							<p>Discover & connect with great local businesses in your local neighborhood like dentists, hair stylists and more.</p>
+							<h4>Subscribe!!</h4>
+							<p>will be delivered on time</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4 col-xl-4">
+					<div class="why_chose_us">
+						<div class="icon">
+							<span class="flaticon-comment"></span>
+						</div>
+						<div class="details">
+							<h4>Create a review</h4>
+							<p>we can recommend a better product</p>
 						</div>
 					</div>
 				</div>
@@ -1147,25 +1135,25 @@
 	<a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->
-<script src="js/jquery-3.6.0.js"></script>
-<script src="js/jquery-migrate-3.0.0.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.mmenu.all.js"></script>
-<script src="js/ace-responsive-menu.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/isotop.js"></script>
-<script src="js/snackbar.min.js"></script>
-<script src="js/simplebar.js"></script>
-<script src="js/parallax.js"></script>
-<script src="js/scrollto.js"></script>
-<script src="js/jquery-scrolltofixed-min.js"></script>
-<script src="js/jquery.counterup.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/progressbar.js"></script>
-<script src="js/slider.js"></script>
-<script src="js/timepicker.js"></script>
+<script src="/js/jquery-3.6.0.js"></script>
+<script src="/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.mmenu.all.js"></script>
+<script src="/js/ace-responsive-menu.js"></script>
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/isotop.js"></script>
+<script src="/js/snackbar.min.js"></script>
+<script src="/js/simplebar.js"></script>
+<script src="/js/parallax.js"></script>
+<script src="/js/scrollto.js"></script>
+<script src="/js/jquery-scrolltofixed-min.js"></script>
+<script src="/js/jquery.counterup.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/progressbar.js"></script>
+<script src="/js/slider.js"></script>
+<script src="/js/timepicker.js"></script>
 <!-- Custom script for all pages -->
-<script src="js/script.js"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>

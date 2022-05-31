@@ -56,8 +56,7 @@
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal"
                     style="margin-bottom: 1%">
-                    <li class="list-inline-item add_listing"><a href="/index"><span
-                            class="icon"></span><span class="dn-lg">HOME</span></a></li>
+                    <li class="list-inline-item add_listing"><a href="/index"><span class="dn-lg">HOME</span></a></li>
                 </ul>
             </nav>
         </div>

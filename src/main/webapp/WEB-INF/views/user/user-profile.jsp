@@ -68,12 +68,6 @@
                     <ul>
                         <li class="list-inline-item">
                             <div class="ht_search_widget">
-                                <div class="header_search_widget inner_page">
-                                    <form class="form-inline mailchimp_form">
-                                        <input type="text" class="custom_search_with_menu_trigger form-control" placeholder="What are you looking for?" data-toggle="modal" data-target="#staticBackdrop">
-                                        <button type="submit" class="btn"><span class="flaticon-loupe"></span></button>
-                                    </form>
-                                </div>
                             </div>
                         </li>
                     </ul>
@@ -85,16 +79,15 @@
                     %>
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
-                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1366"> Cameron Williamson <span class="fa fa-angle-down"></span></span></a>
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1366"><%=responseUser.getUserName()%><span class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
                                 <div class="user_set_header">
-                                    <p>Cameron Williamson <br><span class="address">alitufan@gmail.com</span></p>
+                                    <p><%=responseUser.getUserName()%><br><span class="address"><%=responseUser.getUserEmail()%></span></p>
                                 </div>
-                                <div class="user_setting_content">
-                                    <a class="dropdown-item active" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">Purchase history</a>
-                                    <a class="dropdown-item" href="#">Help</a>
-                                    <a class="dropdown-item" href="#">Log out</a>
+                                <div class="user_setting_content" style="margin-bottom: 10%">
+                                    <a class="dropdown-item active" href="#">내 정보</a>
+                                    <a class="dropdown-item" href="#">내 구독 정보</a>
+                                    <a class="dropdown-item" href="/logout">Log out</a>
                                 </div>
                             </div>
                         </div>
@@ -403,13 +396,9 @@
                         <div class="dropdown">
                             <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
                             <ul id="myDropdown" class="dropdown-content">
-                                <li><a href="page-my-dashboard.html"><span class="flaticon-web-page"></span> Dashboard</a></li>
                                 <li class="active"><a href="page-profile.html"><span class="flaticon-avatar"></span> My Profile</a></li>
                                 <li><a href="page-my-listing.html"><span class="flaticon-list"></span> My Listings</a></li>
-                                <li><a href="page-my-bookmark.html"><span class="flaticon-love"></span> Bookmarks</a></li>
-                                <li><a href="page-message.html"><span class="flaticon-chat"></span> Message</a></li>
                                 <li><a href="page-my-review.html"><span class="flaticon-note"></span> Reviews</a></li>
-                                <li><a href="page-add-new-listing.html"><span class="flaticon-web-page"></span> Add New Listing</a></li>
                                 <li><a href="page-my-logout.html"><span class="flaticon-logout"></span> Logout</a></li>
                             </ul>
                         </div>
@@ -475,31 +464,33 @@
                         <div class="col-xl-4">
                             <div class="my_dashboard_profile">
                                 <h4 class="mb20">Change password</h4>
+                                <form action="/user/changePassword" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleOldPass">Current Password</label>
-                                            <input type="text" class="form-control" id="formGroupExampleOldPass">
+                                            <input type="password" class="form-control" id="formGroupExampleOldPass" name="oldPassword">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleNewPass">New Password</label>
-                                            <input type="text" class="form-control" id="formGroupExampleNewPass">
+                                            <input type="password" class="form-control" id="formGroupExampleNewPass" name="newPassword">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleConfPass">Confirm New Password</label>
-                                            <input type="text" class="form-control" id="formGroupExampleConfPass">
+                                            <input type="password" class="form-control" id="formGroupExampleConfPass" name="newPassword2">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="my_profile_setting_input">
-                                            <button class="btn update_btn style2">Change Password</button>
+                                            <input type="submit" class="btn update_btn style2" value="Change Password">
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>

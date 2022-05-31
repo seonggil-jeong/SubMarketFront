@@ -74,7 +74,7 @@
 								<div class="user_set_header">
 									<p><%=CmmUtil.nvl(responseUser.getUserName())%><br><span class="address"><%=CmmUtil.nvl(responseUser.getUserEmail())%></span></p>
 								</div>
-								<div class="user_setting_content">
+								<div class="user_setting_content" style="margin-bottom: 10%">
 									<a class="dropdown-item active" href="#" style="color: black">내 정보</a>
 									<a class="dropdown-item" href="#" style="color: black">내 구독 정보</a>
 									<a class="dropdown-item" href="/logout" style="color: black">Log out</a>

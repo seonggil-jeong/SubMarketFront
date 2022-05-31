@@ -3,8 +3,8 @@ package com.submarket.front.controller;
 import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
+import com.submarket.front.vo.RequestChangePassword;
 import com.submarket.front.vo.RequestLogin;
-import com.submarket.front.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
@@ -14,19 +14,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @Slf4j
@@ -35,6 +30,8 @@ public class UserController {
     private final Environment env;
     private final RestTemplate restTemplate;
     private final UserService userService;
+
+
     @RequestMapping("/user/sign-up")
     public String userInfo(HttpServletResponse response) {
         log.info("go to user sign-up");
@@ -73,9 +70,41 @@ public class UserController {
     }
 
     @PostMapping("/user/changePassword")
-    public String changePassword(HttpServletRequest request) throws Exception {
-        // TODO: 2022-05-30 사용자 비밀번호 변경
-        return null;
+    public String changePassword(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword = request.getParameter("newPassword");
+        String newPassword2 = request.getParameter("newPassword2");
+
+        try {
+            if (newPassword.equals(newPassword2)) {
+                String url = env.getProperty("gateway.ip") + "/user-service/users/changePassword";
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Authorization", CmmUtil.nvl((String) session.getAttribute("TOKEN")));
+
+                RequestChangePassword body = new RequestChangePassword();
+                body.setOldPassword(oldPassword);
+                body.setNewPassword(newPassword);
+
+                HttpEntity<RequestChangePassword> entity = new HttpEntity<>(body, headers);
+
+                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+                model.addAttribute("msg", response.getBody());
+                model.addAttribute("url", "/user/profile");
+
+            } else {
+                model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
+                model.addAttribute("url", "/user/profile");
+            }
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            String errorStr = statusCodeException.getResponseBodyAsString(); // get body info
+            model.addAttribute("msg", errorStr);
+            model.addAttribute("url", "/user/profile");
+
+
+
+        }
+        return "/redirect";
     }
 
 

@@ -1,12 +1,13 @@
 <%@ page import="com.submarket.front.vo.ResponseUser" %>
+<%@ page import="com.submarket.front.dto.UserDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
 <%
-    ResponseUser responseUser = (ResponseUser) session.getAttribute("SS_USERINFO");
+    UserDto responseUser = (UserDto) session.getAttribute("SS_USERINFO");
 
     if (responseUser == null) {
-        responseUser = new ResponseUser();
+        responseUser = new UserDto();
     }
 %>
 

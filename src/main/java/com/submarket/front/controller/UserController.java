@@ -64,13 +64,11 @@ public class UserController {
         String resultString = userService.modifyUserInfo(userDto);
         log.info("result : " + resultString);
 
-        ResponseUser responseUser = userService.getUserInfo((String) session.getAttribute("TOKEN"));
-        session.setAttribute("SS_USERINFO", responseUser);
+        UserDto rUserDto = userService.getUserInfo((String) session.getAttribute("TOKEN"));
+        session.setAttribute("SS_USERINFO", rUserDto);
 
         model.addAttribute("msg", resultString);
         model.addAttribute("url", "/user/profile");
-
-        // TODO: 2022-05-30 사용자 정보 변경
         return "/redirect";
     }
 
@@ -106,10 +104,10 @@ public class UserController {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
 
-            ResponseUser responseUser = userService.getUserInfo(response.getHeaders().get("token").get(0));
+            UserDto userDto = userService.getUserInfo(response.getHeaders().get("token").get(0));
 
             session.setAttribute("TOKEN", response.getHeaders().get("token").get(0));
-            session.setAttribute("SS_USERINFO", responseUser);
+            session.setAttribute("SS_USERINFO", userDto);
 
             model.addAttribute("msg", "환영합니다");
             model.addAttribute("url", "/index");

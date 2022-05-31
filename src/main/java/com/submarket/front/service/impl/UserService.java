@@ -27,7 +27,7 @@ public class UserService implements IUserService {
     private final Environment env;
 
     @Override
-    public ResponseUser getUserInfo(String token) throws Exception {
+    public UserDto getUserInfo(String token) throws Exception {
         log.info(this.getClass().getName() + ".getUserInfo");
         String url = env.getProperty("gateway.ip") + "/user-service/user";
         HttpHeaders headers = new HttpHeaders();
@@ -36,7 +36,7 @@ public class UserService implements IUserService {
         Map<String, Object> body = new HashMap<>();
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
-        ResponseEntity<ResponseUser> response = restTemplate.exchange(url, HttpMethod.GET, entity, ResponseUser.class);
+        ResponseEntity<UserDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, UserDto.class);
         return response.getBody();
     }
 

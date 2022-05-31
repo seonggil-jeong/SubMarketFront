@@ -5,7 +5,7 @@ import com.submarket.front.vo.RequestLogin;
 import com.submarket.front.vo.ResponseUser;
 
 public interface IUserService {
-    ResponseUser getUserInfo(String token) throws Exception;
+    UserDto getUserInfo(String token) throws Exception;
 
     String modifyUserInfo(UserDto userDto) throws Exception;
 }

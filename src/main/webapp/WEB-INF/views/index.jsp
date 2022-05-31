@@ -75,8 +75,8 @@
 									<p><%=CmmUtil.nvl(responseUser.getUserName())%><br><span class="address"><%=CmmUtil.nvl(responseUser.getUserEmail())%></span></p>
 								</div>
 								<div class="user_setting_content" style="margin-bottom: 10%">
-									<a class="dropdown-item active" href="#" style="color: black">내 정보</a>
-									<a class="dropdown-item" href="#" style="color: black">내 구독 정보</a>
+									<a class="dropdown-item active" href="/user/profile" style="color: black">내 정보</a>
+									<a class="dropdown-item" href="/user/sub-list" style="color: black">내 구독 정보</a>
 									<a class="dropdown-item" href="/logout" style="color: black">Log out</a>
 								</div>
 							</div>
@@ -128,17 +128,10 @@
 										<div class="input-group form-group mb5">
 											<input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
 										</div>
+										<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>
+										<a class="btn-fpswd float-right" href="#">Forgot id?</a>
 										<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
-										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/user/sign-up">Sign up</a></p>
-										<hr>
-										<div class="row mt30">
-											<div class="col-lg-6">
-												<button type="submit" class="btn btn-fb btn-block"><i class="fa fa-facebook float-left mt5"></i> Log In via Facebook</button>
-											</div>
-											<div class="col-lg-6">
-												<button type="submit" class="btn btn-googl btn-block"><i class="fa fa-google float-left mt5"></i> Log In via Google+</button>
-											</div>
-										</div>
+										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign up</a></p>
 									</form>
 								</div>
 							</div>
@@ -157,17 +150,10 @@
 												<div class="input-group form-group mb5">
 													<input type="password" class="form-control" id="SellerPassword" placeholder="Seller Password">
 												</div>
+												<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>
+												<a class="btn-fpswd float-right" href="#">Forgot id?</a>
 												<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
-												<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="#">Sign up</a></p>
-												<hr>
-												<div class="row mt30">
-													<div class="col-lg-6">
-														<button type="submit" class="btn btn-fb btn-block"><i class="fa fa-facebook float-left mt5"></i> Log In via Facebook</button>
-													</div>
-													<div class="col-lg-6">
-														<button type="submit" class="btn btn-googl btn-block"><i class="fa fa-google float-left mt5"></i> Log In via Google+</button>
-													</div>
-												</div>
+												<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign up</a></p>
 											</form>
 										</div>
 										<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -231,7 +217,7 @@
 				%>
 
 				<li><a href="page-login.html"><span class="flaticon-avatar"></span>Login</a></li>
-				<li><a href="/user/regForm"><span class="flaticon-edit"></span>Register</a></li>
+				<li><a href="/regForm"><span class="flaticon-edit"></span>Register</a></li>
 
 				<%
 					}
@@ -509,7 +495,7 @@
 						<div class="item">
 							<div class="feat_property">
 								<div class="thumb">
-									<img class="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg">
+									<img class="img-whp" src="/images/property/fp3.jpg" alt="fp1.jpg">
 									<div class="thmb_cntnt">
 										<ul class="tag mb0">
 											<li class="list-inline-item"><a href="#">$$$$</a></li>

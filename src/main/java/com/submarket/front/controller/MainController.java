@@ -23,6 +23,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MainController {
     private final UserService userService;
+
     @RequestMapping("/index")
     public String index() throws Exception {
 

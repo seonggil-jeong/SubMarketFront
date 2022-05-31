@@ -31,27 +31,6 @@ public class UserController {
     private final RestTemplate restTemplate;
     private final UserService userService;
 
-
-    @RequestMapping("/user/sign-up")
-    public String userInfo(HttpServletResponse response) {
-        log.info("go to user sign-up");
-        return "/user/user-reg";
-    }
-
-    @RequestMapping("/user/regForm")
-    public String userRegForm() throws Exception {
-        return "/user/user-reg";
-    }
-    @RequestMapping("/user/profile")
-    public String userProfile(HttpSession session) throws Exception {
-        if (CmmUtil.nvl((String) session.getAttribute("TOKEN")).length() > 1) {
-            return "/user/user-profile";
-        } else {
-
-        return "/user/user-login";
-        }
-    }
-
     @PostMapping("/user/modifyUserInfo")
     public String modifyUSerInfo(HttpSession session, UserDto userDto, ModelMap model) throws Exception {
         String token = session.getAttribute("TOKEN").toString();
@@ -70,7 +49,7 @@ public class UserController {
     }
 
     @PostMapping("/user/changePassword")
-    public String changePassword(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
+    public String changePassword(HttpServletRequest request, ModelMap model, HttpSession session) {
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
         String newPassword2 = request.getParameter("newPassword2");

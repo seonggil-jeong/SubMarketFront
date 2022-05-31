@@ -13,4 +13,9 @@ public class PageController {
     public String itemList() {
         return "/item-list";
     }
+
+    @RequestMapping("/regForm")
+    public String userRegForm() throws Exception {
+        return "/reg-form";
+    }
 }

@@ -1,5 +1,6 @@
 package com.submarket.front.controller;
 
+import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
 import com.submarket.front.vo.RequestLogin;
@@ -54,18 +55,37 @@ public class UserController {
         }
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @PostMapping("/user/modifyUserInfo")
+    public String modifyUSerInfo(HttpSession session, UserDto userDto, ModelMap model) throws Exception {
+        String token = session.getAttribute("TOKEN").toString();
+        userDto.setToken(token);
+        log.info("userEmail : " + userDto.getUserEmail());
+
+        String resultString = userService.modifyUserInfo(userDto);
+        log.info("result : " + resultString);
+
+        ResponseUser responseUser = userService.getUserInfo((String) session.getAttribute("TOKEN"));
+        session.setAttribute("SS_USERINFO", responseUser);
+
+        model.addAttribute("msg", resultString);
+        model.addAttribute("url", "/user/profile");
+
+        // TODO: 2022-05-30 사용자 정보 변경
+        return "/redirect";
+    }
+
+    @PostMapping("/user/changePassword")
+    public String changePassword(HttpServletRequest request) throws Exception {
+        // TODO: 2022-05-30 사용자 비밀번호 변경
+        return null;
+    }
+
+
+
+
+
+
+
     // 사용자 로그인
     @PostMapping("/user/login")
     public String userLogin(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {

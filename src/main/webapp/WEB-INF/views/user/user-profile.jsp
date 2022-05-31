@@ -1,5 +1,14 @@
+<%@ page import="com.submarket.front.vo.ResponseUser" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+
+<%
+    ResponseUser responseUser = (ResponseUser) session.getAttribute("SS_USERINFO");
+
+    if (responseUser == null) {
+        responseUser = new ResponseUser();
+    }
+%>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -19,7 +28,7 @@
     <!-- Title -->
     <title>Guido - Directory & Listing HTML Template</title>
     <!-- Favicon -->
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="/image/x-icon" />
     <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -47,10 +56,10 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a href="index.html" class="navbar_brand float-left dn-smd">
+                <a href="/index" class="navbar_brand float-left dn-smd">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
-                    <span>Guido</span>
+                    <span>SubMarket</span>
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
@@ -69,57 +78,11 @@
                     </ul>
                 </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-                    <li>
-                        <a href="#"><span class="title">Pages</span></a>
-                        <ul>
-                            <li>
-                                <a href="#"><span class="title">Shop Pages</span></a>
-                                <ul>
-                                    <li><a href="page-shop.html">Shop</a></li>
-                                    <li><a href="page-shop-single.html">Shop Single</a></li>
-                                    <li><a href="page-shop-cart.html">Cart</a></li>
-                                    <li><a href="page-shop-checkout.html">Checkout</a></li>
-                                    <li><a href="page-shop-order.html">Order</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-about.html">About Us</a></li>
-                            <li><a href="page-contact.html">Contact</a></li>
-                            <li><a href="page-coming-soon.html">Coming Soon</a></li>
-                            <li>
-                                <a href="#">User Dashboard</a>
-                                <ul>
-                                    <li><a href="page-my-dashboard.html">Dashboard</a></li>
-                                    <li><a href="page-profile.html">My Profile</a></li>
-                                    <li><a href="page-my-listing.html">My Listings</a></li>
-                                    <li><a href="page-my-bookmark.html">Bookmarks</a></li>
-                                    <li><a href="page-message.html">Messages</a></li>
-                                    <li><a href="page-my-review.html">Reviews</a></li>
-                                    <li><a href="page-add-new-listing.html">Add New Property</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-gallery.html">Gallery</a></li>
-                            <li><a href="page-faq.html">Faq</a></li>
-                            <li><a href="page-invoice.html">Invoice</a></li>
-                            <li><a href="page-login.html">LogIn</a></li>
-                            <li><a href="page-pricing.html">Pricing V1</a></li>
-                            <li><a href="page-pricing2.html">Pricing V2</a></li>
-                            <li><a href="page-register.html">Register</a></li>
-                            <li><a href="page-error.html">404 Page</a></li>
-                            <li><a href="page-terms.html">Terms and Conditions</a></li>
-                            <li><a href="page-ui-element.html">UI Elements</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><span class="title">Blog</span></a>
-                        <ul>
-                            <li><a href="page-blog-grid.html">Blog Grid</a></li>
-                            <li><a href="page-blog-grid-sidebar.html">Blog Grid Sidebar</a></li>
-                            <li><a href="page-blog-details.html">Blog Details</a></li>
-                            <li><a href="page-blog-list.html">Blog List</a></li>
-                            <li><a href="page-blog-single.html">Blog Single</a></li>
-                        </ul>
-                    </li>
-                    <li class="user_setting">
+                    <%
+                        if (session.getAttribute("TOKEN") != null) {
+
+                    %>
+                    <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
                             <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1366"> Cameron Williamson <span class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
@@ -135,7 +98,14 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list-inline-item add_listing"><a href="page-add-new-listing.html"><span class="icon">+</span><span class="dn-lg"> Add Listing</span></a></li>
+                    <li class="list-inline-item add_listing"><a href="/index"><span class="icon"></span><span class="dn-lg">HOME</span></a></li>
+                    <%
+                    } else {
+                    %>
+                    <li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
+                    <%
+                        }
+                    %>
                 </ul>
             </nav>
         </div>
@@ -160,7 +130,7 @@
             <ul>
                 <li><span>Home</span>
                     <ul>
-                        <li><a href="index.html">Home V1</a></li>
+                        <li><a href="/index">Home V1</a></li>
                         <li><a href="index2.html">Home V2</a></li>
                         <li><a href="index3.html">Home V3</a></li>
                     </ul>
@@ -412,13 +382,10 @@
                 <div class="col-lg-12">
                     <div class="ed_menu_list mt5">
                         <ul>
-                            <li><a href="page-my-dashboard.html"><span class="flaticon-web-page"></span> Dashboard</a></li>
                             <li><a class="active" href="page-profile.html"><span class="flaticon-avatar"></span> Profile</a></li>
                             <li><a href="page-my-listing.html"><span class="flaticon-list"></span> My Listings</a></li>
-                            <li><a href="page-my-bookmark.html"><span class="flaticon-love"></span> Bookmarks</a></li>
-                            <li><a href="page-message.html"><span class="flaticon-chat"></span> Message</a></li>
                             <li><a href="page-my-review.html"><span class="flaticon-note"></span> Reviews</a></li>
-                            <li><a href="page-my-logout.html"><span class="flaticon-logout"></span> Logout</a></li>
+                            <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -457,72 +424,51 @@
                     <div class="row">
                         <div class="col-xl-8">
                             <div class="my_dashboard_profile mb30-lg">
-                                <h4 class="mb30">Profile Details</h4>
+                                <form action="/user/modifyUserInfo" method="post">
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="wrap-custom-file mb50">
-                                            <input type="file" name="image1" id="image1" accept=".gif, .jpg, .png"/>
-                                            <label for="image1">
-                                                <span>Upload Photo</span>
-                                                <small class="file_title">Maximum file size: 10 MB.</small>
-                                            </label>
-                                            <a class="text-thm tdu photo_delete" href="#">Delete</a>
-                                        </div>
-                                    </div>
                                     <div class="col-lg-12">
                                         <div class="my_profile_setting_input form-group mt100-500">
                                             <label for="formGroupExampleInput1">Your Name</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Ali Tuf...">
+                                            <input type="text" readonly class="form-control" id="formGroupExampleInput1" name="userName" value="<%=responseUser.getUserName()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleInput8">Phone</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput8">
+                                            <label for="formGroupExampleInput8">Email</label>
+                                            <input type="email" class="form-control" id="formGroupExampleInput8" name="userEmail" value="<%=responseUser.getUserEmail()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleEmail">Email</label>
-                                            <input type="email" class="form-control" id="formGroupExampleEmail">
+                                            <label for="formGroupExampleEmail">Address</label>
+                                            <input type="text" class="form-control" id="formGroupExampleEmail" name="userAddress" value="<%=responseUser.getUserAddress()%>">
                                         </div>
                                     </div>
-                                    <div class="col-xl-12">
-                                        <div class="my_profile_setting_textarea">
-                                            <label for="exampleFormControlTextarea1">Notes</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                                    <div class="col-lg-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleInput8">Address2</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput9" name="userAddress2" value="<%=responseUser.getUserAddress2()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-xl-6">
                                         <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleInput5">Facebook</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput5">
+                                            <label for="formGroupExampleInput9">Phone</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput10" name="userPn" value="<%=responseUser.getUserPn()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-xl-6">
                                         <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleInput6">Twitter</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput6">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-xl-6">
-                                        <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleInput7">Google+</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput7">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-xl-6">
-                                        <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleInput9">Instagram</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput9">
+                                            <label for="formGroupExampleInput9">Age</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput11" name="userAge" value="<%=responseUser.getUserAge()%>">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="my_profile_setting_input">
-                                            <button class="btn update_btn">Save Changes</button>
+                                            <input type="submit" class="btn update_btn" value="Save Changes">
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                         <div class="col-xl-4">
@@ -562,92 +508,92 @@
     </section>
 
     <!-- Our Footer -->
-    <section class="footer_one home1">
-        <div class="container pb70">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <div class="footer_contact_widget">
-                        <h4>Contact Us</h4>
-                        <ul class="list-unstyled">
-                            <li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry Street, North Melbourne VIC 3051, Australia.</a></li>
-                            <li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456 7890</a></li>
-                            <li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-2 col-xl-3">
-                    <div class="footer_qlink_widget">
-                        <h4>Company</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Article & Tips</a></li>
-                            <li><a href="#">Terms & Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-5 col-md-6 col-lg-2 col-xl-2">
-                    <div class="footer_qlink_widget pl0">
-                        <h4>Discover</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Chicago</a></li>
-                            <li><a href="#">Los Angels</a></li>
-                            <li><a href="#">Miami</a></li>
-                            <li><a href="#">New York</a></li>
-                            <li><a href="#">Florida</a></li>
-                            <li><a href="#">Boston</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-6 col-lg-4 col-xl-4">
-                    <div class="footer_social_widget">
-                        <h4>Subscribe</h4>
-                        <p class="text-white mb20">We don’t send spam so don’t worry.</p>
-                        <form class="footer_mailchimp_form">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto">
-                                    <input type="email" class="form-control" id="inlineFormInput" placeholder="Enter your email">
-                                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container pt20 pb30">
-            <div class="row">
-                <div class="col-md-4 col-lg-4">
-                    <div class="copyright-widget mt10 mb15-767">
-                        <p>© Guido - All rights reserved.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="footer_logo_widget text-center mb15-767">
-                        <div class="wrapper">
-                            <div class="logo text-center">
-                                <img src="/images/footer-logo.svg" alt="footer-logo.svg">
-                                <span class="logo_title text-white pl15">Guido</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="footer_social_widget text-right tac-smd mt10">
-                        <ul class="mb0">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<%--    <section class="footer_one home1">--%>
+<%--        <div class="container pb70">--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">--%>
+<%--                    <div class="footer_contact_widget">--%>
+<%--                        <h4>Contact Us</h4>--%>
+<%--                        <ul class="list-unstyled">--%>
+<%--                            <li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry Street, North Melbourne VIC 3051, Australia.</a></li>--%>
+<%--                            <li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456 7890</a></li>--%>
+<%--                            <li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-sm-6 col-md-6 col-lg-2 col-xl-3">--%>
+<%--                    <div class="footer_qlink_widget">--%>
+<%--                        <h4>Company</h4>--%>
+<%--                        <ul class="list-unstyled">--%>
+<%--                            <li><a href="#">Help Center</a></li>--%>
+<%--                            <li><a href="#">About</a></li>--%>
+<%--                            <li><a href="#">Career</a></li>--%>
+<%--                            <li><a href="#">How It Works</a></li>--%>
+<%--                            <li><a href="#">Article & Tips</a></li>--%>
+<%--                            <li><a href="#">Terms & Service</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-sm-5 col-md-6 col-lg-2 col-xl-2">--%>
+<%--                    <div class="footer_qlink_widget pl0">--%>
+<%--                        <h4>Discover</h4>--%>
+<%--                        <ul class="list-unstyled">--%>
+<%--                            <li><a href="#">Chicago</a></li>--%>
+<%--                            <li><a href="#">Los Angels</a></li>--%>
+<%--                            <li><a href="#">Miami</a></li>--%>
+<%--                            <li><a href="#">New York</a></li>--%>
+<%--                            <li><a href="#">Florida</a></li>--%>
+<%--                            <li><a href="#">Boston</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-sm-7 col-md-6 col-lg-4 col-xl-4">--%>
+<%--                    <div class="footer_social_widget">--%>
+<%--                        <h4>Subscribe</h4>--%>
+<%--                        <p class="text-white mb20">We don’t send spam so don’t worry.</p>--%>
+<%--                        <form class="footer_mailchimp_form">--%>
+<%--                            <div class="form-row align-items-center">--%>
+<%--                                <div class="col-auto">--%>
+<%--                                    <input type="email" class="form-control" id="inlineFormInput" placeholder="Enter your email">--%>
+<%--                                    <button type="submit" class="btn btn-primary">Subscribe</button>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <hr>--%>
+<%--        <div class="container pt20 pb30">--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-4 col-lg-4">--%>
+<%--                    <div class="copyright-widget mt10 mb15-767">--%>
+<%--                        <p>© Guido - All rights reserved.</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-md-4 col-lg-4">--%>
+<%--                    <div class="footer_logo_widget text-center mb15-767">--%>
+<%--                        <div class="wrapper">--%>
+<%--                            <div class="logo text-center">--%>
+<%--                                <img src="/images/footer-logo.svg" alt="footer-logo.svg">--%>
+<%--                                <span class="logo_title text-white pl15">Guido</span>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-md-4 col-lg-4">--%>
+<%--                    <div class="footer_social_widget text-right tac-smd mt10">--%>
+<%--                        <ul class="mb0">--%>
+<%--                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>--%>
+<%--                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>--%>
+<%--                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>--%>
+<%--                            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </section>--%>
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->

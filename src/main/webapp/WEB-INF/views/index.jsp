@@ -82,7 +82,7 @@
 						</div>
 					</li>
 					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
-							class="dn-lg" style="border: #000000">내 정보</span></a></li>
+							class="dn-lg">My Info</span></a></li>
 					<%
 						} else {
 					%>

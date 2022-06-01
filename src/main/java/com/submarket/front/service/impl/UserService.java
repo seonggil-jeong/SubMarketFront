@@ -1,21 +1,23 @@
 package com.submarket.front.service.impl;
 
+import com.submarket.front.dto.SubDto;
 import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.IUserService;
 import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -54,5 +56,36 @@ public class UserService implements IUserService {
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
         return response.getBody();
+    }
+
+    @Override
+    public List<SubDto> getSubList(String token) throws Exception {
+        // token 정보를 가지고 userService 에서 구독 정보 불러오기
+        List<SubDto> subDtoList = new LinkedList<>();
+        String url = env.getProperty("gateway.ip") + "/user-service/sub";
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+            HttpEntity<HttpHeaders> entity = new HttpEntity<>(headers);
+
+
+            ResponseEntity<SubDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, SubDto.class);
+            subDtoList = response.getBody().getResponse();
+            log.info("Service : " + subDtoList.get(0).getSubDate());
+
+
+
+        } catch (HttpStatusCodeException httpStatusCodeException) {
+            log.info("code : " + httpStatusCodeException);
+
+        } catch (Exception e) {
+            log.info("Server Error : " + e);
+
+        } finally {
+
+            return subDtoList;
+
+        }
     }
 }

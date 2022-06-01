@@ -1,4 +1,7 @@
 <%@ page import="com.submarket.front.dto.UserDto" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.submarket.front.dto.SubDto" %>
+<%@ page import="java.util.LinkedList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
@@ -7,8 +10,13 @@
     if (userInfo == null) {
         userInfo = new UserDto();
     }
-%>
 
+    List<SubDto> subDtoList = (List<SubDto>) request.getAttribute("subDtoList");
+
+    if (subDtoList == null) {
+        subDtoList = new LinkedList<>();
+    }
+%>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -26,7 +34,7 @@
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/css/responsive.css">
     <!-- Title -->
-    <title>Guido - Directory & Listing HTML Template</title>
+    <title>My SubList</title>
     <!-- Favicon -->
     <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
     <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
@@ -81,10 +89,6 @@
                     </ul>
                 </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-                    <%
-                        if (session.getAttribute("SS_USER_TOKEN") != null) {
-
-                    %>
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
                             <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1366"><%=userInfo.getUserName()%><span class="fa fa-angle-down"></span></span></a>
@@ -101,13 +105,6 @@
                         </div>
                     </li>
                     <li class="list-inline-item add_listing"><a href="/index"><span class="icon"></span><span class="dn-lg">HOME</span></a></li>
-                    <%
-                    } else {
-                    %>
-                    <li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
-                    <%
-                        }
-                    %>
                 </ul>
             </nav>
         </div>
@@ -119,109 +116,19 @@
             <div class="header stylehome1">
                 <div class="main_logo_home2 text-left">
                     <img class="nav_logo_img img-fluid mt15" src="/images/header-logo2.svg" alt="header-logo2.svg">
-                    <span class="mt15">Guido</span>
+                    <span class="mt15">SubMarket</span>
                 </div>
                 <ul class="menu_bar_home2">
                     <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>
-                    <li class="list-inline-item"><a class="muser_icon" href="page-register.html"><span class="flaticon-avatar"></span></a></li>
+                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span class="flaticon-arrow-pointing-to-left"></span></a></li>
                     <li class="list-inline-item"><a class="menubar" href="#menu"><span></span></a></li>
                 </ul>
             </div>
         </div><!-- /.mobile-menu -->
         <nav id="menu" class="stylehome1">
             <ul>
-                <li><span>Home</span>
-                    <ul>
-                        <li><a href="index.html">Home V1</a></li>
-                        <li><a href="index2.html">Home V2</a></li>
-                        <li><a href="index3.html">Home V3</a></li>
-                    </ul>
-                </li>
-                <li><span>Explore</span>
-                    <ul>
-                        <li><a href="page-author-single.html">Author Single</a></li>
-                        <li><a href="page-city-single.html">City Single</a></li>
-                        <li><a href="page-add-new-listing.html">New Listing</a></li>
-                    </ul>
-                </li>
-                <li><span>Listing</span>
-                    <ul>
-                        <li><span>Listing Styles</span>
-                            <ul>
-                                <li><a href="page-listing-v1.html">Listing v1</a></li>
-                                <li><a href="page-listing-v2.html">Listing v2</a></li>
-                                <li><a href="page-listing-v3.html">Listing v3</a></li>
-                                <li><a href="page-listing-v4.html">Listing v4</a></li>
-                                <li><a href="page-listing-v5.html">Listing v5</a></li>
-                            </ul>
-                        </li>
-                        <li><span>Listing Map</span>
-                            <ul>
-                                <li><a href="page-listing-v6.html">Map v1</a></li>
-                                <li><a href="page-listing-v7.html">Map v2</a></li>
-                                <li><a href="page-listing-v8.html">Map v3</a></li>
-                                <li><a href="page-listing-v9.html">Map v4</a></li>
-                            </ul>
-                        </li>
-                        <li><span>Listing Single</span>
-                            <ul>
-                                <li><a href="page-listing-single-v1.html">Single V1</a></li>
-                                <li><a href="page-listing-single-v2.html">Single V2</a></li>
-                                <li><a href="page-listing-single-v3.html">Single V3</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><span>Blog</span>
-                    <ul>
-                        <li><a href="page-blog-grid.html">Blog Grid</a></li>
-                        <li><a href="page-blog-grid-sidebar.html">Blog Grid Sidebar</a></li>
-                        <li><a href="page-blog-details.html">Blog Details</a></li>
-                        <li><a href="page-blog-list.html">Blog List</a></li>
-                        <li><a href="page-blog-single.html">Blog Single</a></li>
-                    </ul>
-                </li>
-                <li><span>Pages</span>
-                    <ul>
-                        <li><span>Shop</span>
-                            <ul>
-                                <li><a href="page-shop.html">Shop Pages</a></li>
-                                <li><a href="page-shop-single.html">Shop Single</a></li>
-                                <li><a href="page-shop-cart.html">Cart</a></li>
-                                <li><a href="page-shop-checkout.html">Checkout</a></li>
-                                <li><a href="page-shop-order.html">Order</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="page-about.html">About Us</a></li>
-                        <li><a href="page-contact.html">Contact</a></li>
-                        <li><a href="page-coming-soon.html">Coming Soon</a></li>
-                        <li><span>User Detils</span>
-                            <ul>
-                                <li><a href="page-my-dashboard.html">Dashboard</a></li>
-                                <li><a href="page-profile.html">My Profile</a></li>
-                                <li><a href="page-my-listing.html">My Listings</a></li>
-                                <li><a href="page-my-bookmark.html">Bookmarks</a></li>
-                                <li><a href="page-message.html">Messages</a></li>
-                                <li><a href="page-my-review.html">Reviews</a></li>
-                                <li><a href="page-add-new-listing.html">Add New Property</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="page-gallery.html">Gallery</a></li>
-                        <li><a href="page-faq.html">Faq</a></li>
-                        <li><a href="page-invoice.html">Invoice</a></li>
-                        <li><a href="page-login.html">LogIn</a></li>
-                        <li><a href="page-pricing.html">Pricing V1</a></li>
-                        <li><a href="page-pricing2.html">Pricing V2</a></li>
-                        <li><a href="page-register.html">Register</a></li>
-                        <li><a href="page-error.html">404 Page</a></li>
-                        <li><a href="page-terms.html">Terms and Conditions</a></li>
-                        <li><a href="page-ui-element.html">UI Elements</a></li>
-                    </ul>
-                </li>
-                <li><a href="page-contact.html">Contact</a></li>
-                <li><a href="page-login.html"><span class="flaticon-avatar"></span> Login</a></li>
-                <li><a href="page-register.html"><span class="flaticon-edit"></span> Register</a></li>
-                <li class="cl_btn"><a class="btn btn-block btn-lg btn-thm rounded" href="#"><span class="icon">+</span> Create Listing</a></li>
+                <li><a href="/index">Home</a></li>
+                <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -384,9 +291,9 @@
                 <div class="col-lg-12">
                     <div class="ed_menu_list mt5">
                         <ul>
-                            <li><a href="page-profile.html"><span class="flaticon-avatar"></span> Profile</a></li>
-                            <li><a class="active" href="page-my-listing.html"><span class="flaticon-list"></span> My Listings</a></li>
-                            <li><a href="page-my-review.html"><span class="flaticon-note"></span> Reviews</a></li>
+                            <li><a href="/user/profile"><span class="flaticon-avatar"></span> Profile</a></li>
+                            <li><a class="active" href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
+                            <li><a href="/user/reviewlist"><span class="flaticon-note"></span> My Reviews</a></li>
                             <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                         </ul>
                     </div>
@@ -404,21 +311,17 @@
                         <div class="dropdown">
                             <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
                             <ul id="myDropdown" class="dropdown-content">
-                                <li><a href="page-my-dashboard.html"><span class="flaticon-web-page"></span> Dashboard</a></li>
-                                <li><a href="page-profile.html"><span class="flaticon-avatar"></span> My Profile</a></li>
-                                <li class="active"><a href="page-my-listing.html"><span class="flaticon-list"></span> My Listings</a></li>
-                                <li><a href="page-my-bookmark.html"><span class="flaticon-love"></span> Bookmarks</a></li>
-                                <li><a href="page-message.html"><span class="flaticon-chat"></span> Message</a></li>
-                                <li><a href="page-my-review.html"><span class="flaticon-note"></span> Reviews</a></li>
-                                <li><a href="page-add-new-listing.html"><span class="flaticon-web-page"></span> Add New Listing</a></li>
-                                <li><a href="page-my-logout.html"><span class="flaticon-logout"></span> Logout</a></li>
+                                <li><a href="/user/profile"><span class="flaticon-avatar"></span> My Profile</a></li>
+                                <li class="active"><a href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
+                                <li><a href="/user/reviewlist"><span class="flaticon-note"></span>My Reviews</a></li>
+                                <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 mb15">
                     <div class="breadcrumb_content style2">
-                        <h2 class="breadcrumb_title float-left">My Listings</h2>
+                        <h2 class="breadcrumb_title float-left">My SubList</h2>
                         <p class="float-right">Ready to jump back in?</p>
                     </div>
                 </div>
@@ -426,18 +329,6 @@
             <div class="my_listings">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="candidate_revew_select style2 mb30-991 float-left fn-smd">
-                            <ul class="mb0">
-                                <li class="list-inline-item">
-                                    <div class="candidate_revew_search_box course fn-520">
-                                        <form class="form-inline my-2">
-                                            <input class="form-control mr-sm-2" type="search" placeholder="Search Courses" aria-label="Search">
-                                            <button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-loupe"></span></button>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="candidate_revew_select style2 text-right mb30-991 tal-smd">
                             <ul class="mb0 mt10">
                                 <li class="list-inline-item mb30-767">
@@ -464,142 +355,68 @@
                         <div class="listing_table">
                             <form action="#">
                                 <table class="table table-responsive">
+                                    <%
+                                        if (subDtoList.size() >= 1) {
+                                    %>
                                     <thead>
                                     <tr class="carttable_row">
-                                        <th class="cartm_title">Name</th>
+                                        <th class="cartm_title">Sub Info</th>
                                         <th class="dn-lg"></th>
-                                        <th class="cartm_title">City</th>
-                                        <th class="cartm_title">Category</th>
+                                        <th class="cartm_title">PayDate</th>
+                                        <th class="cartm_title">Count</th>
                                         <th class="cartm_title">Status</th>
                                         <th class="cartm_title">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody class="table_body">
+                                    <%
+                                        for (SubDto subDto : subDtoList) {
+                                    %>
                                     <tr>
-                                        <th scope="row">
+                                        <th scope="row" style="width: 40%;">
+                                            <ul class="cart_list">
+                                                <li class="list-inline-item pr10"><a href="#"><img
+                                                        src="/images/listing/s1.png" alt="s1.png"></a></li>
+                                                <li class="list-inline-item"><a class="cart_title" href="#">상품 이름 <%=subDto.getItemSeq()%></a></li>
+                                            </ul>
+                                        </th>
+                                        <td class="dn-lg"></td>
+                                        <td style="width: 15%;"><%=subDto.getSubDate()%></td>
+                                        <td style="width: 10%;"><%=subDto.getSubCount()%></td>
+                                        <td class="color-success" style="width: 15%">구독 중</td>
+                                        <td class="editing_list" style="width: 20%">
+                                            <ul>
+                                                <li class="list-inline-item">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span
+                                                            class="flaticon-edit"></span></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span
+                                                            class="flaticon-view"></span></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top"
+                                                       title="Delete"><span class="flaticon-delete"></span></a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <%
+                                            }
+                                        } else {
+
+                                    %>
+                                    <tr>
+                                        <th scope="row" style="width: 100%;">
                                             <ul class="cart_list">
                                                 <li class="list-inline-item pr10"><a href="#"><img src="/images/listing/s1.png" alt="s1.png"></a></li>
-                                                <li class="list-inline-item"><a class="cart_title" href="#">Adventure High Ropes</a></li>
+                                                <li class="list-inline-item"><a class="cart_title" href="#">구독 정보가 없습니다.</a></li>
                                             </ul>
                                         </th>
-                                        <td class="dn-lg"></td>
-                                        <td>New York</td>
-                                        <td>Outdoor Activities</td>
-                                        <td class="color-success">Approved</td>
-                                        <td class="editing_list">
-                                            <ul>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span class="flaticon-edit"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span class="flaticon-view"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><span class="flaticon-delete"></span></a>
-                                                </li>
-                                            </ul>
-                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <ul class="cart_list">
-                                                <li class="list-inline-item pr10"><a href="#"><img src="/images/listing/s2.png" alt="s2.png"></a></li>
-                                                <li class="list-inline-item"><a class="cart_title" href="#">Luxary Hotel-Spa</a></li>
-                                            </ul>
-                                        </th>
-                                        <td class="dn-lg"></td>
-                                        <td>New York</td>
-                                        <td>Outdoor Activities</td>
-                                        <td class="color-danger">Cancel</td>
-                                        <td class="editing_list">
-                                            <ul>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span class="flaticon-edit"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span class="flaticon-view"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><span class="flaticon-delete"></span></a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <ul class="cart_list">
-                                                <li class="list-inline-item pr10"><a href="#"><img src="/images/listing/s3.png" alt="s3.png"></a></li>
-                                                <li class="list-inline-item"><a class="cart_title" href="#">Core by Clare Smyth</a></li>
-                                            </ul>
-                                        </th>
-                                        <td class="dn-lg"></td>
-                                        <td>New York</td>
-                                        <td>Outdoor Activities</td>
-                                        <td class="color-purple">Pending</td>
-                                        <td class="editing_list">
-                                            <ul>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span class="flaticon-edit"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span class="flaticon-view"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><span class="flaticon-delete"></span></a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <ul class="cart_list">
-                                                <li class="list-inline-item pr10"><a href="#"><img src="/images/listing/s4.png" alt="s4.png"></a></li>
-                                                <li class="list-inline-item"><a class="cart_title" href="#">Wellness Fitness Club</a></li>
-                                            </ul>
-                                        </th>
-                                        <td class="dn-lg"></td>
-                                        <td>New York</td>
-                                        <td>Outdoor Activities</td>
-                                        <td class="color-success">Approved</td>
-                                        <td class="editing_list">
-                                            <ul>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span class="flaticon-edit"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span class="flaticon-view"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><span class="flaticon-delete"></span></a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="bb_none">
-                                            <ul class="cart_list">
-                                                <li class="list-inline-item pr10"><a href="#"><img src="/images/listing/s5.png" alt="s5.png"></a></li>
-                                                <li class="list-inline-item"><a class="cart_title" href="#">The Palmas Hotel</a></li>
-                                            </ul>
-                                        </th>
-                                        <td class="bb_none dn-lg"></td>
-                                        <td class="bb_none">New York</td>
-                                        <td class="bb_none">Outdoor Activities</td>
-                                        <td class="bb_none color-success">Approved</td>
-                                        <td class="editing_list bb_none">
-                                            <ul>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span class="flaticon-edit"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span class="flaticon-view"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><span class="flaticon-delete"></span></a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                    <%
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </form>
@@ -609,6 +426,8 @@
             </div>
         </div>
     </section>
+
+    <!-- Our Footer -->
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->

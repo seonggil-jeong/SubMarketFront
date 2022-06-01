@@ -131,14 +131,9 @@ public class UserController {
                 model.addAttribute("msg", "비밀번호 또는 아이디를 확인해 주세요");
                 model.addAttribute("url", "/user/page-login");
 
-            } else {
-                model.addAttribute("msg", "Server Error");
-                model.addAttribute("url", "/index");
-
             }
 
-        }
-        catch (Exception e){ // 500 Error 은 그냥 pass HttpStatusCodeException 에 잡히지 않음
+        } catch (Exception e){ // 500 Error 은 그냥 pass HttpStatusCodeException 에 잡히지 않음
             model.addAttribute("msg", "ServerError");
             model.addAttribute("url", "/index");
         }

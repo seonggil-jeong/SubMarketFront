@@ -303,7 +303,7 @@
                         <div class="dropdown">
                             <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
                             <ul id="myDropdown" class="dropdown-content">
-                                <li class="active"><a href="page-profile.html"><span class="flaticon-avatar"></span> My Profile</a></li>
+                                <li class="active"><a href="/user/profile"><span class="flaticon-avatar"></span> My Profile</a></li>
                                 <li><a href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
                                 <li><a href="/user/reviewlist"><span class="flaticon-note"></span>My Reviews</a></li>
                                 <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>

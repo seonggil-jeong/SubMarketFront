@@ -1,7 +1,14 @@
+<%@ page import="com.submarket.front.dto.UserDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
+<%
+    UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
 
+    if (userInfo == null) {
+        userInfo = new UserDto();
+    }
+%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -29,8 +36,17 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript">
+        function doOnload() {
+            if ('<%=String.valueOf(session.getAttribute("SS_USER_TOKEN"))%>'.length < 10) {
+                alert("로그인된 사용자만 접근 가능합니다.");
+                top.location.href = "/user/page-login";
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="doOnload()">
 <div class="wrapper">
     <div class="preloader"></div>
 

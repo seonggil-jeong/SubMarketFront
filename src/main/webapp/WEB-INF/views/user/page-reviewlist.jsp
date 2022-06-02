@@ -323,24 +323,12 @@
                 <div class="col-lg-12">
                     <div class="dashboard_navigationbar dn db-992">
                         <div class="dropdown">
-                            <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard
-                                Navigation
-                            </button>
+                            <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
                             <ul id="myDropdown" class="dropdown-content">
-                                <li><a href="page-my-dashboard.html"><span class="flaticon-web-page"></span>
-                                    Dashboard</a></li>
-                                <li><a href="page-profile.html"><span class="flaticon-avatar"></span> My Profile</a>
-                                </li>
-                                <li><a href="page-my-listing.html"><span class="flaticon-list"></span> My Listings</a>
-                                </li>
-                                <li><a href="page-my-bookmark.html"><span class="flaticon-love"></span> Bookmarks</a>
-                                </li>
-                                <li><a href="page-message.html"><span class="flaticon-chat"></span> Message</a></li>
-                                <li class="active"><a href="page-my-review.html"><span class="flaticon-note"></span>
-                                    Reviews</a></li>
-                                <li><a href="page-add-new-listing.html"><span class="flaticon-web-page"></span> Add New
-                                    Listing</a></li>
-                                <li><a href="page-login.html"><span class="flaticon-logout"></span> Logout</a></li>
+                                <li><a href="/user/profile"><span class="flaticon-avatar"></span> My Profile</a></li>
+                                <li><a href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
+                                <li class="active"><a href="/user/reviewlist"><span class="flaticon-note"></span>My Reviews</a></li>
+                                <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -445,8 +433,9 @@
                         <div class="media-body">
                             <h4 class="sub_title mt-0"><%=userInfo.getUserName()%>
                             </h4>
-                            <form>
+                            <form action="/user/review/modify" method="post">
                                 <input type="hidden" name="reviewSeq" value="<%=itemReviewDto.getReviewSeq()%>">
+                                <input type="hidden" name="reviewDate" value="<%=itemReviewDto.getReviewDate()%>">
                             <div class="sspd_postdate fz14 mb20"><%=itemReviewDto.getReviewDate()%>
                                 <div class="sspd_review pull-right">
                                     <ul class="mb0 pl15">
@@ -457,16 +446,22 @@
                                         <%
                                             }
                                         %>
-                                        <li class="list-inline-item">(<input type="text" name="reviewStar"
-                                                                             value="<%=itemReviewDto.getReviewStar()%>"
-                                                                             style=" width: 20%; text-align: center; border:none;"/>
+                                        <li class="list-inline-item">(
+                                            <select name="reviewStar">
+                                                <option value="<%=itemReviewDto.getReviewStar()%>" selected hidden><%=itemReviewDto.getReviewStar()%></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
                                             reviews)
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <p class="fz14 mt10"><input type="text" name="reviewContents" style="border: none;" value="<%=itemReviewDto.getReviewContents()%>"></p>
-                            <a class="text-thm tdu" href="#" style="margin-right: 2%">Edit Review</a>
+                                <input class="text-thm tdu" style="margin-right: 2%; border: none; background: none;" type="submit" value="Edit Review">
                             <a class="text-thm tdu" href="/user/review/delete/<%=itemReviewDto.getReviewSeq()%>">Delete Review</a>
                             </form>
                         </div>

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.swing.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class ItemService implements IItemService {
             log.info("Status Exception");
 
             if (statusCodeException.getRawStatusCode() == 500) {
-            rStr = "리뷰 정보를 찾을 수 없습니다";
+                rStr = "리뷰 정보를 찾을 수 없습니다";
             }
 
         } finally {
@@ -86,6 +87,31 @@ public class ItemService implements IItemService {
     @Override
     public String modifyItemReviewByReviewSeq(ItemReviewDto itemReviewDto, String token) throws Exception {
         log.info(this.getClass().getName() + ".modifyItemReviewByReviewSeq Start!");
-        return null;
+        String url = env.getProperty("gateway.ip") + "/item-service/item/review/" + itemReviewDto.getReviewSeq() + "/modify";
+        String rStr = "";
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+            HttpEntity<ItemReviewDto> entity = new HttpEntity<>(itemReviewDto, headers);
+
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            rStr = "리뷰 변경 성공";
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            log.info("Exception : " + statusCodeException);
+            int code = statusCodeException.getRawStatusCode();
+            log.info("code : " + code);
+
+            if (code == 401) {
+                rStr = "인증 정보 오류";
+            } else if (code == 500) {
+                rStr = "리뷰 정보를 찾을 수 없습니다";
+            }
+
+        } finally {
+
+        return rStr;
+        }
     }
 }

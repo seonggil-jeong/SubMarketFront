@@ -286,7 +286,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
+								<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items'">
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-brake"></span></div>
 										<div class="content-details">
@@ -393,7 +393,7 @@
 												<p>뷰티</p>
 											</div>
 										</div>
-										<div class="item">
+										<div class="item" onclick="location.href='/items'">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-brake"></span></div>
 												<p>모든 상품 보기</p>
@@ -459,7 +459,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4 col-xl-2">
+					<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items'">
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-brake"></span></div>
 							<div class="content-details">
@@ -1125,7 +1125,7 @@
 				</div>
 				<div class="col-lg-4 pr10">
 					<div class="parner_reg_btn text-right tac-smd">
-						<a class="btn" href="#">Submit Now</a>
+						<a class="btn" href="/items">Submit Now</a>
 					</div>
 				</div>
 			</div>

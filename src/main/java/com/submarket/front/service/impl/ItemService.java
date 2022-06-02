@@ -1,5 +1,7 @@
 package com.submarket.front.service.impl;
 
+import com.submarket.front.dto.CategoryDto;
+import com.submarket.front.dto.ItemDto;
 import com.submarket.front.dto.ItemReviewDto;
 import com.submarket.front.service.IItemService;
 import com.submarket.front.util.CmmUtil;
@@ -111,7 +113,61 @@ public class ItemService implements IItemService {
 
         } finally {
 
-        return rStr;
+            return rStr;
         }
+    }
+
+
+    @Override
+    public List<ItemDto> getItemInfo() throws Exception {
+        log.info(this.getClass().getName() + ".getItemInfo Start!");
+        List<ItemDto> itemDtoList = new LinkedList<>();
+        String url = env.getProperty("gateway.ip") + "/item-service/items";
+
+        try {
+
+            log.info("url : " + url);
+            ResponseEntity<ItemDto> response = restTemplate.exchange(url, HttpMethod.GET, null, ItemDto.class);
+            itemDtoList = response.getBody().getResponse();
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
+            log.info("code : " + code);
+
+            if (code >= 500) {
+                itemDtoList = new LinkedList<>();
+            }
+        }finally {
+            return itemDtoList;
+        }
+    }
+
+    @Override
+    public CategoryDto getItemInfoByCategorySeq(int categorySeq) throws Exception {
+        CategoryDto categoryDto = new CategoryDto();
+        String url = env.getProperty("gateway.ip") + "/item-service/category/" + categorySeq;
+
+        try {
+            ResponseEntity<CategoryDto> response = restTemplate.exchange(url, HttpMethod.GET, null, CategoryDto.class);
+            categoryDto = response.getBody();
+
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
+            log.info(code + " : " + statusCodeException.getMessage());
+
+            categoryDto = new CategoryDto();
+
+        } finally {
+            log.info(this.getClass().getName() + ".getItemInfoByCategorySeq Start!");
+
+            return categoryDto;
+
+        }
+    }
+
+    @Override
+    public List<ItemDto> getItemInfoByGroupSeq(int groupSeq) throws Exception {
+        return null;
     }
 }

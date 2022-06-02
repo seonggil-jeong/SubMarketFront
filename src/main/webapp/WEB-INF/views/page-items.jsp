@@ -1,9 +1,17 @@
 <%@ page import="com.submarket.front.dto.UserDto" %>
 <%@ page import="com.submarket.front.util.CmmUtil" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.submarket.front.dto.ItemDto" %>
+<%@ page import="java.util.LinkedList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
 <%
+    List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
+
+    if (itemDtoList == null) {
+        itemDtoList = new LinkedList<>();
+    }
     UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
 
     if (userInfo == null) {
@@ -419,82 +427,31 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="main_blog_post_content">
+                        <%
+                            for (ItemDto itemDto : itemDtoList) {
+
+                        %>
                         <div class="for_blog list-type feat_property">
                             <div class="thumb w100 pb10">
                                 <img class="img-whp" src="/images/blog/7.jpg" alt="7.jpg">
-                                <div class="tag bgc-thm"><a class="text-white" href="#">Health & Care</a></div>
                             </div>
-                            <div class="details pb5">
+                            <div class="details pb5" style="width: 100%; height: 100%;">
                                 <div class="tc_content pt15">
                                     <div class="bp_meta mb20">
                                         <ul>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>
+                                            <li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span><%=CmmUtil.nvl(itemDto.getSellerId())%></a></li>
+                                            <li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span><%=itemDto.getItemPrice()%> 원 (월)</a></li>
                                         </ul>
                                     </div>
-                                    <h4 class="mt15 mb20">The Top 25 Bike Stores in Toronto by Neighbourhood</h4>
-                                    <p class="mb10">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-                                    <a class="tdu text-thm" href="#">Read More</a>
+                                    <h4 class="mt15 mb20"><%=CmmUtil.nvl(itemDto.getItemTitle())%></h4>
+                                    <p class="mb10"><%=CmmUtil.nvl(itemDto.getItemContents())%></p>
+                                    <a class="tdu text-thm" href="/items/<%=itemDto.getItemSeq()%>">Read More</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="for_blog list-type feat_property">
-                            <div class="thumb w100 pb10">
-                                <img class="img-whp" src="/images/blog/8.jpg" alt="8.jpg">
-                                <div class="tag bgc-thm"><a class="text-white" href="#">Health & Care</a></div>
-                            </div>
-                            <div class="details pb5">
-                                <div class="tc_content pt15">
-                                    <div class="bp_meta mb20">
-                                        <ul>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="mt15 mb20">The Top 25 Bike Stores in Toronto by Neighbourhood</h4>
-                                    <p class="mb10">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-                                    <a class="tdu text-thm" href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="for_blog list-type feat_property">
-                            <div class="thumb w100 pb10">
-                                <img class="img-whp" src="/images/blog/9.jpg" alt="9.jpg">
-                                <div class="tag bgc-thm"><a class="text-white" href="#">Health & Care</a></div>
-                            </div>
-                            <div class="details pb5">
-                                <div class="tc_content pt15">
-                                    <div class="bp_meta mb20">
-                                        <ul>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="mt15 mb20">The Top 25 Bike Stores in Toronto by Neighbourhood</h4>
-                                    <p class="mb10">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-                                    <a class="tdu text-thm" href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="for_blog list-type feat_property">
-                            <div class="thumb w100 pb10">
-                                <img class="img-whp" src="/images/blog/10.jpg" alt="10.jpg">
-                                <div class="tag bgc-thm"><a class="text-white" href="#">Health & Care</a></div>
-                            </div>
-                            <div class="details pb5">
-                                <div class="tc_content pt15">
-                                    <div class="bp_meta mb20">
-                                        <ul>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-avatar mr10"></span> Jack Wilson</a></li>
-                                            <li class="list-inline-item"><a href="#"><span class="flaticon-date mr10"></span> 06 April, 2020</a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="mt15 mb20">The Top 25 Bike Stores in Toronto by Neighbourhood</h4>
-                                    <p class="mb10">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-                                    <a class="tdu text-thm" href="#">Read More</a>
-                                </div>
-                            </div>
-                        </div>
+                        <%
+                            }
+                        %>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="mbp_pagination mt30">
@@ -525,11 +482,11 @@
                         <h4 class="title">Categories Property</h4>
                         <div class="widget_list">
                             <ul class="list_details order_list list-style-type-bullet">
-                                <li><a href="#">식품</a></li>
-                                <li><a href="#">쇼핑</a></li>
-                                <li><a href="#">생필품</a></li>
-                                <li><a href="#">건강</a></li>
-                                <li><a href="#">뷰티</a></li>
+                                <li><a href="/items/category/1">식품</a></li>
+                                <li><a href="/items/category/2">쇼핑</a></li>
+                                <li><a href="/items/category/3">생필품</a></li>
+                                <li><a href="/items/category/4">건강</a></li>
+                                <li><a href="/items/category/5">뷰티</a></li>
                                 <li><a href="/items">모든 상품 보기</a></li>
                             </ul>
                         </div>

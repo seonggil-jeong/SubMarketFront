@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,15 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemService itemService;
+
+
+    @GetMapping("/items/{itemSeq}")
+    public String findOneItemInfo(@PathVariable int itemSeq) throws Exception {
+        log.info(this.getClass().getName() + ".findOneItemInfo Start!");
+
+
+        return null;
+    }
 
 
     @RequestMapping("/user/review/delete/{reviewSeq}")

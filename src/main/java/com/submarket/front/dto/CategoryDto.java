@@ -9,6 +9,8 @@ import java.util.Map;
 
 @Data
 public class CategoryDto {
-    private List<Map<String, Object>> response;
-    private List<Map<String, Object>> body;
+    private String categorySeq;
+    private String categoryName;
+    private List<ItemDto> items;
+
 }

@@ -1,6 +1,8 @@
 package com.submarket.front.controller.user;
 
+import com.submarket.front.dto.ItemReviewDto;
 import com.submarket.front.dto.SubDto;
+import com.submarket.front.service.impl.ItemService;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserPageController {
     private final UserService userService;
+    private final ItemService itemService;
 
     /**
      * page 이동 Controller
@@ -38,7 +41,12 @@ public class UserPageController {
     }
 
     @RequestMapping("/user/reviewlist")
-    public String reviewList(HttpSession session) {
+    public String reviewList(HttpSession session, ModelMap model) throws Exception {
+        String token = (String) session.getAttribute("SS_USER_TOKEN");
+        List<ItemReviewDto> itemReviewDtoList = itemService.findItemReviewByUserToken(token);
+
+        model.addAttribute("itemReviewDtoList", itemReviewDtoList);
+
         return "/user/page-reviewlist";
     }
 

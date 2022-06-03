@@ -207,7 +207,7 @@
                 </div>
                 <ul class="menu_bar_home2">
                     <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>
-                    <li class="list-inline-item"><a class="muser_icon" href="page-register.html"><span class="flaticon-avatar"></span></a></li>
+                    <li class="list-inline-item"><a class="muser_icon" href="/user/profile"><span class="flaticon-avatar"></span></a></li>
                     <li class="list-inline-item"><a class="menubar" href="#menu"><span></span></a></li>
                 </ul>
             </div>
@@ -263,128 +263,51 @@
                                 <div class="col-lg-12 mb30">
                                     <h3>Filter by Category</h3>
                                 </div>
-                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                <div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/1'">
                                     <div class="icon-box text-center">
                                         <div class="icon"><span class="flaticon-cutlery"></span></div>
                                         <div class="content-details">
-                                            <div class="title">Restaurant</div>
+                                            <div class="title">식품</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                <div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/2'">
                                     <div class="icon-box text-center">
                                         <div class="icon"><span class="flaticon-shopping-bag"></span></div>
                                         <div class="content-details">
-                                            <div class="title">Shopping</div>
+                                            <div class="title">쇼핑</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                <div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/3'">
                                     <div class="icon-box text-center">
                                         <div class="icon"><span class="flaticon-tent"></span></div>
                                         <div class="content-details">
-                                            <div class="title">Outdoor Activities</div>
+                                            <div class="title">생필품</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                <div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/4'">
                                     <div class="icon-box text-center">
                                         <div class="icon"><span class="flaticon-desk-bell"></span></div>
                                         <div class="content-details">
-                                            <div class="title">Hotels</div>
+                                            <div class="title">건강</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                <div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/5'">
                                     <div class="icon-box text-center">
                                         <div class="icon"><span class="flaticon-mirror"></span></div>
                                         <div class="content-details">
-                                            <div class="title">Beautu & Spa</div>
+                                            <div class="title">뷰티</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                <div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items'">
                                     <div class="icon-box text-center">
                                         <div class="icon"><span class="flaticon-brake"></span></div>
                                         <div class="content-details">
-                                            <div class="title">Automotive</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 mb15 mt20">
-                                    <h3>Explore Hot Location</h3>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg" alt="pc18.jpg"></div>
-                                        <div class="details">
-                                            <h4>Miami</h4>
-                                            <p>62 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg" alt="pc19.jpg"></div>
-                                        <div class="details">
-                                            <h4>Roma</h4>
-                                            <p>92 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg" alt="pc20.jpg"></div>
-                                        <div class="details">
-                                            <h4>New Delhi</h4>
-                                            <p>12 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg" alt="pc21.jpg"></div>
-                                        <div class="details">
-                                            <h4>London</h4>
-                                            <p>74 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg" alt="pc22.jpg"></div>
-                                        <div class="details">
-                                            <h4>Amsterdam</h4>
-                                            <p>62 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg" alt="pc23.jpg"></div>
-                                        <div class="details">
-                                            <h4>Berlin</h4>
-                                            <p>92 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg" alt="pc24.jpg"></div>
-                                        <div class="details">
-                                            <h4>Paris</h4>
-                                            <p>12 Listings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg" alt="pc25.jpg"></div>
-                                        <div class="details">
-                                            <h4>New Zealand</h4>
-                                            <p>74 Listings</p>
+                                            <div class="title">모든 상품 보기</div>
                                         </div>
                                     </div>
                                 </div>
@@ -395,7 +318,6 @@
             </div>
         </div>
     </section>
-
     <!-- Inner Page Breadcrumb -->
     <section class="inner_page_breadcrumb style2">
         <div class="container">

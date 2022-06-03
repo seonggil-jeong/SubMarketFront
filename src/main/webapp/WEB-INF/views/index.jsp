@@ -246,7 +246,7 @@
 								<div class="col-lg-12 mb30">
 									<h3>Filter by Category</h3>
 								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
+								<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/1'">
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-cutlery"></span></div>
 										<div class="content-details">
@@ -254,7 +254,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
+								<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/2'">
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-shopping-bag"></span></div>
 										<div class="content-details">
@@ -262,7 +262,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
+								<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/3'">
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-tent"></span></div>
 										<div class="content-details">
@@ -270,7 +270,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
+								<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/4'">
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-desk-bell"></span></div>
 										<div class="content-details">
@@ -278,7 +278,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-4 col-xl-2">
+								<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/5'">
 									<div class="icon-box text-center">
 										<div class="icon"><span class="flaticon-mirror"></span></div>
 										<div class="content-details">
@@ -363,31 +363,31 @@
 										</div>
 									</div>
 									<div class="home_mobile_slider home_custom_list dn db-767">
-										<div class="item">
+										<div class="item" onclick="location.href='/items/category/1'">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-cutlery"></span></div>
 												<p>식품</p>
 											</div>
 										</div>
-										<div class="item">
+										<div class="item" onclick="location.href='/items/category/2'">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-shopping-bag"></span></div>
 												<p>쇼핑</p>
 											</div>
 										</div>
-										<div class="item">
+										<div class="item" onclick="location.href='/items/category/3'">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-tent"></span></div>
 												<p>생필품</p>
 											</div>
 										</div>
-										<div class="item">
+										<div class="item" onclick="location.href='/items/category/4'">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-desk-bell"></span></div>
 												<p>건강</p>
 											</div>
 										</div>
-										<div class="item">
+										<div class="item" onclick="location.href='/items/category/5'">
 											<div class="icon_home1">
 												<div class="icon"><span class="flaticon-mirror"></span></div>
 												<p>뷰티</p>
@@ -419,7 +419,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-6 col-md-4 col-xl-2">
+					<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/1'">
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-cutlery"></span></div>
 							<div class="content-details">
@@ -427,7 +427,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4 col-xl-2">
+					<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/2'">
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-shopping-bag"></span></div>
 							<div class="content-details">
@@ -435,7 +435,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4 col-xl-2">
+					<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/3'">
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-tent"></span></div>
 							<div class="content-details">
@@ -443,7 +443,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4 col-xl-2">
+					<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/4'">
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-desk-bell"></span></div>
 							<div class="content-details">
@@ -451,7 +451,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4 col-xl-2">
+					<div class="col-sm-6 col-md-4 col-xl-2" onclick="location.href='/items/category/5'">
 						<div class="icon-box text-center">
 							<div class="icon"><span class="flaticon-mirror"></span></div>
 							<div class="content-details">

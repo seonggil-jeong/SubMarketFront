@@ -1,4 +1,4 @@
-package com.submarket.front.controller;
+package com.submarket.front.controller.item;
 
 import com.submarket.front.dto.ItemReviewDto;
 import com.submarket.front.service.impl.ItemService;

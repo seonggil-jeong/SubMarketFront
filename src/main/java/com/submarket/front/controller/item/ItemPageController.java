@@ -1,4 +1,4 @@
-package com.submarket.front.controller;
+package com.submarket.front.controller.item;
 
 import com.submarket.front.dto.CategoryDto;
 import com.submarket.front.dto.ItemDto;

@@ -355,7 +355,8 @@
                         %>
                         <div class="for_blog list-type feat_property">
                             <div class="thumb w100 pb10">
-                                <img class="img-whp" src="/images/blog/7.jpg" alt="7.jpg">
+<%--                                /images/blog/7.jpg--%>
+                                <img class="img-whp" src="<%=itemDto.getMainImagePath()%>" alt="7.jpg">
                             </div>
                             <div class="details pb5" style="width: 100%; height: 100%;">
                                 <div class="tc_content pt15">

@@ -20,4 +20,9 @@ public class SellerPageController {
 
         return "/seller/page-main";
     }
+
+    @RequestMapping("/seller/item")
+    public String sellerItemAddPage(HttpSession session) throws Exception {
+        return "/seller/page-add-item";
+    }
 }

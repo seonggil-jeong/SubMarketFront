@@ -133,6 +133,11 @@ public class UserController {
 
             }
 
+            if (code == 503) {
+                model.addAttribute("msg", "ServerError");
+                model.addAttribute("url", "/index");
+            }
+
         } catch (Exception e){ // 500 Error 은 그냥 pass HttpStatusCodeException 에 잡히지 않음
             model.addAttribute("msg", "ServerError");
             model.addAttribute("url", "/index");

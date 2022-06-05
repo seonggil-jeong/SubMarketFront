@@ -1,5 +1,6 @@
 package com.submarket.front.controller.seller;
 
+import com.submarket.front.dto.ItemDto;
 import com.submarket.front.dto.SellerDto;
 import com.submarket.front.service.impl.SellerService;
 import com.submarket.front.vo.RequestSellerLogin;
@@ -12,11 +13,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -29,6 +30,22 @@ public class SellerController {
     private final SellerService sellerService;
 
 
+
+    @PostMapping("/seller/item/add")
+    public String sellerItemAdd(HttpSession session, ItemDto itemDto, ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + "sellerIteAdd Start!");
+        String token = (String) session.getAttribute("SS_SELLER_TOKEN");
+
+        String rStr = sellerService.addItem(token, itemDto);
+
+        log.info(this.getClass().getName() + "sellerIteAdd End!");
+
+        model.addAttribute("msg", rStr);
+        model.addAttribute("url", "/index");
+
+
+        return "/redirect";
+    }
 
 
 

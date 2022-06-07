@@ -356,7 +356,7 @@
                             <form action="#">
                                 <table class="table table-responsive">
                                     <%
-                                        if (subDtoList.size() >= 1) {
+                                        if (subDtoList.size() > 0) {
                                     %>
                                     <thead>
                                     <tr class="carttable_row">

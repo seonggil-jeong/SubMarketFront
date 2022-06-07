@@ -1,5 +1,6 @@
 package com.submarket.front.controller.user;
 
+import com.submarket.front.dto.SubDto;
 import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
@@ -14,9 +15,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
@@ -88,6 +87,26 @@ public class UserController {
         return "/redirect";
     }
 
+    @GetMapping("/user/sub/{itemSeq}")
+    public String newSub(@PathVariable int itemSeq, HttpSession session, ModelMap model) throws Exception {
+        SubDto subDto = new SubDto();
+        subDto.setItemSeq(itemSeq);
+        String token = String.valueOf(session.getAttribute("SS_USER_TOKEN"));
+
+        if (token.length() < 10) {
+            model.addAttribute("msg", "로그인이 필요합니다");
+            model.addAttribute("url", "/user/page-login");
+
+            return "/redirect";
+        }
+
+        String rStr = userService.saveSub(subDto, token);
+
+        model.addAttribute("msg", rStr);
+        model.addAttribute("url", "/index");
+
+        return "/redirect";
+    }
 
 
 

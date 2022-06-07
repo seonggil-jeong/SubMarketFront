@@ -12,4 +12,6 @@ public interface IUserService {
     String modifyUserInfo(UserDto userDto) throws Exception;
 
     List<SubDto> getSubList(String token) throws Exception;
+
+    String saveSub(SubDto subDto, String token) throws Exception;
 }

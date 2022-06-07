@@ -49,7 +49,7 @@
                 <a href="/index" class="navbar_brand float-left dn-smd">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
-                    <span>Guido</span>
+                    <span>SubMarket</span>
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->

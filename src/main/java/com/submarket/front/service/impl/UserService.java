@@ -92,4 +92,22 @@ public class UserService implements IUserService {
 
         }
     }
+
+    @Override
+    public String saveSub(SubDto subDto, String token) throws Exception {
+        log.info(this.getClass().getName() + "saveSub Start!");
+        String url = env.getProperty("gateway.ip") + "/user-service/sub";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", token);
+        HttpEntity<SubDto> entity = new HttpEntity<>(subDto, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+
+
+        log.info(this.getClass().getName() + "saveSub End!");
+
+        return response.getBody();
+    }
 }

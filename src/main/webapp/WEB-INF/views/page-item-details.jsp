@@ -545,7 +545,7 @@
                 <div class="col-lg-4 col-xl-5">
                     <div class="single_property_social_share listing_single_v1 mt80 mt0-lg">
                         <div class="price listing_single_v1 mt25 float-right fn-lg">
-                            <a href="#" class="btn btn-thm spr_btn">Submit Reveiw</a>
+                            <a href="/user/sub/<%=itemDto.getItemSeq()%>" class="btn btn-thm spr_btn">Submit Item</a>
                         </div>
                     </div>
                 </div>
@@ -668,74 +668,24 @@
                         <div class="col-lg-12 pl0 pl15-767">
                             <div class="single_page_review_form p30-lg mb30-991">
                                 <div class="wrapper">
+                                    <form>
                                     <h4>Add a Review</h4>
                                     <div class="custom_reivews row mt40 mb30">
                                         <div class="col-lg-2 pr0">
-                                            <div class="title">Overall Rating</div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="review_star text-right">
-                                                <ul>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 pr0">
-                                            <div class="title">Services</div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="review_star text-right">
-                                                <ul>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 pr0">
-                                            <div class="title">Hospitality</div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="review_star text-right">
-                                                <ul>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 pr0">
-                                            <div class="title">Pricing</div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="review_star text-right">
-                                                <ul>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                </ul>
+                                            <div class="my_profile_setting_input ui_kit_select_search form-group">
+                                                <label>reviewStar</label>
+                                                <select class="selectpicker" data-width="100%" name="reviewStar">
+                                                    <option data-tokens="Category1" value="1">1</option>
+                                                    <option data-tokens="Category2" value="2">2</option>
+                                                    <option data-tokens="Category3" value="3">3</option>
+                                                    <option data-tokens="Category4" value="4">4</option>
+                                                    <option data-tokens="Category4" value="5">5</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <form class="review_form">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" rows="7" placeholder="Your Review"></textarea>
+                                            <textarea class="form-control" rows="7" placeholder="리뷰 내용" name="reviewContents"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-thm">Submit Review</button>
                                     </form>

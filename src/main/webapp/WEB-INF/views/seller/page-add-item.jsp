@@ -1,4 +1,5 @@
 <%@ page import="com.submarket.front.dto.SellerDto" %>
+<%@ page import="com.submarket.front.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
@@ -64,151 +65,41 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a href="index.html" class="navbar_brand float-left dn-smd">
+                <a href="/index" class="navbar_brand float-left dn-smd">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
                     <span>Guido</span>
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-                <div class="ht_left_widget style2 float-left">
-                    <ul>
-                        <li class="list-inline-item">
-                            <div class="ht_search_widget">
-                                <div class="header_search_widget inner_page">
-                                    <form class="form-inline mailchimp_form">
-                                        <input type="text" class="custom_search_with_menu_trigger form-control" placeholder="What are you looking for?" data-toggle="modal" data-target="#staticBackdrop">
-                                        <button type="submit" class="btn"><span class="flaticon-loupe"></span></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-                    <li>
-                        <a href="#"><span class="title">Home</span></a>
-                        <!-- Level Two-->
-                        <ul>
-                            <li><a href="index.html">Home V1</a></li>
-                            <li><a href="index2.html">Home V2</a></li>
-                            <li><a href="index3.html">Home V3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><span class="title">Explore</span></a>
-                        <!-- Level Two-->
-                        <ul>
-                            <li><a href="page-author-single.html">Author Single</a></li>
-                            <li><a href="page-city-single.html">City Single</a></li>
-                            <li><a href="page-add-new-listing.html">New Listing</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><span class="title">Listing</span></a>
-                        <ul>
-                            <li>
-                                <a href="#">Listing Styles</a>
-                                <!-- Level Three-->
-                                <ul>
-                                    <li><a href="page-listing-v1.html">Listing v1</a></li>
-                                    <li><a href="page-listing-v2.html">Listing v2</a></li>
-                                    <li><a href="page-listing-v3.html">Listing v3</a></li>
-                                    <li><a href="page-listing-v4.html">Listing v4</a></li>
-                                    <li><a href="page-listing-v5.html">Listing v5</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Listing Map</a>
-                                <!-- Level Three-->
-                                <ul>
-                                    <li><a href="page-listing-v6.html">Map v1</a></li>
-                                    <li><a href="page-listing-v7.html">Map v2</a></li>
-                                    <li><a href="page-listing-v8.html">Map v3</a></li>
-                                    <li><a href="page-listing-v9.html">Map v4</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Listing Single</a>
-                                <!-- Level Three-->
-                                <ul>
-                                    <li><a href="page-listing-single-v1.html">Single V1</a></li>
-                                    <li><a href="page-listing-single-v2.html">Single V2</a></li>
-                                    <li><a href="page-listing-single-v3.html">Single V3</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-add-new-listing.html">New Listing</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><span class="title">Pages</span></a>
-                        <ul>
-                            <li>
-                                <a href="#"><span class="title">Shop Pages</span></a>
-                                <ul>
-                                    <li><a href="page-shop.html">Shop</a></li>
-                                    <li><a href="page-shop-single.html">Shop Single</a></li>
-                                    <li><a href="page-shop-cart.html">Cart</a></li>
-                                    <li><a href="page-shop-checkout.html">Checkout</a></li>
-                                    <li><a href="page-shop-order.html">Order</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-about.html">About Us</a></li>
-                            <li><a href="page-contact.html">Contact</a></li>
-                            <li><a href="page-coming-soon.html">Coming Soon</a></li>
-                            <li>
-                                <a href="#">User Dashboard</a>
-                                <ul>
-                                    <li><a href="page-my-dashboard.html">Dashboard</a></li>
-                                    <li><a href="page-profile.html">My Profile</a></li>
-                                    <li><a href="page-my-listing.html">My Listings</a></li>
-                                    <li><a href="page-my-bookmark.html">Bookmarks</a></li>
-                                    <li><a href="page-message.html">Messages</a></li>
-                                    <li><a href="page-my-review.html">Reviews</a></li>
-                                    <li><a href="page-add-new-listing.html">Add New Property</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-gallery.html">Gallery</a></li>
-                            <li><a href="page-faq.html">Faq</a></li>
-                            <li><a href="page-invoice.html">Invoice</a></li>
-                            <li><a href="page-login.html">LogIn</a></li>
-                            <li><a href="page-pricing.html">Pricing V1</a></li>
-                            <li><a href="page-pricing2.html">Pricing V2</a></li>
-                            <li><a href="page-register.html">Register</a></li>
-                            <li><a href="page-error.html">404 Page</a></li>
-                            <li><a href="page-terms.html">Terms and Conditions</a></li>
-                            <li><a href="page-ui-element.html">UI Elements</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><span class="title">Blog</span></a>
-                        <ul>
-                            <li><a href="page-blog-grid.html">Blog Grid</a></li>
-                            <li><a href="page-blog-grid-sidebar.html">Blog Grid Sidebar</a></li>
-                            <li><a href="page-blog-details.html">Blog Details</a></li>
-                            <li><a href="page-blog-list.html">Blog List</a></li>
-                            <li><a href="page-blog-single.html">Blog Single</a></li>
-                        </ul>
-                    </li>
-                    <li class="user_setting">
+                    <%
+                        if (session.getAttribute("SS_SELLER_TOKEN") != null) {
+
+                    %>
+                    <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
-                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="/images/team/e1.png" alt="e1.png"> <span class="dn-1366"> Cameron Williamson <span class="fa fa-angle-down"></span></span></a>
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
+                                    class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
                                 <div class="user_set_header">
-                                    <img class="float-left" src="/images/team/e1.png" alt="e1.png">
-                                    <p>Cameron Williamson <br><span class="address">alitufan@gmail.com</span></p>
+                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
                                 </div>
-                                <div class="user_setting_content">
-                                    <a class="dropdown-item active" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">Messages</a>
-                                    <a class="dropdown-item" href="#">Purchase history</a>
-                                    <a class="dropdown-item" href="#">Help</a>
-                                    <a class="dropdown-item" href="#">Log out</a>
+                                <div class="user_setting_content" style="margin-bottom: 10%">
+                                    <a class="dropdown-item" href="/logout" style="color: black">Log out</a>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="list-inline-item add_listing"><a href="page-add-new-listing.html"><span class="icon">+</span><span class="dn-lg"> Add Listing</span></a></li>
+                    <li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
+                            class="dn-lg">My Info</span></a></li>
+                    <%
+                    } else {
+                    %>
+                    <li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
+                    <%
+                        }
+                    %>
                 </ul>
             </nav>
         </div>
@@ -233,7 +124,7 @@
             <ul>
                 <li><span>Home</span>
                     <ul>
-                        <li><a href="index.html">Home V1</a></li>
+                        <li><a href="/index">Home V1</a></li>
                         <li><a href="index2.html">Home V2</a></li>
                         <li><a href="index3.html">Home V3</a></li>
                     </ul>
@@ -574,25 +465,19 @@
                                         </div>
                                         <small>Maximum file size: 1000kb.</small>
                                     </li>
-                                    <li class="list-inline-item">
-                                        <div class="portfolio_item">
-                                            <img class="img-fluid" src="/images/listing/a1.jpg" alt="a1.jpg">
-                                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><a href="#"><span class="flaticon-delete"></span></a></div>
-                                        </div>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <div class="portfolio_item">
-                                            <img class="img-fluid" src="/images/listing/a2.jpg" alt="a2.jpg">
-                                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><a href="#"><span class="flaticon-delete"></span></a></div>
-                                        </div>
-                                    </li>
+<%--                                    <li class="list-inline-item">--%>
+<%--                                        <div class="portfolio_item">--%>
+<%--                                            <img class="img-fluid" src="/images/listing/a1.jpg" alt="a1.jpg">--%>
+<%--                                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><a href="#"><span class="flaticon-delete"></span></a></div>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                    <li class="list-inline-item">--%>
+<%--                                        <div class="portfolio_item">--%>
+<%--                                            <img class="img-fluid" src="/images/listing/a2.jpg" alt="a2.jpg">--%>
+<%--                                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><a href="#"><span class="flaticon-delete"></span></a></div>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
                                 </ul>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input form-group mt30">
-                                    <label for="UtubeLink">Video (optional)</label>
-                                    <input type="url" class="form-control" id="UtubeLink" placeholder="Youtube Video Url">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -603,93 +488,7 @@
         </div>
     </section>
 
-    <!-- Our Footer -->
-    <section class="footer_one home1">
-        <div class="container pb70">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <div class="footer_contact_widget">
-                        <h4>Contact Us</h4>
-                        <ul class="list-unstyled">
-                            <li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry Street, North Melbourne VIC 3051, Australia.</a></li>
-                            <li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456 7890</a></li>
-                            <li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-2 col-xl-3">
-                    <div class="footer_qlink_widget">
-                        <h4>Company</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Article & Tips</a></li>
-                            <li><a href="#">Terms & Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-5 col-md-6 col-lg-2 col-xl-2">
-                    <div class="footer_qlink_widget pl0">
-                        <h4>Discover</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Chicago</a></li>
-                            <li><a href="#">Los Angels</a></li>
-                            <li><a href="#">Miami</a></li>
-                            <li><a href="#">New York</a></li>
-                            <li><a href="#">Florida</a></li>
-                            <li><a href="#">Boston</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-6 col-lg-4 col-xl-4">
-                    <div class="footer_social_widget">
-                        <h4>Subscribe</h4>
-                        <p class="text-white mb20">We don’t send spam so don’t worry.</p>
-                        <form class="footer_mailchimp_form">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto">
-                                    <input type="email" class="form-control" id="inlineFormInput" placeholder="Enter your email">
-                                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container pt20 pb30">
-            <div class="row">
-                <div class="col-md-4 col-lg-4">
-                    <div class="copyright-widget mt10 mb15-767">
-                        <p>© Guido - All rights reserved.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="footer_logo_widget text-center mb15-767">
-                        <div class="wrapper">
-                            <div class="logo text-center">
-                                <img src="/images/footer-logo.svg" alt="footer-logo.svg">
-                                <span class="logo_title text-white pl15">Guido</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="footer_social_widget text-right tac-smd mt10">
-                        <ul class="mb0">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->

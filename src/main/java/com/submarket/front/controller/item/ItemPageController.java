@@ -1,8 +1,10 @@
 package com.submarket.front.controller.item;
 
-import com.submarket.front.dto.CategoryDto;
-import com.submarket.front.dto.ItemDto;
+import com.submarket.front.dto.*;
 import com.submarket.front.service.impl.ItemService;
+import com.submarket.front.service.impl.SellerService;
+import com.submarket.front.service.impl.UserService;
+import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,6 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemPageController {
     private final ItemService itemService;
+    private final UserService userService;
+    private final SellerService sellerService;
 
     @RequestMapping("/items")
     public String getItemInfo(ModelMap model) throws Exception {
@@ -29,6 +33,7 @@ public class ItemPageController {
 
         return "/page-items";
     }
+
 
     @RequestMapping("/items/category/{categorySeq}")
     public String getItemInfoByCategory(@PathVariable int categorySeq, ModelMap model, HttpSession session)
@@ -57,6 +62,19 @@ public class ItemPageController {
 
         return "/index";
 
+    }
+
+
+    @RequestMapping("/items/{itemSeq}")
+    public String getItemInfoDetails(ModelMap model, HttpSession session, @PathVariable int itemSeq) throws Exception {
+        ItemDto itemDto = itemService.getItemInfoDetails(itemSeq);
+        List<ItemReviewDto> itemReviewDtoList = itemService.findItemReviewByItemSeq(itemSeq);
+        // TODO: 2022-06-07 리뷰 정보 불러오기
+
+        model.addAttribute("itemDto", itemDto);
+        model.addAttribute("itemReviewDtoList", itemReviewDtoList);
+
+        return "/page-item-details";
     }
 
 

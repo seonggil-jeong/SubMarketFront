@@ -167,6 +167,43 @@ public class ItemService implements IItemService {
     }
 
     @Override
+    public ItemDto getItemInfoDetails(int itemSeq) throws Exception {
+        log.info(this.getClass().getName() + ".getItemInfoDetails Start!");
+        ItemDto itemDto = new ItemDto();
+        String url = env.getProperty("gateway.ip") + "/item-service/items/" + itemSeq;
+        log.info("url : " + url);
+        try {
+            ResponseEntity<ItemDto> response = restTemplate.getForEntity(url, ItemDto.class);
+            itemDto = response.getBody();
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
+            log.info(code + "HttpStatusCodeException : " + statusCodeException);
+            itemDto = new ItemDto();
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+            itemDto = new ItemDto();
+
+        } finally {
+            log.info(this.getClass().getName() + ".getItemInfoDetails End!");
+            return itemDto;
+        }
+    }
+
+    @Override
+    public List<ItemReviewDto> findItemReviewByItemSeq(int itemSeq) throws Exception {
+        List<ItemReviewDto> itemReviewDtoList = new LinkedList<>();
+        String url = env.getProperty("gateway.ip") + "/item-service/item/" + itemSeq + "/review";
+        log.info("url : " + url);
+
+        ResponseEntity<ItemReviewDto> response = restTemplate.getForEntity(url, ItemReviewDto.class);
+
+         itemReviewDtoList = response.getBody().getResponse();
+
+        return itemReviewDtoList;
+    }
+
+    @Override
     public List<ItemDto> getItemInfoByGroupSeq(int groupSeq) throws Exception {
         return null;
     }

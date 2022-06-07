@@ -1,9 +1,11 @@
 <%@ page import="com.submarket.front.util.CmmUtil" %>
 <%@ page import="com.submarket.front.dto.UserDto" %>
+<%@ page import="com.submarket.front.dto.SellerDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
 	UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
+	SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
 	if (userInfo == null) {
 		userInfo = new UserDto();
@@ -84,8 +86,27 @@
 					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
 							class="dn-lg">My Info</span></a></li>
 					<%
-						} else {
+						} else if (session.getAttribute("SS_SELLER_TOKEN") != null) {
 					%>
+					<li class="user_setting" style="margin-bottom: 1%;">
+						<div class="dropdown">
+							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
+									class="fa fa-angle-down"></span></span></a>
+							<div class="dropdown-menu">
+								<div class="user_set_header">
+									<p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
+								</div>
+								<div class="user_setting_content" style="margin-bottom: 10%">
+									<a class="dropdown-item" href="/logout" style="color: black">Log out</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
+							class="dn-lg">SELLER HOME</span></a></li>
+					<%
+						} else {
+							%>
 					<li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
 					<%
 						}

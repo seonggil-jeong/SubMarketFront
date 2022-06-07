@@ -21,16 +21,6 @@ import javax.servlet.http.HttpSession;
 public class ItemController {
     private final ItemService itemService;
 
-
-    @GetMapping("/items/{itemSeq}")
-    public String findOneItemInfo(@PathVariable int itemSeq) throws Exception {
-        log.info(this.getClass().getName() + ".findOneItemInfo Start!");
-
-
-        return null;
-    }
-
-
     @RequestMapping("/user/review/delete/{reviewSeq}")
     public String deleteReview(HttpServletRequest request, HttpSession session, ModelMap model,
                                @PathVariable int reviewSeq) throws Exception {

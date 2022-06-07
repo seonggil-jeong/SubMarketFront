@@ -3,16 +3,19 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.submarket.front.dto.ItemDto" %>
 <%@ page import="java.util.LinkedList" %>
+<%@ page import="com.submarket.front.dto.SellerDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
 <%
     List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
 
+
     if (itemDtoList == null) {
         itemDtoList = new LinkedList<>();
     }
     UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
+    SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
     if (userInfo == null) {
         userInfo = new UserDto();
@@ -93,6 +96,25 @@
                     <li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
                             class="dn-lg">My Info</span></a></li>
                     <%
+                    } else if (session.getAttribute("SS_SELLER_TOKEN") != null) {
+                    %>
+                    <li class="user_setting" style="margin-bottom: 1%;">
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
+                                    class="fa fa-angle-down"></span></span></a>
+                            <div class="dropdown-menu">
+                                <div class="user_set_header">
+                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
+                                </div>
+                                <div class="user_setting_content" style="margin-bottom: 10%">
+                                    <a class="dropdown-item" href="/logout" style="color: black">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
+                            class="dn-lg">SELLER HOME</span></a></li>
+                    <%
                     } else {
                     %>
                     <li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
@@ -151,7 +173,7 @@
                                     <div class="tab-content" id="pills-tabContent">
                                         <%-- 사업자 로그인 창 --%>
                                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                            <form action="/seller/login" method="post">
+                                            <form action="/seller/login", method="post">
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <input type="text" class="form-control" id="SellerId" placeholder="Seller Id" name="sellerId">
                                                 </div>
@@ -367,7 +389,7 @@
                                         </ul>
                                     </div>
                                     <h4 class="mt15 mb20"><%=CmmUtil.nvl(itemDto.getItemTitle())%></h4>
-                                    <p class="mb10"><%=CmmUtil.nvl(itemDto.getItemContents())%></p>
+                                    <p class="mb10"><%=CmmUtil.nvl(itemDto.getItemContents().substring(0, 50))%></p>
                                     <a class="tdu text-thm" href="/items/<%=itemDto.getItemSeq()%>">Read More</a>
                                 </div>
                             </div>

@@ -9,6 +9,8 @@ import java.util.List;
 public interface IItemService {
     List<ItemReviewDto> findItemReviewByUserToken(String token) throws Exception;
 
+    List<ItemReviewDto> findItemReviewByItemSeq(int itemSeq) throws Exception;
+
     String deleteItemReviewByReviewSeq(int reviewSeq, String token) throws Exception;
 
     String modifyItemReviewByReviewSeq(ItemReviewDto itemReviewDto, String token) throws Exception;
@@ -18,6 +20,8 @@ public interface IItemService {
     CategoryDto getItemInfoByCategorySeq(int categorySeq) throws Exception;
 
     List<ItemDto> getItemInfoByGroupSeq(int groupSeq) throws Exception;
+
+    ItemDto getItemInfoDetails(int itemSeq) throws Exception;
 
 
 }

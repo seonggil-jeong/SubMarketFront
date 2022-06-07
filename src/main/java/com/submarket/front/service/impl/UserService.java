@@ -30,15 +30,20 @@ public class UserService implements IUserService {
     @Override
     public UserDto getUserInfo(String token) throws Exception {
         log.info(this.getClass().getName() + ".getUserInfo");
-        String url = env.getProperty("gateway.ip") + "/user-service/user";
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", token);
+        try {
+            String url = env.getProperty("gateway.ip") + "/user-service/user";
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
 
-        Map<String, Object> body = new HashMap<>();
+            Map<String, Object> body = new HashMap<>();
 
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
-        ResponseEntity<UserDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, UserDto.class);
-        return response.getBody();
+            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+            ResponseEntity<UserDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, UserDto.class);
+            return response.getBody();
+
+        } catch (Exception exception) {
+            return new UserDto();
+        }
     }
 
     @Override
@@ -73,7 +78,6 @@ public class UserService implements IUserService {
             ResponseEntity<SubDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, SubDto.class);
             subDtoList = response.getBody().getResponse();
             log.info("Service : " + subDtoList.get(0).getSubDate());
-
 
 
         } catch (HttpStatusCodeException httpStatusCodeException) {

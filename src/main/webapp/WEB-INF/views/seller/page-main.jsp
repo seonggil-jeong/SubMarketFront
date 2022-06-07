@@ -62,7 +62,7 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<a href="index.html" class="navbar_brand float-left dn-smd">
+				<a href="/index" class="navbar_brand float-left dn-smd">
 					<img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
 					<img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
 					<span>Guido</span>
@@ -88,7 +88,7 @@
 						<a href="#"><span class="title">Home</span></a>
 						<!-- Level Two-->
 						<ul>
-							<li><a href="index.html">Home V1</a></li>
+							<li><a href="/index">Home V1</a></li>
 							<li><a href="index2.html">Home V2</a></li>
 							<li><a href="index3.html">Home V3</a></li>
 						</ul>
@@ -231,7 +231,7 @@
 			<ul>
 				<li><span>Home</span>
 					<ul>
-						<li><a href="index.html">Home V1</a></li>
+						<li><a href="/index">Home V1</a></li>
 						<li><a href="index2.html">Home V2</a></li>
 						<li><a href="index3.html">Home V3</a></li>
 					</ul>
@@ -299,7 +299,7 @@
 								<li><a href="page-my-dashboard.html">Dashboard</a></li>
 								<li><a href="page-profile.html">My Profile</a></li>
 								<li><a href="page-my-listing.html">My Listings</a></li>
-								<li><a href="page-my-bookmark.html">Bookmarks</a></li>
+								<li><a href="page-my-bookmark.html">Add Item</a></li>
 								<li><a href="page-message.html">Messages</a></li>
 								<li><a href="page-my-review.html">Reviews</a></li>
 								<li><a href="page-add-new-listing.html">Add New Property</a></li>
@@ -485,10 +485,8 @@
 						<ul>
 							<li><a class="active" href="page-my-dashboard.html"><span class="flaticon-web-page"></span> Dashboard</a></li>
 							<li><a href="page-profile.html"><span class="flaticon-avatar"></span> Profile</a></li>
-							<li><a href="page-my-listing.html"><span class="flaticon-list"></span> My Listings</a></li>
-							<li><a href="page-my-bookmark.html"><span class="flaticon-love"></span> Bookmarks</a></li>
-							<li><a href="page-message.html"><span class="flaticon-chat"></span> Message</a></li>
-							<li><a href="page-my-review.html"><span class="flaticon-note"></span> Reviews</a></li>
+							<li><a href="page-my-listing.html"><span class="flaticon-list"></span> My Item List</a></li>
+							<li><a href="/seller/item"><span class="flaticon-edit"></span> Add Item</a></li>
 							<li><a href="page-my-logout.html"><span class="flaticon-logout"></span> Logout</a></li>
 						</ul>
 					</div>

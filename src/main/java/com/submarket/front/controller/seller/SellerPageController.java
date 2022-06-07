@@ -25,4 +25,14 @@ public class SellerPageController {
     public String sellerItemAddPage(HttpSession session) throws Exception {
         return "/seller/page-add-item";
     }
+
+    @RequestMapping("/seller/profile")
+    public String sellerProfile(HttpSession session) throws Exception {
+        return "/seller/page-profile";
+    }
+
+    @RequestMapping("/seller/my-item")
+    public String sellerMyItem(HttpSession session) throws Exception {
+        return "/seller/page-my-item";
+    }
 }

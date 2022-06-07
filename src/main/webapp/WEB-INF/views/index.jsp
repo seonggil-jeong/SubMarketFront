@@ -86,7 +86,7 @@
 					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
 							class="dn-lg">My Info</span></a></li>
 					<%
-						} else if (session.getAttribute("SS_SELLER_TOKEN") != null) {
+						} else if (CmmUtil.nvl(String.valueOf(session.getAttribute("SS_SELLER_TOKEN"))).length() > 10) {
 					%>
 					<li class="user_setting" style="margin-bottom: 1%;">
 						<div class="dropdown">

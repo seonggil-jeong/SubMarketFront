@@ -2,12 +2,10 @@
 <%@ page import="com.submarket.front.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%
-    SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
-    if (sellerInfo == null) {
-        sellerInfo = new SellerDto();
-    }
+<%
+    SellerDto sellerInfo = new SellerDto();
+    sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 %>
 
 <!DOCTYPE html>
@@ -21,15 +19,14 @@
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/fileuploader.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/dashbord_navitaion.css">
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/css/responsive.css">
     <!-- Title -->
-    <title>Guido - Directory & Listing HTML Template</title>
+    <title>Profile</title>
     <!-- Favicon -->
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="/image/x-icon" />
     <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -42,12 +39,13 @@
     <script type="text/javascript">
         function doOnload() {
             if ('<%=String.valueOf(session.getAttribute("SS_SELLER_TOKEN"))%>'.length < 10) {
+                alert("로그인된 사용자만 접근 가능합니다.");
                 top.location.href = "/index";
             }
         }
     </script>
 </head>
-<body>
+<body onload="doOnload()">
 <div class="wrapper">
     <div class="preloader"></div>
 
@@ -72,11 +70,15 @@
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
+                <div class="ht_left_widget style2 float-left">
+                    <ul>
+                        <li class="list-inline-item">
+                            <div class="ht_search_widget">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-                    <%
-                        if (session.getAttribute("SS_SELLER_TOKEN") != null) {
-
-                    %>
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
                             <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
@@ -92,10 +94,7 @@
                         </div>
                     </li>
                     <li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
-                            class="dn-lg">My Info</span></a></li>
-                    <%
-                        }
-                    %>
+                            class="dn-lg">SELLER HOME</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -276,96 +275,136 @@
     </section>
 
     <!-- Our Dashbord -->
-    <section class="our-dashbord dashbord bgc-f4 ovh">
-        <div class="container mt80">
+    <section class="extra-dashboard-menu dn-992">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12 mb10">
-                    <div class="breadcrumb_content style2 mb25">
-                        <h2 class="breadcrumb_title">상품 등록</h2>
+                <div class="col-lg-12">
+                    <div class="ed_menu_list mt5">
+                        <ul>
+                            <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
+                            <li><a class="active" href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
+                            <li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                            <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
+                            <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <form action="/seller/item/add" method="post" enctype="multipart/form-data">
-                    <div class="my_dashboard_review">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="mb30">상품 정보</h4>
-                                <div class="my_profile_setting_input form-group">
-                                    <label for="listingPlace">Item Title</label>
-                                    <input type="text" class="form-control" id="listingPlace" name="itemTitle" placeholder="What the name of Item">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input ui_kit_select_search form-group">
-                                    <label>Price</label>
-                                    <input type="text" class="form-control" placeholder="(원)" name="itemPrice">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input form-group">
-                                    <label for="propertyDescription">상품 수량</label>
-                                    <input type="text" class="form-control" placeholder="상품 수량을 입력해주세요" name="itemCount">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_textarea">
-                                    <label for="propertyDescription">상품 설명</label>
-                                    <textarea class="form-control" id="propertyDescription" rows="7" name="itemContents">상품 설명을 입력해 주세요.</textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input ui_kit_select_search form-group">
-                                    <label>Category</label>
-                                    <select class="selectpicker" data-live-search="true" data-width="100%" name="categorySeq">
-                                        <option data-tokens="Category1" value="1">식품</option>
-                                        <option data-tokens="Category2" value="2">쇼핑</option>
-                                        <option data-tokens="Category3" value="3">생필품</option>
-                                        <option data-tokens="Category4" value="4">건강</option>
-                                        <option data-tokens="Category4" value="5">뷰티</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="my_dashboard_review mt30">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="mb30">Media</h4>
-                            </div>
-                            <div class="col-lg-12">
-                                <h5>Main image</h5>
-                                <div class="upload_file_input_add_remove">
-                                    <span class="btn_upload"><input type="file" id="imag" title="" class="input-img" name="mainImage"/><span class="flaticon-upload"></span></span>
-                                    <img id="ImgPreview" src="/images/resource/upload-img.png" class="preview1" alt="" />
-                                    <button id="removeImage1" class="btn-rmv1" type="button"><span class="flaticon-delete"></span></button>
-                                </div>
-                                <small>Maximum file size: 1000kb.</small>
-                            </div>
-                            <div class="col-lg-12 mt50">
-                                <h5 class="mb20">Gallery Images (optional)</h5>
-                                <ul class="mb0">
-                                    <li class="list-inline-item vat mb30-767">
-                                        <div class="upload_file_input_add_remove">
-                                            <span class="btn_upload"><input type="file" id="imag2" title="" class="input-img" name="subImage"/><span class="flaticon-upload"></span></span>
-                                            <img id="ImgPreview2" src="/images/resource/upload-img.png" class="preview2" alt="" />
-                                            <button id="removeImage2" class="btn-rmv2" type="button"><span class="flaticon-delete"></span></button>
-                                        </div>
-                                        <small>Maximum file size: 1000kb.</small>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                        <input type="submit" class="btn btn-thm listing_save_btn mt30" value="Submit">
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-
+    <!-- Our Dashbord -->
+    <section class="our-dashbord dashbord bgc-f4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dashboard_navigationbar dn db-992">
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
+                            <ul id="myDropdown" class="dropdown-content">
+                                <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
+                                <li class="active"><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
+                                <li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                                <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
+                                <li><a href="/logout"><span class="flaticon-logout"></span>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mb10">
+                    <div class="breadcrumb_content style2">
+                        <h2 class="breadcrumb_title float-left">Profile</h2>
+                        <p class="float-right">Ready to jump back in!</p>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="my_dashboard_profile mb30-lg">
+                                <form action="/user/modifyUserInfo" method="post">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="my_profile_setting_input form-group mt100-500">
+                                            <label for="formGroupExampleInput1">Your Name</label>
+                                            <input type="text" readonly class="form-control" id="formGroupExampleInput1" name="sellerName" value="<%=sellerInfo.getSellerName()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleInput8">Email</label>
+                                            <input type="email" class="form-control" id="formGroupExampleInput8" name="sellerEmail" value="<%=sellerInfo.getSellerEmail()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleEmail">Address</label>
+                                            <input type="text" class="form-control" id="formGroupExampleEmail" name="sellerAddress" value="<%=sellerInfo.getSellerAddress()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleInput8">Address2</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput9" name="sellerAddress2" value="<%=sellerInfo.getSellerAddress2()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-6">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleInput9">Phone</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput10" name="sellerPn" value="<%=sellerInfo.getSellerPn()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-6">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleInput9">Age</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput11" name="sellerHome" value="<%=sellerInfo.getSellerHome()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="my_profile_setting_input">
+                                            <input type="submit" class="btn update_btn" value="Save Changes">
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="my_dashboard_profile">
+                                <h4 class="mb20">Change password</h4>
+                                <form action="/user/changePassword" method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleOldPass">Current Password</label>
+                                            <input type="password" class="form-control" id="formGroupExampleOldPass" name="oldPassword">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleNewPass">New Password</label>
+                                            <input type="password" class="form-control" id="formGroupExampleNewPass" name="newPassword">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="my_profile_setting_input form-group">
+                                            <label for="formGroupExampleConfPass">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="formGroupExampleConfPass" name="newPassword2">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="my_profile_setting_input">
+                                            <input type="submit" class="btn update_btn style2" value="Change Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->
@@ -375,7 +414,6 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.all.js"></script>
 <script src="/js/ace-responsive-menu.js"></script>
-<script src="/js/chart.min.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/snackbar.min.js"></script>
 <script src="/js/simplebar.js"></script>
@@ -388,10 +426,8 @@
 <script src="/js/slider.js"></script>
 <script src="/js/timepicker.js"></script>
 <script src="/js/wow.min.js"></script>
-<script src="/js/jquery.smartuploader.js"></script>
+<script src="/js/smartuploader.js"></script>
 <script src="/js/dashboard-script.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM&callback=initMap"></script>
-<script src="/js/googlemaps1.js"></script>
 <!-- Custom script for all pages -->
 <script src="/js/script.js"></script>
 </body>

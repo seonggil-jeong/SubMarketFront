@@ -8,6 +8,7 @@ import com.submarket.front.vo.RequestChangePassword;
 import com.submarket.front.vo.RequestLogin;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.methods.HttpHead;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -106,6 +107,28 @@ public class UserController {
         model.addAttribute("url", "/index");
 
         return "/redirect";
+    }
+
+    @GetMapping("/user/sub/delete")
+    public String deleteSub(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
+
+        String url = env.getProperty("gateway.ip") + "/user-service/sub/delete";
+
+        SubDto subDto = new SubDto();
+        subDto.setSubSeq(Integer.valueOf(request.getParameter("subSeq")));
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", String.valueOf(session.getAttribute("SS_USER_TOKEN")));
+
+        HttpEntity<SubDto> entity = new HttpEntity<>(subDto, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+        model.addAttribute("msg", response.getBody());
+        model.addAttribute("url", "/user/sublist");
+
+
+        return "/redirect";
+
     }
 
 

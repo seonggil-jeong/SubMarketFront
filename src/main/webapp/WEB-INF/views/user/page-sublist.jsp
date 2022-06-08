@@ -328,29 +328,6 @@
             </div>
             <div class="my_listings">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="candidate_revew_select style2 text-right mb30-991 tal-smd">
-                            <ul class="mb0 mt10">
-                                <li class="list-inline-item mb30-767">
-                                    <select class="selectpicker show-tick">
-                                        <option>Categories : All</option>
-                                        <option>Gym</option>
-                                        <option>Hotel</option>
-                                        <option>Spa</option>
-                                        <option>Travel</option>
-                                    </select>
-                                </li>
-                                <li class="list-inline-item">
-                                    <select class="selectpicker show-tick">
-                                        <option>Status : All</option>
-                                        <option>Approved</option>
-                                        <option>Cancel</option>
-                                        <option>Pending</option>
-                                    </select>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="col-lg-12 mt25">
                         <div class="listing_table">
                             <form action="#">
@@ -387,15 +364,7 @@
                                         <td class="editing_list" style="width: 20%">
                                             <ul>
                                                 <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><span
-                                                            class="flaticon-edit"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="View"><span
-                                                            class="flaticon-view"></span></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top"
+                                                    <a href="/user/sub/delete?subSeq=<%=subDto.getSubSeq()%>" data-toggle="tooltip" data-placement="top"
                                                        title="Delete"><span class="flaticon-delete"></span></a>
                                                 </li>
                                             </ul>

@@ -13,6 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -45,6 +47,49 @@ public class SellerController {
 
 
         return "/redirect";
+    }
+
+    @PostMapping("/seller/join")
+    public String insertUser(SellerDto sellerDto, ModelMap model, HttpSession session) throws Exception {
+        try {
+            String url = env.getProperty("gateway.ip") + "/seller-service/sellers";
+
+            String bnUrl = env.getProperty("gateway.ip") + "/seller-service/seller/business/" + sellerDto.getBusinessId();
+            ResponseEntity<Map> bnResponse = restTemplate.exchange(bnUrl, HttpMethod.GET, null, Map.class);
+
+            if (bnResponse.getBody().get("b_stt_cd").toString().length() < 1) {
+                model.addAttribute("msg", "사업자 번호가 유효하지 않습니다");
+                model.addAttribute("url", "/seller/regForm");
+
+                return "/redirect";
+            }
+
+            HttpEntity<SellerDto> entity = new HttpEntity<>(sellerDto);
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+
+            model.addAttribute("msg", response.getBody());
+            model.addAttribute("url", "/index");
+
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
+
+            if (code == 500) {
+                model.addAttribute("msg", statusCodeException.getMessage());
+                model.addAttribute("/seller/regForm");
+            } else {
+                model.addAttribute("msg", "Server Error");
+                model.addAttribute("/index");
+            }
+
+        } catch (Exception exception) {
+            model.addAttribute("msg", exception.getMessage());
+            model.addAttribute("/seller/regForm");
+
+        } finally {
+            return "/redirect";
+        }
     }
 
 

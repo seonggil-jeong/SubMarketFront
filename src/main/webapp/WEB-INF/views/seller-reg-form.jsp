@@ -229,10 +229,10 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="breadcrumb_content">
-                        <h2 class="breadcrumb_title">Register</h2>
+                        <h2 class="breadcrumb_title">Welcome New Seller</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Register</li>
+                            <li class="breadcrumb-item active" aria-current="page">Welcome New Seller</li>
                         </ol>
                     </div>
                 </div>
@@ -248,41 +248,44 @@
                     <div class="sign_up_form inner_page">
                         <ul class="nav nav-pills mb-4" id="pills-tab2" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="pills-home-tab2" data-toggle="pill" href="#pills-home2" role="tab" aria-controls="pills-home2" aria-selected="true">Customer</a>
+                                <a class="nav-link" id="pills-home-tab2" href="/regForm" role="tab" aria-controls="pills-home2" aria-selected="true">User</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="pills-profile-tab2" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Business Owner</a>
+                                <a class="nav-link active" id="pills-profile-tab2" href="/seller/regForm" role="tab" aria-controls="pills-profile" aria-selected="false">Business Owner</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent2">
                             <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
-                                <form action="/user/join" method="post">
+                                <form action="/seller/join" method="post">
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="Id">
+                                        <input type="text" class="form-control" id="sellerId" name="sellerId" placeholder="Id">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Name">
+                                        <input type="text" class="form-control" id="businessId" name="businessId" placeholder="businessId">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
+                                        <input type="password" class="form-control" id="sellerPassword" name="sellerPassword" placeholder="Password">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="password" class="form-control" id="userPassword2" name="userPassword2" placeholder="check Password">
+                                        <input type="password" class="form-control" id="sellerPassword2" name="sellerPassword2" placeholder="check Password">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Email">
+                                        <input type="email" class="form-control" id="sellerEmail" name="sellerEmail" placeholder="Email">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userAge" name="userAge" placeholder="Age">
+                                        <input type="text" class="form-control" id="sellerPn" name="sellerPn" placeholder="전화 번호">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userPn" name="userPn" placeholder="Pn">
+                                        <input type="text" class="form-control" id="sellerAddress" name="sellerAddress" placeholder="Address">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userAddress" name="userAddress" placeholder="Address">
+                                        <input type="text" class="form-control" id="sellerAddress2" name="sellerAddress2" placeholder="Address2">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userAddress2" name="userAddress2" placeholder="Address Details">
+                                        <input type="text" class="form-control" id="sellerHome" name="sellerHome" placeholder="Home Page url">
+                                    </div>
+                                    <div class="form-group input-group">
+                                        <input type="text" class="form-control" id="sellerName" name="sellerName" placeholder="담당자 이름">
                                     </div>
                                     <button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
                                 </form>

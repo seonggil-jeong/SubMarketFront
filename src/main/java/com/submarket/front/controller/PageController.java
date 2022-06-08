@@ -12,4 +12,9 @@ public class PageController {
     public String userRegForm() throws Exception {
         return "/reg-form";
     }
+
+    @RequestMapping("/seller/regForm")
+    public String sellerRegForm() throws Exception {
+        return "/seller-reg-form";
+    }
 }

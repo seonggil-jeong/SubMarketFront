@@ -229,10 +229,10 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="breadcrumb_content">
-                        <h2 class="breadcrumb_title">Register</h2>
+                        <h2 class="breadcrumb_title">Welcome New User</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Register</li>
+                            <li class="breadcrumb-item active" aria-current="page">Welcome New User</li>
                         </ol>
                     </div>
                 </div>
@@ -248,10 +248,10 @@
                     <div class="sign_up_form inner_page">
                         <ul class="nav nav-pills mb-4" id="pills-tab2" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="pills-home-tab2" data-toggle="pill" href="#pills-home2" role="tab" aria-controls="pills-home2" aria-selected="true">Customer</a>
+                                <a class="nav-link active" id="pills-home-tab2" href="/regForm" role="tab" aria-controls="pills-home2" aria-selected="true">User</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="pills-profile-tab2" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Business Owner</a>
+                                <a class="nav-link" id="pills-profile-tab2" href="/seller/regForm" role="tab" aria-controls="pills-profile" aria-selected="false">Business Owner</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent2">

@@ -17,4 +17,7 @@ public class SubDto {
     private String subDate;
     private int subCount;
     private String userId;
+
+    private String itemTitle;
+    private String mainImagePath; // DB에 저장되어 있는 이미지 정보
 }

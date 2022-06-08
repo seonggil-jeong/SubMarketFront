@@ -1,5 +1,6 @@
 package com.submarket.front.service.impl;
 
+import com.submarket.front.dto.ItemDto;
 import com.submarket.front.dto.SubDto;
 import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.IUserService;
@@ -15,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -26,6 +24,7 @@ import java.util.Map;
 public class UserService implements IUserService {
     private final RestTemplate restTemplate;
     private final Environment env;
+    private final ItemService itemService;
 
     @Override
     public UserDto getUserInfo(String token) throws Exception {
@@ -77,7 +76,19 @@ public class UserService implements IUserService {
 
             ResponseEntity<SubDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, SubDto.class);
             subDtoList = response.getBody().getResponse();
-            log.info("Service : " + subDtoList.get(0).getSubDate());
+
+            if (subDtoList.size() > 0) {
+                for (int i = 0; i < subDtoList.size(); i++) {
+                    int itemSeq = subDtoList.get(i).getItemSeq();
+
+                    Optional<ItemDto> itemDto = Optional.ofNullable(itemService.getItemInfoDetails(itemSeq));
+                    if (itemDto.isPresent()) {
+                        subDtoList.get(i).setMainImagePath(itemDto.get().getMainImagePath());
+                        subDtoList.get(i).setItemTitle(itemDto.get().getItemTitle());
+
+                    }
+                }
+            }
 
 
         } catch (HttpStatusCodeException httpStatusCodeException) {

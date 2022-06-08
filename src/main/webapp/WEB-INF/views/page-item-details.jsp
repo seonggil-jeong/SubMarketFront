@@ -535,7 +535,7 @@
                                             }
                                         %>
                                         <li class="list-inline-item text-white">(<%=CmmUtil.nvl(String.valueOf(itemReviewDtoList.size()))%> reviews)</li>
-                                        <li class="list-inline-item ml20"><a class="price_range" href="#"><%=itemDto.getItemPrice()%>원</a></li>
+                                        <li class="list-inline-item ml20"><a class="price_range" href="#"><%=itemDto.getItemCount()%>개 남음</a></li>
                                     </ul>
                                 </div>
                             </div>

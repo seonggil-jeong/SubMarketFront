@@ -376,8 +376,8 @@
                                         <th scope="row" style="width: 40%;">
                                             <ul class="cart_list">
                                                 <li class="list-inline-item pr10"><a href="#"><img
-                                                        src="/images/listing/s1.png" alt="s1.png"></a></li>
-                                                <li class="list-inline-item"><a class="cart_title" href="#">상품 이름 <%=subDto.getItemSeq()%></a></li>
+                                                        src="<%=subDto.getMainImagePath()%>" alt="s1.png"></a></li>
+                                                <li class="list-inline-item"><a class="cart_title" href="/items/<%=subDto.getItemSeq()%>"><%=subDto.getItemTitle()%></a></li>
                                             </ul>
                                         </th>
                                         <td class="dn-lg"></td>

@@ -83,7 +83,6 @@ public class UserController {
             model.addAttribute("url", "/user/profile");
 
 
-
         }
         return "/redirect";
     }
@@ -131,9 +130,33 @@ public class UserController {
 
     }
 
+    @PostMapping("/user/join")
+    public String insertUser(UserDto userDto, ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + ".insertUser Start!");
+        String url = env.getProperty("gateway.ip") + "/user-service/users";
+        try {
+            HttpEntity<UserDto> entity = new HttpEntity<>(userDto);
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
+            model.addAttribute("msg", response.getBody());
+            model.addAttribute("url", "/index");
 
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
 
+            if (code == 409) {
+                model.addAttribute("msg", "아이디 중복");
+                model.addAttribute("url", "/regForm");
+
+            } else {
+                model.addAttribute("msg", "Server Error");
+                model.addAttribute("url", "/regForm");
+            }
+        } finally {
+            return "/redirect";
+        }
+
+    }
 
 
     // 사용자 로그인
@@ -180,11 +203,10 @@ public class UserController {
                 model.addAttribute("url", "/index");
             }
 
-        } catch (Exception e){ // 500 Error 은 그냥 pass HttpStatusCodeException 에 잡히지 않음
+        } catch (Exception e) { // 500 Error 은 그냥 pass HttpStatusCodeException 에 잡히지 않음
             model.addAttribute("msg", "ServerError");
             model.addAttribute("url", "/index");
-        }
-        finally {
+        } finally {
 
 
             return "/redirect";

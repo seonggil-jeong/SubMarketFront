@@ -85,6 +85,7 @@ public class UserService implements IUserService {
                     if (itemDto.isPresent()) {
                         subDtoList.get(i).setMainImagePath(itemDto.get().getMainImagePath());
                         subDtoList.get(i).setItemTitle(itemDto.get().getItemTitle());
+                        subDtoList.get(i).setItemPrice(itemDto.get().getItemPrice());
 
                     }
                 }

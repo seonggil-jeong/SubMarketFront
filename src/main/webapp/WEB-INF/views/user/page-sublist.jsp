@@ -359,19 +359,19 @@
                             %>
                             <div class="mbp_first media">
                                 <img src="<%=subDto.getMainImagePath()%>" class="mr-3" alt="reviewer1.png" style="width: 70px; height: 70px;">
-                                <div class="media-body">
+                                <div class="media-body" style="margin-top: 2%;">
                                     <h4 class="sub_title mt-0"><a href="/items/<%=subDto.getItemSeq()%>"><%=subDto.getItemTitle()%></a></h4>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" style="margin-top: 2%;">
                                     <h4 class="sub_title mt-0">결제일 : <%=subDto.getSubDate()%></h4>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" style="margin-top: 2%;">
                                     <h4 class="sub_title mt-0">Count : <%=subDto.getSubCount()%> 번 째</h4>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" style="margin-top: 2%;">
                                     <h4 class="sub_title mt-0" style="color: #5cb85c">Status</h4>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" style="margin-top: 2%;">
                                     <ul style="align-content: center">
                                         <li class="list-inline-item">
                                             <a href="/user/sub/delete?subSeq=<%=subDto.getSubSeq()%>" data-toggle="tooltip" data-placement="top"

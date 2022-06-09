@@ -199,10 +199,10 @@
                                                     <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
                                                 </div>
                                                 <div class="form-group input-group">
-                                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Username">
+                                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Username" required>
                                                 </div>
                                                 <div class="form-group input-group mb20">
-                                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
                                                 <hr>
@@ -562,6 +562,14 @@
                         <div class="col-lg-12 pl0 pr0 pl15-767 pr15-767">
                             <div class="listing_single_description mb60">
                                 <h4 class="mb30">Overview</h4>
+                                <%
+                                    if (itemDto.getItemContents().length() < 100) {
+                                %>
+                                <p class="first-para mb25"><%=itemDto.getItemContents()%>
+                                </p>
+                                <%
+                                    } else {
+                                %>
                                 <p class="first-para mb25"><%=itemDto.getItemContents().substring(0, 100)%></p>
                                 <p class="gpara second_para white_goverlay mt10 mb20"><%=itemDto.getItemContents().substring(100, 150)%>...</p>
                                 <div class="collapse" id="collapseExample">
@@ -569,6 +577,9 @@
                                         <p class="mt10 mb10"><%=itemDto.getItemContents().substring(100)%></p>
                                     </div>
                                 </div>
+                                <%
+                                    }
+                                %>
                                 <p class="overlay_close">
                                     <a class="text-thm fz15 tdu" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Show More</a>
                                 </p>
@@ -606,7 +617,7 @@
                         <div class="col-lg-12 pl0 pl15-767">
                             <div class="custom_reivews mt30 mb30 row">
                                 <div class="col-lg-12">
-                                    <h4 class="mb25"><%=itemStar%> (<%=itemReviewDtoList.size()%> reviews)</h4>
+                                    <h4 class="mb25">(<%=itemReviewDtoList.size()%> reviews)</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="title">Overall Rating</div>
@@ -616,52 +627,33 @@
                         <div class="col-lg-12 pl0 pl15-767">
                             <div class="listing_single_reviews">
                                 <div class="product_single_content mb30">
-                                    <div class="mbp_first media mb30">
-                                        <img src="/images/blog/reviewer1.png" class="mr-3" alt="reviewer1.png">
-                                        <div class="media-body">
-                                            <h4 class="sub_title mt-0">Jane Cooper</h4>
-                                            <div class="sspd_postdate fz14 mb20">April 6, 2021 at 3:21 AM
-                                                <div class="sspd_review pull-right">
-                                                    <ul class="mb0 pl15">
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item">(5 reviews)</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <p class="fz14 mt10">Every single thing we tried with John was delicious! Found some awesome places we would definitely go back to on our trip. John was also super friendly and passionate about Beşiktaş and Istanbul. we had an awesome time!</p>
-                                            <div class="thumb-list mt30">
-                                                <ul>
-                                                    <li class="list-inline-item mb10-lg"><a href="#"><img src="/images/blog/bsp1.jpg" alt="bsp1.jpg"></a></li>
-                                                    <li class="list-inline-item mb10-lg"><a href="#"><img src="/images/blog/bsp2.jpg" alt="bsp2.jpg"></a></li>
-                                                    <li class="list-inline-item mb10-lg"><a href="#"><img src="/images/blog/bsp3.jpg" alt="bsp3.jpg"></a></li>
-                                                    <li class="list-inline-item mb10-lg"><a href="#"><img src="/images/blog/bsp4.jpg" alt="bsp4.jpg"></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <%
+                                        for (ItemReviewDto itemReviewDto : itemReviewDtoList) {
+                                    %>
                                     <div class="mbp_first media">
-                                        <img src="/images/blog/reviewer2.png" class="mr-3" alt="reviewer2.png">
+<%--                                        <img src="/images/blog/reviewer2.png" class="mr-3" alt="reviewer2.png"> 리뷰 이미지--%>
                                         <div class="media-body">
-                                            <h4 class="sub_title mt-0">Bessie Cooper</h4>
-                                            <div class="sspd_postdate fz14 mb20">April 6, 2021 at 3:21 AM
+                                            <h4 class="sub_title mt-0"><%=itemReviewDto.getUserId()%></h4>
+                                            <div class="sspd_postdate fz14 mb20"><%=itemReviewDto.getReviewDate()%>
                                                 <div class="sspd_review pull-right">
                                                     <ul class="mb0 pl15">
+                                                        <%
+                                                            for (int j = 0; j < itemReviewDto.getReviewStar(); j++) {
+                                                        %>
                                                         <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                        <li class="list-inline-item">(5 reviews)</li>
+                                                        <%
+                                                            }
+                                                        %>
+                                                        <li class="list-inline-item">(<%=itemReviewDto.getReviewStar()%>)</li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <p class="fz14 mt10">I enjoyed the tour. John is very friendly, observant, and funny. He cares for the guests and really works hard on providing a good experience by understanding each person's needs.…</p>
+                                            <p class="fz14 mt10"><%=itemReviewDto.getReviewContents()%></p>
                                         </div>
                                     </div>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>

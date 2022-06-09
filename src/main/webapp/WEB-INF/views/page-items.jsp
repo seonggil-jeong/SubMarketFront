@@ -389,7 +389,19 @@
                                         </ul>
                                     </div>
                                     <h4 class="mt15 mb20"><%=CmmUtil.nvl(itemDto.getItemTitle())%></h4>
+                                    <%
+                                        if (itemDto.getItemContents().length() > 50) {
+                                    %>
                                     <p class="mb10"><%=CmmUtil.nvl(itemDto.getItemContents().substring(0, 50))%></p>
+
+                                    <%
+                                        } else {
+                                    %>
+                                    <p class="mb10"><%=CmmUtil.nvl(itemDto.getItemContents())%></p>
+                                    <%
+                                        }
+                                    %>
+
                                     <a class="tdu text-thm" href="/items/<%=itemDto.getItemSeq()%>">Read More</a>
                                 </div>
                             </div>

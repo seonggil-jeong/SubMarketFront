@@ -288,76 +288,76 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <form action="/seller/item/add" method="post" enctype="multipart/form-data">
-                    <div class="my_dashboard_review">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="mb30">상품 정보</h4>
-                                <div class="my_profile_setting_input form-group">
-                                    <label for="listingPlace">Item Title</label>
-                                    <input type="text" class="form-control" id="listingPlace" name="itemTitle" placeholder="What the name of Item">
+                        <div class="my_dashboard_review">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="mb30">상품 정보</h4>
+                                    <div class="my_profile_setting_input form-group">
+                                        <label for="listingPlace">Item Title</label>
+                                        <input type="text" class="form-control" id="listingPlace" name="itemTitle" placeholder="What the name of Item" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input ui_kit_select_search form-group">
-                                    <label>Price</label>
-                                    <input type="text" class="form-control" placeholder="(원)" name="itemPrice">
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input ui_kit_select_search form-group">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" placeholder="(원)" name="itemPrice" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input form-group">
-                                    <label for="propertyDescription">상품 수량</label>
-                                    <input type="text" class="form-control" placeholder="상품 수량을 입력해주세요" name="itemCount">
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input form-group">
+                                        <label>상품 수량</label>
+                                        <input type="text" class="form-control" placeholder="상품 수량을 입력해주세요" name="itemCount" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_textarea">
-                                    <label for="propertyDescription">상품 설명</label>
-                                    <textarea class="form-control" id="propertyDescription" rows="7" name="itemContents">상품 설명을 입력해 주세요.</textarea>
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input form-group">
+                                        <label>상품 설명</label>
+                                        <input type="text" class="form-control" placeholder="상품 설명을 입력해 주세요." name="itemContents" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="my_profile_setting_input ui_kit_select_search form-group">
-                                    <label>Category</label>
-                                    <select class="selectpicker" data-live-search="true" data-width="100%" name="categorySeq">
-                                        <option data-tokens="Category1" value="1">식품</option>
-                                        <option data-tokens="Category2" value="2">쇼핑</option>
-                                        <option data-tokens="Category3" value="3">생필품</option>
-                                        <option data-tokens="Category4" value="4">건강</option>
-                                        <option data-tokens="Category4" value="5">뷰티</option>
-                                    </select>
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input ui_kit_select_search form-group">
+                                        <label>Category</label>
+                                        <select class="selectpicker" data-width="100%" name="categorySeq" required>
+                                            <option data-tokens="Category1" value="1" selected>식품</option>
+                                            <option data-tokens="Category2" value="2">쇼핑</option>
+                                            <option data-tokens="Category3" value="3">생필품</option>
+                                            <option data-tokens="Category4" value="4">건강</option>
+                                            <option data-tokens="Category4" value="5">뷰티</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="my_dashboard_review mt30">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="mb30">Media</h4>
-                            </div>
-                            <div class="col-lg-12">
-                                <h5>Main image</h5>
-                                <div class="upload_file_input_add_remove">
-                                    <span class="btn_upload"><input type="file" id="imag" title="" class="input-img" name="mainImage"/><span class="flaticon-upload"></span></span>
-                                    <img id="ImgPreview" src="/images/resource/upload-img.png" class="preview1" alt="" />
-                                    <button id="removeImage1" class="btn-rmv1" type="button"><span class="flaticon-delete"></span></button>
+                        <div class="my_dashboard_review mt30">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="mb30">Media</h4>
                                 </div>
-                                <small>Maximum file size: 1000kb.</small>
-                            </div>
-                            <div class="col-lg-12 mt50">
-                                <h5 class="mb20">Gallery Images (optional)</h5>
-                                <ul class="mb0">
-                                    <li class="list-inline-item vat mb30-767">
-                                        <div class="upload_file_input_add_remove">
-                                            <span class="btn_upload"><input type="file" id="imag2" title="" class="input-img" name="subImage"/><span class="flaticon-upload"></span></span>
-                                            <img id="ImgPreview2" src="/images/resource/upload-img.png" class="preview2" alt="" />
-                                            <button id="removeImage2" class="btn-rmv2" type="button"><span class="flaticon-delete"></span></button>
-                                        </div>
-                                        <small>Maximum file size: 1000kb.</small>
-                                    </li>
-                                </ul>
+                                <div class="col-lg-12">
+                                    <h5>Main image</h5>
+                                    <div class="upload_file_input_add_remove">
+                                        <span class="btn_upload"><input type="file" id="imag" title="" class="input-img" name="mainImage"/><span class="flaticon-upload"></span></span>
+                                        <img id="ImgPreview" src="/images/resource/upload-img.png" class="preview1" alt="" />
+                                        <button id="removeImage1" class="btn-rmv1" type="button"><span class="flaticon-delete"></span></button>
+                                    </div>
+                                    <small>Maximum file size: 1000kb.</small>
+                                </div>
+                                <div class="col-lg-12 mt50">
+                                    <h5 class="mb20">Gallery Images (optional)</h5>
+                                    <ul class="mb0">
+                                        <li class="list-inline-item vat mb30-767">
+                                            <div class="upload_file_input_add_remove">
+                                                <span class="btn_upload"><input type="file" id="imag2" title="" class="input-img" name="subImage"/><span class="flaticon-upload"></span></span>
+                                                <img id="ImgPreview2" src="/images/resource/upload-img.png" class="preview2" alt="" />
+                                                <button id="removeImage2" class="btn-rmv2" type="button"><span class="flaticon-delete"></span></button>
+                                            </div>
+                                            <small>Maximum file size: 1000kb.</small>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <input type="submit" class="btn btn-thm listing_save_btn mt30" value="Submit">
                     </form>
                 </div>

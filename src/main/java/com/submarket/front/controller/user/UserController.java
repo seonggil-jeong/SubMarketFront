@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static org.springframework.http.HttpMethod.POST;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -68,7 +70,7 @@ public class UserController {
 
                 HttpEntity<RequestChangePassword> entity = new HttpEntity<>(body, headers);
 
-                ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+                ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
                 model.addAttribute("msg", response.getBody());
                 model.addAttribute("url", "/user/profile");
 
@@ -120,7 +122,7 @@ public class UserController {
 
         HttpEntity<SubDto> entity = new HttpEntity<>(subDto, headers);
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
 
         model.addAttribute("msg", response.getBody());
         model.addAttribute("url", "/user/sublist");
@@ -136,7 +138,7 @@ public class UserController {
         String url = env.getProperty("gateway.ip") + "/user-service/users";
         try {
             HttpEntity<UserDto> entity = new HttpEntity<>(userDto);
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
 
             model.addAttribute("msg", response.getBody());
             model.addAttribute("url", "/index");
@@ -177,7 +179,7 @@ public class UserController {
             body.setUserPassword(userPassword);
 
             HttpEntity<RequestLogin> entity = new HttpEntity<>(body, headers);
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
 
 
             UserDto userDto = userService.getUserInfo(response.getHeaders().get("token").get(0));
@@ -215,4 +217,27 @@ public class UserController {
 
     }
 
+    @PostMapping("/user/findPassword")
+    public String findPassword(UserDto userDto, ModelMap model) throws Exception {
+        // TODO: 2022-06-09 아이디 이메일 일치 시 비밀번호 변경, 임시 비밀번호 메일로 발송
+        try {
+            String url = env.getProperty("gateway.ip") + "/user-service/user/fix/find-password";
+
+            HttpEntity<UserDto> entity = new HttpEntity<>(userDto);
+
+            ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
+
+            model.addAttribute("msg", response.getBody());
+            model.addAttribute("url", "/index");
+
+            return "/redirect";
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            String msg = statusCodeException.getResponseBodyAsString();
+            log.info("msg : " + msg);
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", "/index");
+            return "/redirect";
+        }
+    }
 }

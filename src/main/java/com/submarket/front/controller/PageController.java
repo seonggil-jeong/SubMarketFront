@@ -17,4 +17,9 @@ public class PageController {
     public String sellerRegForm() throws Exception {
         return "/seller-reg-form";
     }
+
+    @RequestMapping("/findPassword")
+    public String userFindIdPage() throws Exception {
+        return "/page-find-Password";
+    }
 }

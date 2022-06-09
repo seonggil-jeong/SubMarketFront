@@ -148,7 +148,7 @@
 										<div class="input-group form-group mb5">
 											<input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
 										</div>
-										<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>
+										<a class="btn-fpswd float-right" href="/findPassword" style="margin-left: 5%">Forgot password?</a>
 										<a class="btn-fpswd float-right" href="#">Forgot id?</a>
 										<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
 										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign up</a></p>
@@ -330,7 +330,7 @@
 				<div class="col-lg-12">
 					<div class="home_content home1">
 						<div class="home-text text-center">
-							<h2 class="fz50">Welcome to SubMarket!!</h2>
+							<h2 class="fz50">Welcome SubMarket!!</h2>
 							<p class="fz18 color-white">There's everything you need.</p>
 						</div>
 						<div class="row justify-content-center">

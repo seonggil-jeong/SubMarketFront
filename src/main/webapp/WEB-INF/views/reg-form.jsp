@@ -258,28 +258,28 @@
                             <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
                                 <form action="/user/join" method="post">
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="Id">
+                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="Id" required>
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Name">
+                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" required>
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
+                                        <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password" required>
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="password" class="form-control" id="userPassword2" name="userPassword2" placeholder="check Password">
+                                        <input type="password" class="form-control" id="userPassword2" name="userPassword2" placeholder="check Password" required>
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Email">
+                                        <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Email" required>
                                     </div>
                                     <div class="form-group input-group">
                                         <input type="text" class="form-control" id="userAge" name="userAge" placeholder="Age">
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userPn" name="userPn" placeholder="Pn">
+                                        <input type="text" class="form-control" id="userPn" name="userPn" placeholder="Pn" required>
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="userAddress" name="userAddress" placeholder="Address">
+                                        <input type="text" class="form-control" id="userAddress" name="userAddress" placeholder="Address" required>
                                     </div>
                                     <div class="form-group input-group">
                                         <input type="text" class="form-control" id="userAddress2" name="userAddress2" placeholder="Address Details">

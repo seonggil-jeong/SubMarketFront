@@ -16,7 +16,7 @@
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/css/responsive.css">
     <!-- Title -->
-    <title>Guido - Directory & Listing HTML Template</title>
+    <title>Find Password</title>
     <!-- Favicon -->
     <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
     <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
@@ -229,10 +229,10 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="breadcrumb_content">
-                        <h2 class="breadcrumb_title">Welcome New Seller</h2>
+                        <h2 class="breadcrumb_title">Find Password</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Welcome New Seller</li>
+                            <li class="breadcrumb-item active" aria-current="page">Find Password</li>
                         </ol>
                     </div>
                 </div>
@@ -246,46 +246,14 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-6 offset-lg-3">
                     <div class="sign_up_form inner_page">
-                        <ul class="nav nav-pills mb-4" id="pills-tab2" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="pills-home-tab2" href="/regForm" role="tab" aria-controls="pills-home2" aria-selected="true">User</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="pills-profile-tab2" href="/seller/regForm" role="tab" aria-controls="pills-profile" aria-selected="false">Business Owner</a>
-                            </li>
-                        </ul>
                         <div class="tab-content" id="pills-tabContent2">
                             <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
-                                <form action="/seller/join" method="post">
+                                <form action="/user/findPassword" method="post">
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="sellerId" name="sellerId" placeholder="Id" required>
+                                        <input type="text" class="form-control" id="userId" name="userId" placeholder="Id" required>
                                     </div>
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="businessId" name="businessId" placeholder="businessId" required>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="password" class="form-control" id="sellerPassword" name="sellerPassword" placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="password" class="form-control" id="sellerPassword2" name="sellerPassword2" placeholder="check Password" required>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="email" class="form-control" id="sellerEmail" name="sellerEmail" placeholder="Email" required>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="sellerPn" name="sellerPn" placeholder="전화 번호" required>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="sellerAddress" name="sellerAddress" placeholder="Address" required>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="sellerAddress2" name="sellerAddress2" placeholder="Address2">
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="sellerHome" name="sellerHome" placeholder="Home Page url">
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <input type="text" class="form-control" id="sellerName" name="sellerName" placeholder="담당자 이름" required>
+                                        <input type="email" class="form-control" id="userName" name="userEmail" placeholder="Email" required>
                                     </div>
                                     <button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
                                 </form>

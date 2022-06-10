@@ -659,14 +659,14 @@
                         <div class="col-lg-12 pl0 pl15-767">
                             <div class="single_page_review_form p30-lg mb30-991">
                                 <div class="wrapper">
-                                    <form>
+                                    <form action="/user/review/<%=itemDto.getItemSeq()%>/create", method="post">
                                     <h4>Add a Review</h4>
                                     <div class="custom_reivews row mt40 mb30">
                                         <div class="col-lg-2 pr0">
                                             <div class="my_profile_setting_input ui_kit_select_search form-group">
                                                 <label>reviewStar</label>
                                                 <select class="selectpicker" data-width="100%" name="reviewStar">
-                                                    <option data-tokens="Category1" value="1">1</option>
+                                                    <option data-tokens="Category1" value="1" selected>1</option>
                                                     <option data-tokens="Category2" value="2">2</option>
                                                     <option data-tokens="Category3" value="3">3</option>
                                                     <option data-tokens="Category4" value="4">4</option>
@@ -676,7 +676,7 @@
                                         </div>
                                     </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="7" placeholder="리뷰 내용" name="reviewContents"></textarea>
+                                            <textarea class="form-control" rows="7" placeholder="리뷰 내용" name="reviewContents" required></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-thm">Submit Review</button>
                                     </form>

@@ -32,7 +32,6 @@ public class SellerController {
     private final SellerService sellerService;
 
 
-
     @PostMapping("/seller/item/add")
     public String sellerItemAdd(HttpSession session, ItemDto itemDto, ModelMap model) throws Exception {
         log.info(this.getClass().getName() + "sellerIteAdd Start!");
@@ -75,24 +74,50 @@ public class SellerController {
         } catch (HttpStatusCodeException statusCodeException) {
             int code = statusCodeException.getRawStatusCode();
 
-            if (code == 500) {
-                model.addAttribute("msg", statusCodeException.getMessage());
-                model.addAttribute("/seller/regForm");
+            if (code == 409) {
+                model.addAttribute("msg", statusCodeException.getResponseBodyAsString());
+                model.addAttribute("url", "/seller/regForm");
             } else {
                 model.addAttribute("msg", "Server Error");
-                model.addAttribute("/index");
+                model.addAttribute("url", "/seller/regForm");
             }
-
         } catch (Exception exception) {
-            model.addAttribute("msg", exception.getMessage());
-            model.addAttribute("/seller/regForm");
+            model.addAttribute("msg", "Server Error");
+            model.addAttribute("/index");
 
         } finally {
             return "/redirect";
         }
+
     }
 
+    @PostMapping("/sellers/modify")
+    public String sellerModify(SellerDto sellerDto, ModelMap model, HttpSession session) throws Exception {
+        String token = (String) session.getAttribute("SS_SELLER_TOKEN");
+        String url = env.getProperty("gateway.ip") + "/seller-service/sellers/modify";
 
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+            HttpEntity<SellerDto> entity = new HttpEntity(sellerDto, headers);
+
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            SellerDto sellerInfo = sellerService.getSellerInfo(token);
+
+            session.setAttribute("SS_SELLER_INFO", sellerInfo);
+
+            model.addAttribute("msg", response.getBody());
+            model.addAttribute("url", "/seller/profile");
+
+        } catch (Exception e) {
+            log.info("Exception : " + e);
+            model.addAttribute("msg", "Server Error");
+            model.addAttribute("url", "/seller/profile");
+        }finally {
+            return "/redirect";
+        }
+    }
 
 
     @PostMapping("/seller/login")

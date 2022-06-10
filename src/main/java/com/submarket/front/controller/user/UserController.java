@@ -147,7 +147,7 @@ public class UserController {
             int code = statusCodeException.getRawStatusCode();
 
             if (code == 409) {
-                model.addAttribute("msg", "아이디 중복");
+                model.addAttribute("msg", statusCodeException.getResponseBodyAsString());
                 model.addAttribute("url", "/regForm");
 
             } else {

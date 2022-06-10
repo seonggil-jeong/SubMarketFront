@@ -17,6 +17,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.swing.*;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -206,5 +207,34 @@ public class ItemService implements IItemService {
     @Override
     public List<ItemDto> getItemInfoByGroupSeq(int groupSeq) throws Exception {
         return null;
+    }
+
+    @Override
+    public List<ItemDto> findItemRandomItem() throws Exception {
+        log.info(this.getClass().getName() + ".getItemInfo Start!");
+        List<ItemDto> itemDtoList = new LinkedList<>();
+        String url = env.getProperty("gateway.ip") + "/item-service/items";
+
+
+        try {
+            log.info("url : " + url);
+            ResponseEntity<ItemDto> response = restTemplate.exchange(url, HttpMethod.GET, null, ItemDto.class);
+            itemDtoList = response.getBody().getResponse();
+
+            Collections.shuffle(itemDtoList);
+
+            if (itemDtoList.size() > 10) {
+                itemDtoList = itemDtoList.subList(0, 10);
+            }
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
+            log.info("code : " + code);
+
+            if (code >= 500) {
+                itemDtoList = new LinkedList<>();
+            }
+        }finally {
+            return itemDtoList;
+        }
     }
 }

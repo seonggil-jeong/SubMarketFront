@@ -1,5 +1,7 @@
 package com.submarket.front.controller;
 
+import com.submarket.front.dto.ItemDto;
+import com.submarket.front.service.impl.ItemService;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -22,9 +25,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MainController {
     private final UserService userService;
+    private final ItemService itemService;
 
     @RequestMapping("/index")
-    public String index() throws Exception {
+    public String index(ModelMap model) throws Exception {
+        List<ItemDto> itemDtoList = itemService.findItemRandomItem();
+        model.addAttribute("itemDtoList", itemDtoList);
 
         return "/index";
 

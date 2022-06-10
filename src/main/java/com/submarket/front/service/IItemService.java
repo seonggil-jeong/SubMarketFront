@@ -9,6 +9,8 @@ import java.util.List;
 public interface IItemService {
     List<ItemReviewDto> findItemReviewByUserToken(String token) throws Exception;
 
+    List<ItemDto> findItemRandomItem() throws Exception;
+
     List<ItemReviewDto> findItemReviewByItemSeq(int itemSeq) throws Exception;
 
     String deleteItemReviewByReviewSeq(int reviewSeq, String token) throws Exception;

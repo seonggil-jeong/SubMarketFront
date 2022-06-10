@@ -359,11 +359,11 @@
                             %>
                             <div class="mbp_first media">
                                 <img src="<%=subDto.getMainImagePath()%>" class="mr-3" alt="reviewer1.png" style="width: 70px; height: 70px;">
-                                <div class="media-body" style="margin-top: 2%;">
+                                <div class="media-body" style="margin-top: 2%; margin-left: 1%;">
                                     <h4 class="sub_title mt-0"><a href="/items/<%=subDto.getItemSeq()%>"><%=subDto.getItemTitle()%></a></h4>
                                 </div>
                                 <div class="media-body" style="margin-top: 2%;">
-                                    <h4 class="sub_title mt-0">결제일 : <%=subDto.getSubDate()%></h4>
+                                    <h4 class="sub_title mt-0">결제일 : <%=subDto.getSubDate()%> 일</h4>
                                 </div>
                                 <div class="media-body" style="margin-top: 2%;">
                                     <h4 class="sub_title mt-0">Count : <%=subDto.getSubCount()%> 번 째</h4>

@@ -321,24 +321,24 @@
                     <div class="row">
                         <div class="col-xl-8">
                             <div class="my_dashboard_profile mb30-lg">
-                                <form action="/user/modifyUserInfo" method="post">
+                                <form action="/sellers/modify" method="post">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="my_profile_setting_input form-group mt100-500">
-                                            <label for="formGroupExampleInput1">Your Name</label>
+                                            <label for="formGroupExampleInput1">담당자 이름</label>
                                             <input type="text" readonly class="form-control" id="formGroupExampleInput1" name="sellerName" value="<%=sellerInfo.getSellerName()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleInput8">Email</label>
-                                            <input type="email" class="form-control" id="formGroupExampleInput8" name="sellerEmail" value="<%=sellerInfo.getSellerEmail()%>">
+                                            <input type="email" class="form-control" id="formGroupExampleInput8" name="sellerEmail" readonly value="<%=sellerInfo.getSellerEmail()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleEmail">Address</label>
-                                            <input type="text" class="form-control" id="formGroupExampleEmail" name="sellerAddress" value="<%=sellerInfo.getSellerAddress()%>">
+                                            <input type="text" class="form-control" id="formGroupExampleEmail" name="sellerAddress" required value="<%=sellerInfo.getSellerAddress()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -350,13 +350,13 @@
                                     <div class="col-lg-6 col-xl-6">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleInput9">Phone</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput10" name="sellerPn" value="<%=sellerInfo.getSellerPn()%>">
+                                            <input type="text" class="form-control" id="formGroupExampleInput10" name="sellerPn" required value="<%=sellerInfo.getSellerPn()%>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-xl-6">
                                         <div class="my_profile_setting_input form-group">
-                                            <label for="formGroupExampleInput9">Age</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput11" name="sellerHome" value="<%=sellerInfo.getSellerHome()%>">
+                                            <label for="formGroupExampleInput9">Home URL</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput11" name="sellerHome" required value="<%=sellerInfo.getSellerHome()%>">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">

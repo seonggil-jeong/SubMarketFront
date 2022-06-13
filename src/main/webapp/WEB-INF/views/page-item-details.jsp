@@ -545,7 +545,7 @@
                 <div class="col-lg-4 col-xl-5">
                     <div class="single_property_social_share listing_single_v1 mt80 mt0-lg">
                         <div class="price listing_single_v1 mt25 float-right fn-lg">
-                            <a href="/user/sub/<%=itemDto.getItemSeq()%>" class="btn btn-thm spr_btn">Submit Item</a>
+                            <a href="/user/sub/<%=itemDto.getSellerId()%>/<%=itemDto.getItemSeq()%>" class="btn btn-thm spr_btn">Submit Item</a>
                         </div>
                     </div>
                 </div>

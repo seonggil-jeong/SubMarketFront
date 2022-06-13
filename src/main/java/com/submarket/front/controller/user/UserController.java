@@ -90,8 +90,8 @@ public class UserController {
         return "/redirect";
     }
 
-    @GetMapping("/user/sub/{itemSeq}")
-    public String newSub(@PathVariable int itemSeq, HttpSession session, ModelMap model) throws Exception {
+    @GetMapping("/user/sub/{sellerId}/{itemSeq}")
+    public String newSub(@PathVariable int itemSeq, @PathVariable String sellerId, HttpSession session, ModelMap model) throws Exception {
         SubDto subDto = new SubDto();
         subDto.setItemSeq(itemSeq);
         String token = String.valueOf(session.getAttribute("SS_USER_TOKEN"));
@@ -102,6 +102,15 @@ public class UserController {
 
             return "/redirect";
         }
+        UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
+
+        String userAddress = userDto.getUserAddress();
+        String userAddress2 = CmmUtil.nvl(userDto.getUserAddress2());
+
+
+        subDto.setUserAddress(userAddress);
+        subDto.setUserAddress2(userAddress2);
+        subDto.setSellerId(sellerId);
 
         String rStr = userService.saveSub(subDto, token);
 

@@ -21,4 +21,9 @@ public class SubDto {
     private String itemTitle;
     private String mainImagePath; // DB에 저장되어 있는 이미지 정보
     private int itemPrice;
+
+    // Kafka Setting
+    private String sellerId;
+    private String userAddress;
+    private String userAddress2;
 }

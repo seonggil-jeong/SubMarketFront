@@ -16,6 +16,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -105,6 +110,61 @@ public class SellerService implements ISellerService {
 
         } finally {
             return sellerDto;
+        }
+    }
+
+    @Override
+    public List<ItemDto> findItemList(String token) throws Exception {
+        String url = env.getProperty("gateway.ip") + "/item-service/item/seller";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", token);
+        List<ItemDto> itemDtoList = new LinkedList<>();
+
+        HttpEntity entity = new HttpEntity(headers);
+
+        try {
+
+            ResponseEntity<ItemDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, ItemDto.class);
+
+            itemDtoList = response.getBody().getResponse();
+
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+            itemDtoList = new LinkedList<>();
+
+        } finally {
+            return itemDtoList;
+        }
+
+    }
+
+    @Override
+    public int findTotalValue(String token, List<ItemDto> itemDtoList) throws Exception {
+        // 매출액 조회
+        log.info(this.getClass().getName() + ".findTotalValue Start!");
+        int totalPrice = 0;
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+            for (ItemDto itemDto : itemDtoList) {
+                int itemPrice = itemDto.getItemPrice();
+
+                String url = env.getProperty("gateway.ip") + "/user-service/seller/sub/" + itemDto.getItemSeq();
+
+                HttpEntity<Map> entity = new HttpEntity<>(headers);
+                ResponseEntity<Integer> response = restTemplate.exchange(url, HttpMethod.GET, entity, Integer.class);
+                int subCount = response.getBody();
+
+                totalPrice += itemPrice * subCount;
+            }
+
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+
+        } finally {
+            return totalPrice;
         }
     }
 }

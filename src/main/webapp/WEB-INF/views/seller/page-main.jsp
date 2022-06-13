@@ -1,8 +1,12 @@
 <%@ page import="com.submarket.front.dto.SellerDto" %>
 <%@ page import="com.submarket.front.util.CmmUtil" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.submarket.front.dto.ItemDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
+	List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
+	int totalPrice = (Integer) request.getAttribute("totalPrice");
 	SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
 	if (sellerInfo == null) {
@@ -313,8 +317,8 @@
 					<div class="ff_one">
 						<div class="icon"><span class="flaticon-list"></span></div>
 						<div class="detais">
-							<div class="timer">22</div>
-							<p>Active Listing</p>
+							<div class="timer"><%=itemDtoList.size()%></div>
+							<p>my Item Count</p>
 						</div>
 					</div>
 				</div>
@@ -322,8 +326,8 @@
 					<div class="ff_one style2">
 						<div class="icon"><span class="flaticon-note"></span></div>
 						<div class="detais">
-							<div class="timer">9382</div>
-							<p>Total Reviews</p>
+							<div class="timer"><%=totalPrice%></div>
+							<p>이번달 매출 (원)</p>
 						</div>
 					</div>
 				</div>

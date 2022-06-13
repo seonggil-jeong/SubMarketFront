@@ -555,8 +555,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc2.jpg" alt="pc2.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>Top Picks</h4>
-								<p>62 Listing</p>
+								<h4>20</h4>
 							</div>
 						</div>
 					</div>
@@ -566,8 +565,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc1.jpg" alt="pc1.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>Men bought a lot</h4>
-								<p>45 Listing</p>
+								<h4>30</h4>
 							</div>
 						</div>
 					</div>
@@ -577,8 +575,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc4.jpg" alt="pc4.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>Women bought a lot</h4>
-								<p>86 Listing</p>
+								<h4>40</h4>
 							</div>
 						</div>
 					</div>
@@ -588,8 +585,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc3.jpg" alt="pc3.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>The most popular product right now</h4>
-								<p>21 Listing</p>
+								<h4>리뷰가 가장 많은 상품</h4>
 							</div>
 						</div>
 					</div>

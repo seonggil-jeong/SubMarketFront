@@ -8,10 +8,16 @@ import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -23,6 +29,8 @@ public class ItemPageController {
     private final ItemService itemService;
     private final UserService userService;
     private final SellerService sellerService;
+    private final RestTemplate restTemplate;
+    private final Environment env;
 
     @RequestMapping("/items")
     public String getItemInfo(ModelMap model) throws Exception {
@@ -67,9 +75,18 @@ public class ItemPageController {
 
     @RequestMapping("/items/{itemSeq}")
     public String getItemInfoDetails(ModelMap model, HttpSession session, @PathVariable int itemSeq) throws Exception {
+        if (session.getAttribute("SS_USER_INFO") != null) {
+            UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", (String) session.getAttribute("SS_USER_TOKEN"));
+
+            HttpEntity entity = new HttpEntity(headers);
+            String url = env.getProperty("gateway.ip") + "/item-service/item/" + itemSeq + "/countUp/" + userDto.getUserAge();
+            log.info("url : " + url);
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+        }
         ItemDto itemDto = itemService.getItemInfoDetails(itemSeq);
         List<ItemReviewDto> itemReviewDtoList = itemService.findItemReviewByItemSeq(itemSeq);
-        // TODO: 2022-06-07 리뷰 정보 불러오기
 
         model.addAttribute("itemDto", itemDto);
         model.addAttribute("itemReviewDtoList", itemReviewDtoList);

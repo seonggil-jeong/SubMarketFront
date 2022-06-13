@@ -110,16 +110,29 @@ public class UserService implements IUserService {
         log.info(this.getClass().getName() + "saveSub Start!");
         String url = env.getProperty("gateway.ip") + "/user-service/sub";
 
+        String rStr = "";
+
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", token);
         HttpEntity<SubDto> entity = new HttpEntity<>(subDto, headers);
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            rStr = response.getBody();
 
+        } catch (HttpStatusCodeException statusCodeException) {
+            log.info("HttpStatusCodeException : " + statusCodeException);
+            int code = statusCodeException.getRawStatusCode();
 
-
+            if (code == 400) {
+                rStr = statusCodeException.getResponseBodyAsString();
+            } else {
+                rStr = "Server Error";
+            }
+        } finally {
         log.info(this.getClass().getName() + "saveSub End!");
+            return rStr;
+        }
 
-        return response.getBody();
     }
 }

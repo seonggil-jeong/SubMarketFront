@@ -10,12 +10,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.HttpHead;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
@@ -24,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.springframework.http.HttpMethod.POST;
 
@@ -158,6 +159,36 @@ public class UserController {
             return "/redirect";
         }
 
+    }
+
+    @PostMapping(value = "/user/delete")
+    public String deleteUser(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
+        // 사용자 Id (TOKEN) and Password (request)로 받아 전송
+        String url = env.getProperty("gateway.ip") + "/user-service/user/delete";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", String.valueOf(session.getAttribute("SS_USER_TOKEN")));
+        String rStr = "";
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("userPassword", String.valueOf(request.getParameter("userPassword")));
+
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
+
+            model.addAttribute("msg", response.getBody());
+            model.addAttribute("url", "/index");
+
+            session.invalidate();
+
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+            model.addAttribute("msg", "비밀번호를 확인해 주세요");
+            model.addAttribute("url", "/index");
+        }
+
+        return "/redirect";
     }
 
 

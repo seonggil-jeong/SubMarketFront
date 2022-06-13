@@ -75,7 +75,7 @@
                 <a href="/index" class="navbar_brand float-left dn-smd">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
-                    <span>Guido</span>
+                    <span>SubMarket</span>
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
@@ -232,7 +232,7 @@
             <div class="header stylehome1">
                 <div class="main_logo_home2 text-left">
                     <img class="nav_logo_img img-fluid mt15" src="/images/header-logo2.svg" alt="header-logo2.svg">
-                    <span class="mt15">Guido</span>
+                    <span class="mt15">SubMarket</span>
                 </div>
                 <ul class="menu_bar_home2">
                     <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>

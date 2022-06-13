@@ -369,7 +369,7 @@
                             </div>
                         </div>
                         <div class="col-xl-4">
-                            <div class="my_dashboard_profile">
+                            <div class="my_dashboard_profile" style="margin-bottom: 2%">
                                 <h4 class="mb20">Change password</h4>
                                 <form action="/user/changePassword" method="post">
                                 <div class="row">
@@ -399,6 +399,25 @@
                                 </div>
                                 </form>
                             </div>
+                            <div class="my_dashboard_profile">
+                                <h4 class="mb20">회원탈퇴</h4>
+                                <form action="/user/delete" method="post">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="my_profile_setting_input form-group">
+                                                <label for="formGroupExampleConfPass">비밀번호 확인</label>
+                                                <input type="password" class="form-control" id="userPassword" name="userPassword">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="my_profile_setting_input">
+                                                <input type="submit" class="btn update_btn style2" value="회원탈퇴">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>

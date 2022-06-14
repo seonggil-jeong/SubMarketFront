@@ -204,10 +204,6 @@ public class ItemService implements IItemService {
         return itemReviewDtoList;
     }
 
-    @Override
-    public List<ItemDto> getItemInfoByGroupSeq(int groupSeq) throws Exception {
-        return null;
-    }
 
     @Override
     public List<ItemDto> findItemRandomItem() throws Exception {

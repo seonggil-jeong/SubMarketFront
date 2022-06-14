@@ -373,6 +373,10 @@
                     <div class="main_blog_post_content">
                         <%
                             for (ItemDto itemDto : itemDtoList) {
+                                if (itemDto.getItemStatus() == 0) {
+                                    continue;
+
+                                }
 
                         %>
                         <div class="for_blog list-type feat_property">

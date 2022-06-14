@@ -21,7 +21,6 @@ public interface IItemService {
 
     CategoryDto getItemInfoByCategorySeq(int categorySeq) throws Exception;
 
-    List<ItemDto> getItemInfoByGroupSeq(int groupSeq) throws Exception;
 
     ItemDto getItemInfoDetails(int itemSeq) throws Exception;
 

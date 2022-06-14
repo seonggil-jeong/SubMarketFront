@@ -499,7 +499,7 @@
                         <div class="banner-style-one owl-theme owl-carousel">
                             <div class="slide slide-one" style="background-image: url(<%=itemDto.getMainImagePath()%>);height: 650px;"></div>
                             <%
-                                if (itemDto.getSubImagePath().length() > 10) {
+                                if (itemDto.getSubImagePath() != null) {
                             %>
                             <div class="slide slide-one" style="background-image: url(<%=itemDto.getSubImagePath()%>);height: 650px;"></div>
                             <%
@@ -598,18 +598,18 @@
                                             <div class="gallery_overlay style2"><a class="icon popup-img" href="<%=itemDto.getMainImagePath()%>"><span class="flaticon-zoom"></span></a></div>
                                         </div>
                                     </div>
-                                    <%
-                                        if (itemDto.getSubImagePath().length() > 10) {
-                                    %>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="gallery_item">
+                                    <%
+                                        if (! itemDto.getSubImagePath().equals("/")) {
+                                    %>
                                             <img class="img-fluid img-circle-rounded w100" src="<%=itemDto.getSubImagePath()%>" alt="lgs2.jpg">
                                             <div class="gallery_overlay style2"><a class="icon popup-img" href="<%=itemDto.getSubImagePath()%>"><span class="flaticon-zoom"></span></a></div>
+                                    <%
+                                        } else
+                                    %>
                                         </div>
                                     </div>
-                                    <%
-                                        }
-                                    %>
                                 </div>
                             </div>
                         </div>

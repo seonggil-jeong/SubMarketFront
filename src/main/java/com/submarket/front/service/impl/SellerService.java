@@ -35,18 +35,24 @@ public class SellerService implements ISellerService {
         String rStr = "";
 
         try {
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             ByteArrayResource mainImage = new ByteArrayResource(itemDto.getMainImage().getBytes()) { // 파일 정보
                 @Override
                 public String getFilename() {
                     return itemDto.getMainImage().getOriginalFilename(); //저장될 파일 이름
                 }
             };
-            ByteArrayResource subImage = new ByteArrayResource(itemDto.getSubImage().getBytes()) {
-                @Override
-                public String getFilename() {
-                    return itemDto.getSubImage().getOriginalFilename();
-                }
-            };
+            body.add("mainImage", mainImage);
+
+            if (itemDto.getSubImage().getSize() > 0) {
+                ByteArrayResource subImage = new ByteArrayResource(itemDto.getSubImage().getBytes()) {
+                    @Override
+                    public String getFilename() {
+                        return itemDto.getSubImage().getOriginalFilename();
+                    }
+                };
+                body.add("subImage", subImage);
+            }
 
 
             HttpHeaders headers = new HttpHeaders();
@@ -54,14 +60,11 @@ public class SellerService implements ISellerService {
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
 
-            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             body.add("itemTitle", itemDto.getItemTitle());
             body.add("itemContents", itemDto.getItemContents());
             body.add("itemPrice", itemDto.getItemPrice());
             body.add("itemCount", itemDto.getItemCount());
             body.add("categorySeq", itemDto.getCategorySeq());
-            body.add("mainImage", mainImage);
-            body.add("subImage", subImage);
 
             HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
 

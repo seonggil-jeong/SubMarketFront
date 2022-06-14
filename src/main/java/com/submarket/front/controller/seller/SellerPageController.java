@@ -8,7 +8,9 @@ import com.submarket.front.service.impl.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -60,5 +62,14 @@ public class SellerPageController {
 
         model.addAttribute("itemDtoList", itemDtoList);
         return "/seller/page-my-item";
+    }
+
+    @RequestMapping("/seller/item/{itemSeq}/modify")
+    public String sellerModifyItem(@PathVariable int itemSeq, ModelMap model) throws Exception {
+        ItemDto itemDto = itemService.getItemInfoDetails(itemSeq);
+
+        model.addAttribute("itemDto", itemDto);
+
+        return "/seller/page-modify-item";
     }
 }

@@ -1,15 +1,15 @@
 <%@ page import="com.submarket.front.dto.SellerDto" %>
 <%@ page import="com.submarket.front.util.CmmUtil" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.submarket.front.dto.ItemDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-
+         pageEncoding="UTF-8"%>
 <%
-    SellerDto sellerInfo = new SellerDto();
-    sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
+    SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
+    ItemDto itemDto = (ItemDto) request.getAttribute("itemDto");
 
-    List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
+    if (sellerInfo == null) {
+        sellerInfo = new SellerDto();
+    }
 %>
 
 <!DOCTYPE html>
@@ -18,12 +18,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-          content="airbnb, booking, city guide, directory, events, hotel booking, listings, marketing, places, restaurant, restaurant">
+    <meta name="keywords" content="airbnb, booking, city guide, directory, events, hotel booking, listings, marketing, places, restaurant, restaurant">
     <meta name="description" content="Guido - Directory & Listing HTML Template">
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fileuploader.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/dashbord_navitaion.css">
     <!-- Responsive stylesheet -->
@@ -31,8 +31,8 @@
     <!-- Title -->
     <title>Guido - Directory & Listing HTML Template</title>
     <!-- Favicon -->
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon"/>
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon"/>
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,13 +44,12 @@
     <script type="text/javascript">
         function doOnload() {
             if ('<%=String.valueOf(session.getAttribute("SS_SELLER_TOKEN"))%>'.length < 10) {
-                alert("로그인된 사용자만 접근 가능합니다.");
                 top.location.href = "/index";
             }
         }
     </script>
 </head>
-<body onload="doOnload()">
+<body>
 <div class="wrapper">
     <div class="preloader"></div>
 
@@ -75,17 +74,18 @@
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
+                    <%
+                        if (session.getAttribute("SS_SELLER_TOKEN") != null) {
+
+                    %>
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
-                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span
-                                    class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
                                     class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
                                 <div class="user_set_header">
-                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span
-                                            class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
+                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
                                 </div>
                                 <div class="user_setting_content" style="margin-bottom: 10%">
                                     <a class="dropdown-item" href="/logout" style="color: black">Log out</a>
@@ -94,7 +94,10 @@
                         </div>
                     </li>
                     <li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
-                            class="dn-lg">SELLER HOME</span></a></li>
+                            class="dn-lg">My Info</span></a></li>
+                    <%
+                        }
+                    %>
                 </ul>
             </nav>
         </div>
@@ -109,11 +112,8 @@
                     <span class="mt15">SubMarket</span>
                 </div>
                 <ul class="menu_bar_home2">
-                    <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#"
-                                                    data-toggle="modal" data-target="#staticBackdrop"><span
-                            class="flaticon-loupe"></span></a></li>
-                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span
-                            class="flaticon-arrow-pointing-to-left"></span></a></li>
+                    <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>
+                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span class="flaticon-arrow-pointing-to-left"></span></a></li>
                     <li class="list-inline-item"><a class="menubar" href="#menu"><span></span></a></li>
                 </ul>
             </div>
@@ -127,8 +127,7 @@
     </div>
 
     <!-- Search Field Modal -->
-    <section class="modal fade search_dropdown" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-             tabindex="-1" aria-hidden="true">
+    <section class="modal fade search_dropdown" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
@@ -136,8 +135,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img
-                                            src="/images/icons/close.svg" alt=""></span></a>
+                                    <a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img src="/images/icons/close.svg" alt=""></span></a>
                                 </div>
                             </div>
                         </div>
@@ -201,8 +199,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg"
-                                                                alt="pc18.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg" alt="pc18.jpg"></div>
                                         <div class="details">
                                             <h4>Miami</h4>
                                             <p>62 Listings</p>
@@ -211,8 +208,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg"
-                                                                alt="pc19.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg" alt="pc19.jpg"></div>
                                         <div class="details">
                                             <h4>Roma</h4>
                                             <p>92 Listings</p>
@@ -221,8 +217,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg"
-                                                                alt="pc20.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg" alt="pc20.jpg"></div>
                                         <div class="details">
                                             <h4>New Delhi</h4>
                                             <p>12 Listings</p>
@@ -231,8 +226,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg"
-                                                                alt="pc21.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg" alt="pc21.jpg"></div>
                                         <div class="details">
                                             <h4>London</h4>
                                             <p>74 Listings</p>
@@ -241,8 +235,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg"
-                                                                alt="pc22.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg" alt="pc22.jpg"></div>
                                         <div class="details">
                                             <h4>Amsterdam</h4>
                                             <p>62 Listings</p>
@@ -251,8 +244,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg"
-                                                                alt="pc23.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg" alt="pc23.jpg"></div>
                                         <div class="details">
                                             <h4>Berlin</h4>
                                             <p>92 Listings</p>
@@ -261,8 +253,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg"
-                                                                alt="pc24.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg" alt="pc24.jpg"></div>
                                         <div class="details">
                                             <h4>Paris</h4>
                                             <p>12 Listings</p>
@@ -271,8 +262,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg"
-                                                                alt="pc25.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg" alt="pc25.jpg"></div>
                                         <div class="details">
                                             <h4>New Zealand</h4>
                                             <p>74 Listings</p>
@@ -288,203 +278,96 @@
     </section>
 
     <!-- Our Dashbord -->
-    <section class="extra-dashboard-menu dn-992">
-        <div class="container">
+    <section class="our-dashbord dashbord bgc-f4 ovh">
+        <div class="container mt80">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="ed_menu_list mt5">
-                        <ul>
-                            <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
-                            <li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
-                            <li><a class="active" href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a>
-                            </li>
-                            <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
-                            <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
-                        </ul>
+                <div class="col-lg-12 mb10">
+                    <div class="breadcrumb_content style2 mb25">
+                        <h2 class="breadcrumb_title">상품 정보 수정</h2>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Our Dashbord -->
-    <section class="our-dashbord dashbord bgc-f4 pb70">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="dashboard_navigationbar dn db-992">
-                        <div class="dropdown">
-                            <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard
-                                Navigation
-                            </button>
-                            <ul id="myDropdown" class="dropdown-content">
-                                <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
-                                <li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
-                                <li class="active"><a href="/seller/my-item"><span class="flaticon-list"></span>My Item
-                                    List</a></li>
-                                <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
-                                <li><a href="/logout"><span class="flaticon-logout"></span>Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 mb15">
-                    <div class="breadcrumb_content style2">
-                        <h2 class="breadcrumb_title float-left">My Item List</h2>
-                        <p class="float-right">Ready to jump back in?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <%
-                    if (itemDtoList.size() > 0) {
-                        for (ItemDto itemDto : itemDtoList) {
-                %>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feat_property">
-                        <div class="thumb">
-                            <img class="img-whp" src="<%=itemDto.getMainImagePath()%>" alt="1.jpg">
-                            <div class="thmb_cntnt">
-                                <ul class="tag mb0">
-                                </ul>
-                                <%
-                                    if (itemDto.getItemStatus() == 0) {
-                                %>
-                                <ul class="tag2 mb0">
-                                    <li class="list-inline-item"><a href="/items/on/<%=itemDto.getItemSeq()%>">비활성화</a></li>
-                                </ul>
-                                <%
-                                } else {
-                                %>
-                                <ul class="tag2 mb0">
-                                    <li class="list-group-flush"><a href="/items/off/<%=itemDto.getItemSeq()%>" style="background-color: #1c7430">활성화</a></li>
-                                </ul>
-                                <%
-                                    }
-                                %>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg"
-                                                                         alt="agent1.svg"></a></div>
-                                <h4><%=itemDto.getItemTitle()%></h4>
-                                <p><%=itemDto.getItemContents()%></p>
-                                <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#">이번달 매출 : <%=itemDto.getItemTotalPrice()%> 원</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span>가격 : <%=itemDto.getItemPrice()%></a></li>
-                                </ul>
-                            </div>
-                            <div class="fp_footer">
-                                <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="/seller/item/<%=itemDto.getItemSeq()%>/modify"><span class="flaticon-zoom"></span></a>
-                                    </li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span
-                                            class="flaticon-delete"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <%
-                        }
-                    }
-                %>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Footer -->
-    <section class="footer_one home1">
-        <div class="container pb70">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <div class="footer_contact_widget">
-                        <h4>Contact Us</h4>
-                        <ul class="list-unstyled">
-                            <li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry
-                                Street, North Melbourne VIC 3051, Australia.</a></li>
-                            <li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456
-                                7890</a></li>
-                            <li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-2 col-xl-3">
-                    <div class="footer_qlink_widget">
-                        <h4>Company</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Article & Tips</a></li>
-                            <li><a href="#">Terms & Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-5 col-md-6 col-lg-2 col-xl-2">
-                    <div class="footer_qlink_widget pl0">
-                        <h4>Discover</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Chicago</a></li>
-                            <li><a href="#">Los Angels</a></li>
-                            <li><a href="#">Miami</a></li>
-                            <li><a href="#">New York</a></li>
-                            <li><a href="#">Florida</a></li>
-                            <li><a href="#">Boston</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-6 col-lg-4 col-xl-4">
-                    <div class="footer_social_widget">
-                        <h4>Subscribe</h4>
-                        <p class="text-white mb20">We don’t send spam so don’t worry.</p>
-                        <form class="footer_mailchimp_form">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto">
-                                    <input type="email" class="form-control" id="inlineFormInput"
-                                           placeholder="Enter your email">
-                                    <button type="submit" class="btn btn-primary">Subscribe</button>
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <form action="/seller/items/<%=itemDto.getItemSeq()%>/modify" method="post" enctype="multipart/form-data">
+                        <div class="my_dashboard_review">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="mb30">상품 정보</h4>
+                                    <div class="my_profile_setting_input form-group">
+                                        <label for="listingPlace">Item Title</label>
+                                        <input type="text" class="form-control" id="listingPlace" name="itemTitle" placeholder="What the name of Item" value="<%=itemDto.getItemTitle()%>" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input ui_kit_select_search form-group">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" placeholder="(원)" name="itemPrice" required value="<%=itemDto.getItemPrice()%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input form-group">
+                                        <label>상품 수량</label>
+                                        <input type="text" class="form-control" placeholder="상품 수량을 입력해주세요" name="itemCount" required value="<%=itemDto.getItemCount()%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input form-group">
+                                        <label>상품 설명</label>
+                                        <input type="text" class="form-control" placeholder="상품 설명을 입력해 주세요." name="itemContents" required value="<%=itemDto.getItemContents()%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="my_profile_setting_input ui_kit_select_search form-group">
+                                        <label>Category</label>
+                                        <select class="selectpicker" data-width="100%" name="categorySeq" required>
+                                            <option data-tokens="Category1" value="1" selected>식품</option>
+                                            <option data-tokens="Category2" value="2">쇼핑</option>
+                                            <option data-tokens="Category3" value="3">생필품</option>
+                                            <option data-tokens="Category4" value="4">건강</option>
+                                            <option data-tokens="Category4" value="5">뷰티</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container pt20 pb30">
-            <div class="row">
-                <div class="col-md-4 col-lg-4">
-                    <div class="copyright-widget mt10 mb15-767">
-                        <p>© Guido - All rights reserved.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="footer_logo_widget text-center mb15-767">
-                        <div class="wrapper">
-                            <div class="logo text-center">
-                                <img src="/images/footer-logo.svg" alt="footer-logo.svg">
-                                <span class="logo_title text-white pl15">Guido</span>
+                        </div>
+                        <div class="my_dashboard_review mt30">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="mb30">Media</h4>
+                                </div>
+                                <div class="col-lg-12">
+                                    <h5>Main image</h5>
+                                    <div class="upload_file_input_add_remove">
+                                        <span class="btn_upload"><input type="file" id="imag" title="" class="input-img" name="mainImage"/><span class="flaticon-upload"></span></span>
+                                        <img id="ImgPreview" src="/images/resource/upload-img.png" class="preview1" alt="" />
+                                        <button id="removeImage1" class="btn-rmv1" type="button"><span class="flaticon-delete"></span></button>
+                                    </div>
+                                    <small>Maximum file size: 1000kb.</small>
+                                </div>
+                                <div class="col-lg-12 mt50">
+                                    <h5 class="mb20">Gallery Images</h5>
+                                    <ul class="mb0">
+                                        <li class="list-inline-item vat mb30-767">
+                                            <div class="upload_file_input_add_remove">
+                                                <span class="btn_upload"><input type="file" id="imag2" title="" class="input-img" name="subImage"/><span class="flaticon-upload"></span></span>
+                                                <img id="ImgPreview2" src="/images/resource/upload-img.png" class="preview2" alt="" />
+                                                <button id="removeImage2" class="btn-rmv2" type="button"><span class="flaticon-delete"></span></button>
+                                            </div>
+                                            <small>Maximum file size: 1000kb.</small>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="footer_social_widget text-right tac-smd mt10">
-                        <ul class="mb0">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
+                        <input type="submit" class="btn btn-thm listing_save_btn mt30" value="Submit">
+                    </form>
                 </div>
             </div>
         </div>
     </section>
+
+
     <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->
@@ -494,6 +377,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.all.js"></script>
 <script src="/js/ace-responsive-menu.js"></script>
+<script src="/js/chart.min.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/snackbar.min.js"></script>
 <script src="/js/simplebar.js"></script>
@@ -506,7 +390,10 @@
 <script src="/js/slider.js"></script>
 <script src="/js/timepicker.js"></script>
 <script src="/js/wow.min.js"></script>
+<script src="/js/jquery.smartuploader.js"></script>
 <script src="/js/dashboard-script.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM&callback=initMap"></script>
+<script src="/js/googlemaps1.js"></script>
 <!-- Custom script for all pages -->
 <script src="/js/script.js"></script>
 </body>

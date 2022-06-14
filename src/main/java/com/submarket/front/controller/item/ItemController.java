@@ -1,5 +1,6 @@
 package com.submarket.front.controller.item;
 
+import com.submarket.front.dto.ItemDto;
 import com.submarket.front.dto.ItemReviewDto;
 import com.submarket.front.dto.SubDto;
 import com.submarket.front.dto.UserDto;
@@ -163,6 +164,20 @@ public class ItemController {
         log.info(this.getClass().getName() + ".itemOn End!");
 
         return "/redirect";
+    }
+
+    @PostMapping("/seller/items/{itemSeq}/modify")
+    public String modifyItemInfo(@PathVariable int itemSeq, ItemDto itemDto, ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + ".modifyItemInfo Start!");
+
+        log.info("mainSize : " + itemDto.getMainImage().getSize());
+        log.info("mainSize : " + itemDto.getSubImage().getSize());
+
+
+        log.info(this.getClass().getName() + ".modifyItemInfo End!");
+
+
+        return "/index";
     }
 
 }

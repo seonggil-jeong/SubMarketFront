@@ -506,6 +506,9 @@
 					<div class="popular_listing_slider1">
 						<%
 							for (ItemDto itemDto : itemDtoList) {
+								if (itemDto.getItemStatus() == 0) {
+									continue;
+								}
 						%>
 						<div class="item" style="width: 100%; height: 100%;" onclick="location.href='/items/<%=itemDto.getItemSeq()%>'">
 							<div class="feat_property">

@@ -10,13 +10,13 @@ import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -167,17 +167,75 @@ public class ItemController {
     }
 
     @PostMapping("/seller/items/{itemSeq}/modify")
-    public String modifyItemInfo(@PathVariable int itemSeq, ItemDto itemDto, ModelMap model) throws Exception {
+    public String modifyItemInfo(@PathVariable int itemSeq, ItemDto itemDto, ModelMap model, HttpSession session) throws Exception {
         log.info(this.getClass().getName() + ".modifyItemInfo Start!");
 
-        log.info("mainSize : " + itemDto.getMainImage().getSize());
-        log.info("mainSize : " + itemDto.getSubImage().getSize());
+        String token = String.valueOf(session.getAttribute("SS_SELLER_TOKEN"));
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
 
+        String url = env.getProperty("gateway.ip") + "/item-service/items/modify/" + itemSeq;
+
+        log.info("mainSize : " + itemDto.getMainImage().getSize());
+        log.info("subSize : " + itemDto.getSubImage().getSize());
+
+
+        try {
+            if (itemDto.getMainImage().getSize() > 1) {
+                ByteArrayResource mainImage = new ByteArrayResource(itemDto.getMainImage().getBytes()) {
+                    @Override
+                    public String getFilename() {
+                        return itemDto.getMainImage().getOriginalFilename();
+                    }
+                };
+
+                body.add("mainImage", mainImage);
+            }
+
+            if (itemDto.getSubImage().getSize() > 1) {
+                ByteArrayResource subImage = new ByteArrayResource(itemDto.getSubImage().getBytes()) {
+                    @Override
+                    public String getFilename() {
+                        return itemDto.getSubImage().getOriginalFilename();
+                    }
+                };
+
+                body.add("subImage", subImage);
+
+            }
+
+            body.add("itemTitle", itemDto.getItemTitle());
+            body.add("itemContents", itemDto.getItemContents());
+            body.add("itemPrice", itemDto.getItemPrice());
+            body.add("itemCount", itemDto.getItemPrice());
+            body.add("categorySeq", itemDto.getCategorySeq());
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", token);
+
+            HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity(body, headers);
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+            model.addAttribute("msg", response.getBody());
+            model.addAttribute("url", "/seller/my-item");
+        } catch (HttpStatusCodeException statusCodeException) {
+            log.info("HttpStatusCodeException : " + statusCodeException);
+            int code = statusCodeException.getRawStatusCode();
+
+            model.addAttribute("msg", "상품 정보 수정 실패");
+            model.addAttribute("url", "/seller/my-item");
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+
+            model.addAttribute("msg", "Server Error");
+            model.addAttribute("url", "/index");
+        }
 
         log.info(this.getClass().getName() + ".modifyItemInfo End!");
 
 
-        return "/index";
+        return "/redirect";
     }
 
 }

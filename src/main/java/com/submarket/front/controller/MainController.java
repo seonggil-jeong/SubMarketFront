@@ -27,7 +27,7 @@ public class MainController {
     private final UserService userService;
     private final ItemService itemService;
 
-    @RequestMapping({"/", "/index"})
+    @RequestMapping("/index")
     public String index(ModelMap model) throws Exception {
         List<ItemDto> itemDtoList = itemService.findItemRandomItem();
         model.addAttribute("itemDtoList", itemDtoList);
@@ -37,8 +37,10 @@ public class MainController {
     }
 
     @RequestMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session, ModelMap model) throws Exception {
         session.invalidate();
+        List<ItemDto> itemDtoList = itemService.findItemRandomItem();
+        model.addAttribute("itemDtoList", itemDtoList);
         return "/index";
     }
 }

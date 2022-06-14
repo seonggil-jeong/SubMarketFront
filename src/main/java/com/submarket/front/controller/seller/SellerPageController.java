@@ -19,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SellerPageController {
     private final SellerService sellerService;
+    private final ItemService itemService;
 
     @RequestMapping("/seller/main")
     public String sellerMain(HttpSession session, ModelMap model) throws Exception {
@@ -40,7 +41,8 @@ public class SellerPageController {
     }
 
     @RequestMapping("/seller/item")
-    public String sellerItemAddPage(HttpSession session) throws Exception {
+    public String sellerItemAddPage(HttpSession session ,ModelMap model) throws Exception {
+
         return "/seller/page-add-item";
     }
 
@@ -50,7 +52,13 @@ public class SellerPageController {
     }
 
     @RequestMapping("/seller/my-item")
-    public String sellerMyItem(HttpSession session) throws Exception {
+    public String sellerMyItem(HttpSession session, ModelMap model) throws Exception {
+        String token = String.valueOf(session.getAttribute("SS_SELLER_TOKEN"));
+
+        List<ItemDto> itemDtoList = sellerService.findItemList(token);
+        itemDtoList = sellerService.findEachItemTotalPrice(token, itemDtoList);
+
+        model.addAttribute("itemDtoList", itemDtoList);
         return "/seller/page-my-item";
     }
 }

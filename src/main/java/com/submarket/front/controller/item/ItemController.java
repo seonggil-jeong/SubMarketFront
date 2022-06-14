@@ -34,6 +34,7 @@ public class ItemController {
     private final ItemService itemService;
     private final Environment env;
     private final UserService userService;
+    private final RestTemplate restTemplate;
 
     @RequestMapping("/user/review/delete/{reviewSeq}")
     public String deleteReview(HttpServletRequest request, HttpSession session, ModelMap model,
@@ -76,7 +77,6 @@ public class ItemController {
                 int itemSeqInSubDto = subDto.getItemSeq();
 
                 if (itemSeq == itemSeqInSubDto) {
-                    // TODO: 2022-06-10 리뷰 생성 실행
                     HttpHeaders headers = new HttpHeaders();
                     headers.add("Authorization", token);
 
@@ -98,7 +98,6 @@ public class ItemController {
             int code = statusCodeException.getRawStatusCode();
 
             if (code == 400) {
-                // TODO: 2022-06-10 이미 있을 경우 상품 리뷰 수정 로직 실행 
                 model.addAttribute("msg", statusCodeException.getResponseBodyAsString());
                 model.addAttribute("url", "/user/reviewlist");
             } else {
@@ -111,6 +110,58 @@ public class ItemController {
             model.addAttribute("msg", "로그인 정보를 확인해 주세요");
             model.addAttribute("url", "/index");
         }
+        return "/redirect";
+    }
+
+    @RequestMapping("/items/off/{itemSeq}")
+    public String itemOff(HttpSession session, @PathVariable int itemSeq, ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + ".itemOff Start!");
+
+        String token = String.valueOf(session.getAttribute("SS_SELLER_TOKEN"));
+
+        String url = env.getProperty("gateway.ip") + "/item-service/items/" + itemSeq + "/off";
+        log.info("url : " + url);
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set("Authorization", token);
+
+        HttpEntity entity = new HttpEntity(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+        model.addAttribute("msg", response.getBody());
+        model.addAttribute("url", "/seller/my-item");
+
+
+        log.info(this.getClass().getName() + ".itemOff End!");
+
+        return "/redirect";
+    }
+
+    @RequestMapping("/items/on/{itemSeq}")
+    public String itemOn(HttpSession session, @PathVariable int itemSeq, ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + ".itemOn Start!");
+
+        String token = String.valueOf(session.getAttribute("SS_SELLER_TOKEN"));
+
+        String url = env.getProperty("gateway.ip") + "/item-service/items/" + itemSeq + "/on";
+
+        log.info("url : " + url);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set("Authorization", token);
+
+        HttpEntity entity = new HttpEntity(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+        model.addAttribute("msg", response.getBody());
+        model.addAttribute("url", "/seller/my-item");
+
+
+        log.info(this.getClass().getName() + ".itemOn End!");
+
         return "/redirect";
     }
 

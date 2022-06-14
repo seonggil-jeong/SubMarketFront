@@ -16,4 +16,6 @@ public interface ISellerService {
     int findTotalValue(String token, List<ItemDto> itemDtoList) throws Exception;
 
     List<SalesDto> findAllSalesDtoBySellerId(String token) throws Exception;
+
+    List<ItemDto> findEachItemTotalPrice(String token, List<ItemDto> itemDtoList) throws Exception;
 }

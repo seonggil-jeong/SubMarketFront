@@ -1,11 +1,15 @@
 <%@ page import="com.submarket.front.dto.SellerDto" %>
 <%@ page import="com.submarket.front.util.CmmUtil" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.submarket.front.dto.ItemDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 
 <%
     SellerDto sellerInfo = new SellerDto();
     sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
+
+    List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
 %>
 
 <!DOCTYPE html>
@@ -14,7 +18,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="airbnb, booking, city guide, directory, events, hotel booking, listings, marketing, places, restaurant, restaurant">
+    <meta name="keywords"
+          content="airbnb, booking, city guide, directory, events, hotel booking, listings, marketing, places, restaurant, restaurant">
     <meta name="description" content="Guido - Directory & Listing HTML Template">
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
@@ -26,8 +31,8 @@
     <!-- Title -->
     <title>Guido - Directory & Listing HTML Template</title>
     <!-- Favicon -->
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon"/>
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,11 +79,13 @@
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
-                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span
+                                    class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
                                     class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
                                 <div class="user_set_header">
-                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
+                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span
+                                            class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
                                 </div>
                                 <div class="user_setting_content" style="margin-bottom: 10%">
                                     <a class="dropdown-item" href="/logout" style="color: black">Log out</a>
@@ -102,8 +109,11 @@
                     <span class="mt15">SubMarket</span>
                 </div>
                 <ul class="menu_bar_home2">
-                    <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>
-                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span class="flaticon-arrow-pointing-to-left"></span></a></li>
+                    <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#"
+                                                    data-toggle="modal" data-target="#staticBackdrop"><span
+                            class="flaticon-loupe"></span></a></li>
+                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span
+                            class="flaticon-arrow-pointing-to-left"></span></a></li>
                     <li class="list-inline-item"><a class="menubar" href="#menu"><span></span></a></li>
                 </ul>
             </div>
@@ -117,7 +127,8 @@
     </div>
 
     <!-- Search Field Modal -->
-    <section class="modal fade search_dropdown" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+    <section class="modal fade search_dropdown" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+             tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
@@ -125,7 +136,8 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img src="/images/icons/close.svg" alt=""></span></a>
+                                    <a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img
+                                            src="/images/icons/close.svg" alt=""></span></a>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +201,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg" alt="pc18.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg"
+                                                                alt="pc18.jpg"></div>
                                         <div class="details">
                                             <h4>Miami</h4>
                                             <p>62 Listings</p>
@@ -198,7 +211,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg" alt="pc19.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg"
+                                                                alt="pc19.jpg"></div>
                                         <div class="details">
                                             <h4>Roma</h4>
                                             <p>92 Listings</p>
@@ -207,7 +221,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg" alt="pc20.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg"
+                                                                alt="pc20.jpg"></div>
                                         <div class="details">
                                             <h4>New Delhi</h4>
                                             <p>12 Listings</p>
@@ -216,7 +231,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg" alt="pc21.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg"
+                                                                alt="pc21.jpg"></div>
                                         <div class="details">
                                             <h4>London</h4>
                                             <p>74 Listings</p>
@@ -225,7 +241,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg" alt="pc22.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg"
+                                                                alt="pc22.jpg"></div>
                                         <div class="details">
                                             <h4>Amsterdam</h4>
                                             <p>62 Listings</p>
@@ -234,7 +251,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg" alt="pc23.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg"
+                                                                alt="pc23.jpg"></div>
                                         <div class="details">
                                             <h4>Berlin</h4>
                                             <p>92 Listings</p>
@@ -243,7 +261,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg" alt="pc24.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg"
+                                                                alt="pc24.jpg"></div>
                                         <div class="details">
                                             <h4>Paris</h4>
                                             <p>12 Listings</p>
@@ -252,7 +271,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg" alt="pc25.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg"
+                                                                alt="pc25.jpg"></div>
                                         <div class="details">
                                             <h4>New Zealand</h4>
                                             <p>74 Listings</p>
@@ -276,7 +296,8 @@
                         <ul>
                             <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
                             <li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
-                            <li><a class="active" href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                            <li><a class="active" href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a>
+                            </li>
                             <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
                             <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                         </ul>
@@ -293,11 +314,14 @@
                 <div class="col-lg-12">
                     <div class="dashboard_navigationbar dn db-992">
                         <div class="dropdown">
-                            <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
+                            <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard
+                                Navigation
+                            </button>
                             <ul id="myDropdown" class="dropdown-content">
                                 <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
                                 <li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
-                                <li class="active"><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                                <li class="active"><a href="/seller/my-item"><span class="flaticon-list"></span>My Item
+                                    List</a></li>
                                 <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
                                 <li><a href="/logout"><span class="flaticon-logout"></span>Logout</a></li>
                             </ul>
@@ -312,264 +336,60 @@
                 </div>
             </div>
             <div class="row">
+                <%
+                    if (itemDtoList.size() > 0) {
+                        for (ItemDto itemDto : itemDtoList) {
+                %>
                 <div class="col-md-6 col-lg-4">
                     <div class="feat_property">
                         <div class="thumb">
-                            <img class="img-whp" src="/images/bookmarks/1.jpg" alt="1.jpg">
+                            <img class="img-whp" src="<%=itemDto.getMainImagePath()%>" alt="1.jpg">
                             <div class="thmb_cntnt">
                                 <ul class="tag mb0">
-                                    <li class="list-inline-item"><a href="#">$$$$</a></li>
-                                    <li class="list-inline-item"><a href="#">Open</a></li>
                                 </ul>
+                                <%
+                                    if (itemDto.getItemStatus() == 0) {
+                                %>
                                 <ul class="tag2 mb0">
-                                    <li class="list-inline-item"><a href="#">Featured</a></li>
+                                    <li class="list-inline-item"><a href="/items/on/<%=itemDto.getItemSeq()%>">비활성화</a></li>
                                 </ul>
-                                <ul class="listing_reviews">
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white total_review" href="#">(5 Review)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg" alt="agent1.svg"></a></div>
-                                <h4>Adventure High Ropes</h4>
-                                <p>But I must explain to you how all this mistaken idea...</p>
-                                <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-phone pr5"></span> +61-8181-123</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span> New York</a></li>
-                                </ul>
-                            </div>
-                            <div class="fp_footer">
-                                <ul class="fp_meta float-left mb0">
-                                    <li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
-                                    <li class="list-inline-item"><a href="#">Outdoor Activities</a></li>
-                                </ul>
-                                <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a></li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span class="flaticon-delete"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feat_property">
-                        <div class="thumb">
-                            <img class="img-whp" src="/images/bookmarks/2.jpg" alt="2.jpg">
-                            <div class="thmb_cntnt">
-                                <ul class="tag mb0">
-                                    <li class="list-inline-item"><a href="#">$$$$</a></li>
-                                    <li class="list-inline-item"><a href="#">Open</a></li>
-                                </ul>
-                                <ul class="listing_reviews">
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white total_review" href="#">(5 Review)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent4.svg" alt="agent4.svg"></a></div>
-                                <h4>Museum of New York</h4>
-                                <p>But I must explain to you how all this mistaken idea...</p>
-                                <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-phone pr5"></span> +61-8181-123</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span> New York</a></li>
-                                </ul>
-                            </div>
-                            <div class="fp_footer">
-                                <ul class="fp_meta float-left mb0">
-                                    <li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
-                                    <li class="list-inline-item"><a href="#">Shopping</a></li>
-                                </ul>
-                                <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a></li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span class="flaticon-delete"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feat_property">
-                        <div class="thumb">
-                            <img class="img-whp" src="/images/bookmarks/3.jpg" alt="3.jpg">
-                            <div class="thmb_cntnt">
-                                <ul class="tag mb0">
-                                    <li class="list-inline-item"><a href="#">$$$$</a></li>
-                                    <li class="list-inline-item"><a href="#">Open</a></li>
-                                </ul>
-                                <ul class="listing_reviews">
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white total_review" href="#">(5 Review)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent5.svg" alt="agent5.svg"></a></div>
-                                <h4>The Palmas Hotel</h4>
-                                <p>But I must explain to you how all this mistaken idea...</p>
-                                <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-phone pr5"></span> +61-8181-123</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span> New York</a></li>
-                                </ul>
-                            </div>
-                            <div class="fp_footer">
-                                <ul class="fp_meta float-left mb0">
-                                    <li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
-                                    <li class="list-inline-item"><a href="#">Hotels</a></li>
-                                </ul>
-                                <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a></li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span class="flaticon-delete"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feat_property">
-                        <div class="thumb">
-                            <img class="img-whp" src="/images/bookmarks/4.jpg" alt="4.jpg">
-                            <div class="thmb_cntnt">
-                                <ul class="tag mb0">
-                                    <li class="list-inline-item"><a href="#">$$$$</a></li>
-                                    <li class="list-inline-item"><a href="#">Open</a></li>
-                                </ul>
+                                <%
+                                } else {
+                                %>
                                 <ul class="tag2 mb0">
-                                    <li class="list-inline-item"><a href="#">Featured</a></li>
+                                    <li class="list-group-flush"><a href="/items/off/<%=itemDto.getItemSeq()%>" style="background-color: #1c7430">활성화</a></li>
                                 </ul>
-                                <ul class="listing_reviews">
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white total_review" href="#">(5 Review)</a></li>
-                                </ul>
+                                <%
+                                    }
+                                %>
                             </div>
                         </div>
                         <div class="details">
                             <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent6.svg" alt="agent6.svg"></a></div>
-                                <h4>Core by Clare Smyth</h4>
-                                <p>But I must explain to you how all this mistaken idea...</p>
+                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg"
+                                                                         alt="agent1.svg"></a></div>
+                                <h4><%=itemDto.getItemTitle()%></h4>
+                                <p><%=itemDto.getItemContents()%></p>
                                 <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-phone pr5"></span> +61-8181-123</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span> New York</a></li>
+                                    <li class="list-inline-item"><a href="#">이번달 매출 : <%=itemDto.getItemTotalPrice()%> 원</a></li>
+                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span>가격 : <%=itemDto.getItemPrice()%></a></li>
                                 </ul>
                             </div>
                             <div class="fp_footer">
-                                <ul class="fp_meta float-left mb0">
-                                    <li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
-                                    <li class="list-inline-item"><a href="#">Restaurant</a></li>
-                                </ul>
                                 <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a></li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span class="flaticon-delete"></span></a></li>
+                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a>
+                                    </li>
+                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span
+                                            class="flaticon-delete"></span></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feat_property">
-                        <div class="thumb">
-                            <img class="img-whp" src="/images/bookmarks/5.jpg" alt="5.jpg">
-                            <div class="thmb_cntnt">
-                                <ul class="tag mb0">
-                                    <li class="list-inline-item"><a href="#">$$$$</a></li>
-                                    <li class="list-inline-item"><a href="#">Open</a></li>
-                                </ul>
-                                <ul class="listing_reviews">
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white total_review" href="#">(5 Review)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent2.svg" alt="agent2.svg"></a></div>
-                                <h4>Wellness Fitness Club</h4>
-                                <p>But I must explain to you how all this mistaken idea...</p>
-                                <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-phone pr5"></span> +61-8181-123</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span> New York</a></li>
-                                </ul>
-                            </div>
-                            <div class="fp_footer">
-                                <ul class="fp_meta float-left mb0">
-                                    <li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
-                                    <li class="list-inline-item"><a href="#">Fitness</a></li>
-                                </ul>
-                                <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a></li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span class="flaticon-delete"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feat_property">
-                        <div class="thumb">
-                            <img class="img-whp" src="/images/bookmarks/6.jpg" alt="6.jpg">
-                            <div class="thmb_cntnt">
-                                <ul class="tag mb0">
-                                    <li class="list-inline-item"><a href="#">$$$$</a></li>
-                                    <li class="list-inline-item"><a href="#">Open</a></li>
-                                </ul>
-                                <ul class="listing_reviews">
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white" href="#"><span class="fa fa-star"></span></a></li>
-                                    <li class="list-inline-item"><a class="text-white total_review" href="#">(5 Review)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <div class="tc_content">
-                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent7.svg" alt="agent7.svg"></a></div>
-                                <h4>Luxary Hotel-Spa</h4>
-                                <p>But I must explain to you how all this mistaken idea...</p>
-                                <ul class="prop_details mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-phone pr5"></span> +61-8181-123</a></li>
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-pin pr5"></span> New York</a></li>
-                                </ul>
-                            </div>
-                            <div class="fp_footer">
-                                <ul class="fp_meta float-left mb0">
-                                    <li class="list-inline-item"><a href="#"><img src="/images/icons/icon3.svg" alt="icon3.svg"></a></li>
-                                    <li class="list-inline-item"><a href="#">Beauty & Spa</a></li>
-                                </ul>
-                                <ul class="fp_meta float-right mb0">
-                                    <li class="list-inline-item"><a href="#"><span class="flaticon-zoom"></span></a></li>
-                                    <li class="list-inline-item"><a class="icon bgc-thm text-white" href="#"><span class="flaticon-delete"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </section>
@@ -582,9 +402,12 @@
                     <div class="footer_contact_widget">
                         <h4>Contact Us</h4>
                         <ul class="list-unstyled">
-                            <li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry Street, North Melbourne VIC 3051, Australia.</a></li>
-                            <li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456 7890</a></li>
-                            <li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a></li>
+                            <li class="text-white df"><span class="flaticon-pin mr15"></span><a href="#">329 Queensberry
+                                Street, North Melbourne VIC 3051, Australia.</a></li>
+                            <li class="text-white"><span class="flaticon-phone mr15"></span><a href="#">+123 456
+                                7890</a></li>
+                            <li class="text-white"><span class="flaticon-email mr15"></span><a href="#">support@skola.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -621,7 +444,8 @@
                         <form class="footer_mailchimp_form">
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
-                                    <input type="email" class="form-control" id="inlineFormInput" placeholder="Enter your email">
+                                    <input type="email" class="form-control" id="inlineFormInput"
+                                           placeholder="Enter your email">
                                     <button type="submit" class="btn btn-primary">Subscribe</button>
                                 </div>
                             </div>

@@ -36,5 +36,9 @@ public class ItemDto {
     private MultipartFile mainImage; // Front 에서 넘어온 이미지
     private MultipartFile subImage; // Image 2
 
+
+    // 상품 정보 조회
+    private int itemTotalPrice;
+
     // TODO: 2022/05/11 FK 설정
 }

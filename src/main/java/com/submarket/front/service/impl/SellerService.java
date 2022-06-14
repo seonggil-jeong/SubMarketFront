@@ -167,6 +167,36 @@ public class SellerService implements ISellerService {
     }
 
     @Override
+    public List<ItemDto> findEachItemTotalPrice(String token, List<ItemDto> itemDtoList) throws Exception {
+        // 매출액 조회
+        log.info(this.getClass().getName() + ".findTotalValue Start!");
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+            for (int i = 0; i < itemDtoList.size(); i++) {
+                int itemPrice = itemDtoList.get(i).getItemPrice();
+                String url = env.getProperty("gateway.ip") + "/user-service/seller/sub/" + itemDtoList.get(i).getItemSeq();
+                HttpEntity<Map> entity = new HttpEntity<>(headers);
+
+                ResponseEntity<Integer> response = restTemplate.exchange(url, HttpMethod.GET, entity, Integer.class);
+                int subCount = response.getBody();
+
+                int price = itemPrice * subCount;
+
+                itemDtoList.get(i).setItemTotalPrice(price);
+            }
+
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+
+        } finally {
+            return itemDtoList;
+        }
+    }
+
+    @Override
     public List<SalesDto> findAllSalesDtoBySellerId(String token) throws Exception {
         log.info(this.getClass().getName() + ".findAllSalesDtoBySellerId Start!");
 

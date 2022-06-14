@@ -435,9 +435,8 @@
 		}
 
 		%>
-
-		console.log(labelList);
-		console.log(dataList);
+		labelList.push("다음달 예상 매출");
+		dataList.push(50000);
 		return {
 			type: 'line',
 			data: {

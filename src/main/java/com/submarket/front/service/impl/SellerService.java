@@ -1,6 +1,7 @@
 package com.submarket.front.service.impl;
 
 import com.submarket.front.dto.ItemDto;
+import com.submarket.front.dto.SalesDto;
 import com.submarket.front.dto.SellerDto;
 import com.submarket.front.service.ISellerService;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -165,6 +163,39 @@ public class SellerService implements ISellerService {
 
         } finally {
             return totalPrice;
+        }
+    }
+
+    @Override
+    public List<SalesDto> findAllSalesDtoBySellerId(String token) throws Exception {
+        log.info(this.getClass().getName() + ".findAllSalesDtoBySellerId Start!");
+
+        String url = env.getProperty("gateway.ip") + "/seller-service/seller/sales";
+        List<SalesDto> salesDtoList = new ArrayList<>();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", token);
+
+        HttpEntity entity = new HttpEntity(headers);
+
+        try {
+            ResponseEntity<SalesDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, SalesDto.class);
+            salesDtoList = (List<SalesDto>) response.getBody().getResponse();
+
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            int code = statusCodeException.getRawStatusCode();
+            log.info("HttpStatusCodeException : " + statusCodeException);
+
+            salesDtoList = new LinkedList<>();
+
+        } catch (Exception e) {
+            log.info("Exception : " + e);
+            salesDtoList = new LinkedList<>();
+
+        } finally {
+        log.info(this.getClass().getName() + ".findAllSalesDtoBySellerId End!");
+            return salesDtoList;
         }
     }
 }

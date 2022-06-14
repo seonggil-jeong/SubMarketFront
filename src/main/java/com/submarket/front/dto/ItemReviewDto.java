@@ -17,4 +17,5 @@ public class ItemReviewDto {
     private int reviewStar;
     private String reviewContents;
     private String reviewDate;
+    private String userAge;
 }

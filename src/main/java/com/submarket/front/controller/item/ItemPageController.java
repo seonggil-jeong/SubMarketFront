@@ -75,16 +75,21 @@ public class ItemPageController {
 
     @RequestMapping("/items/{itemSeq}")
     public String getItemInfoDetails(ModelMap model, HttpSession session, @PathVariable int itemSeq) throws Exception {
+
+        UserDto userDto = new UserDto();
+        HttpEntity entity = new HttpEntity(null);
+        int userAge = 0;
         if (session.getAttribute("SS_USER_INFO") != null) {
-            UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
+            userDto = (UserDto) session.getAttribute("SS_USER_INFO");
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", (String) session.getAttribute("SS_USER_TOKEN"));
 
-            HttpEntity entity = new HttpEntity(headers);
-            String url = env.getProperty("gateway.ip") + "/item-service/item/" + itemSeq + "/countUp/" + userDto.getUserAge();
-            log.info("url : " + url);
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            userAge += Integer.parseInt(userDto.getUserAge());
+            entity = new HttpEntity(headers);
         }
+            String url = env.getProperty("gateway.ip") + "/item-service/item/" + itemSeq + "/countUp/" + userAge;
+            log.info("url : " + url);
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         ItemDto itemDto = itemService.getItemInfoDetails(itemSeq);
         List<ItemReviewDto> itemReviewDtoList = itemService.findItemReviewByItemSeq(itemSeq);
 

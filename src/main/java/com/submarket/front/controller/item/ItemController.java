@@ -2,6 +2,7 @@ package com.submarket.front.controller.item;
 
 import com.submarket.front.dto.ItemReviewDto;
 import com.submarket.front.dto.SubDto;
+import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.impl.ItemService;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
@@ -62,6 +63,10 @@ public class ItemController {
 
     @PostMapping("/user/review/{itemSeq}/create")
     public String createReview(HttpSession session, ModelMap model, ItemReviewDto itemReviewDto, @PathVariable int itemSeq) throws Exception {
+
+        UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
+        itemReviewDto.setUserAge(userDto.getUserAge());
+            
         try {
             RestTemplate restTemplate = new RestTemplate();
             String token = CmmUtil.nvl(String.valueOf(session.getAttribute("SS_USER_TOKEN")));

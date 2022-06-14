@@ -1,6 +1,7 @@
 package com.submarket.front.controller.seller;
 
 import com.submarket.front.dto.ItemDto;
+import com.submarket.front.dto.SalesDto;
 import com.submarket.front.dto.SellerDto;
 import com.submarket.front.service.impl.ItemService;
 import com.submarket.front.service.impl.SellerService;
@@ -26,8 +27,9 @@ public class SellerPageController {
         List<ItemDto> itemDtoList = sellerService.findItemList(token);
         int totalPrice = sellerService.findTotalValue(token, itemDtoList);
 
+        List<SalesDto> salesDtoList = sellerService.findAllSalesDtoBySellerId(token);
 
-
+        model.addAttribute("salesDtoList", salesDtoList);
         model.addAttribute("itemDtoList", itemDtoList);
         model.addAttribute("totalPrice", totalPrice);
         if (sellerDto == null) {

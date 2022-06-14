@@ -2,10 +2,13 @@
 <%@ page import="com.submarket.front.util.CmmUtil" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.submarket.front.dto.ItemDto" %>
+<%@ page import="com.submarket.front.dto.SalesDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
 	List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
+	List<SalesDto> salesDtoList = (List<SalesDto>) request.getAttribute("salesDtoList");
+
 	int totalPrice = (Integer) request.getAttribute("totalPrice");
 	SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
@@ -408,15 +411,42 @@
 <script src="/js/dashboard-script.js"></script>
 <script type="text/javascript">
 	function createConfig() {
+		var labelList = [];
+		var dataList = [];
+		<%
+		if (salesDtoList.size() > 12){
+			for (int i = salesDtoList.size() - 12 ; i < salesDtoList.size(); i++){
+		%>
+		labelList.push(<%=salesDtoList.get(i).getDate()%>);
+		dataList.push(<%=salesDtoList.get(i).getValue()%>);
+
+		<%
+			}
+
+		} else {
+			for (SalesDto salesDto : salesDtoList){
+
+		%>
+		labelList.push(<%=salesDto.getDate()%>);
+		dataList.push(<%=salesDto.getValue()%>);
+		<%
+			}
+
+		}
+
+		%>
+
+		console.log(labelList);
+		console.log(dataList);
 		return {
 			type: 'line',
 			data: {
-				labels: ['April', 'May', 'June', 'July', 'August'],
+				labels: labelList,
 				datasets: [{
 					label: 'Dataset',
 					borderColor: window.chartColors.red,
 					backgroundColor: window.chartColors.red,
-					data: [20, 90, 75, 42, 70, 90, 0],
+					data: dataList,
 					fill: false,
 				}]
 			},
@@ -528,7 +558,7 @@
 			}
 		}
 	});
-
+data.labels.add()
 	// BarChart Style
 	var data = {
 		labels: ["Apr", "May", "Jun", "Jul", "Aug"],

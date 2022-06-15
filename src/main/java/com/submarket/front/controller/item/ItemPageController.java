@@ -102,10 +102,14 @@ public class ItemPageController {
             log.info("url : " + url);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         ItemDto itemDto = itemService.getItemInfoDetails(itemSeq);
+
+        List<ItemDto> itemDtoList = itemService.findItemRandomItem();
+
         List<ItemReviewDto> itemReviewDtoList = itemService.findItemReviewByItemSeq(itemSeq);
 
         model.addAttribute("itemDto", itemDto);
         model.addAttribute("itemReviewDtoList", itemReviewDtoList);
+        model.addAttribute("itemDtoList", itemDtoList);
 
         return "/page-item-details";
     }

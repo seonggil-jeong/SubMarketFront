@@ -1,6 +1,7 @@
 package com.submarket.front.service;
 
 import com.submarket.front.dto.ItemDto;
+import com.submarket.front.dto.OrderDto;
 import com.submarket.front.dto.SalesDto;
 import com.submarket.front.dto.SellerDto;
 
@@ -18,4 +19,6 @@ public interface ISellerService {
     List<SalesDto> findAllSalesDtoBySellerId(String token) throws Exception;
 
     List<ItemDto> findEachItemTotalPrice(String token, List<ItemDto> itemDtoList) throws Exception;
+
+    List<OrderDto> getOrderDtoList(String sellerId, String token) throws Exception;
 }

@@ -337,7 +337,7 @@
                                 <div class="col-lg-12">
                                     <h5>Main image</h5>
                                     <div class="upload_file_input_add_remove">
-                                        <span class="btn_upload"><input type="file" id="imag" title="" class="input-img" name="mainImage"/><span class="flaticon-upload"></span></span>
+                                        <span class="btn_upload"><input type="file" id="imag" title="" class="input-img" name="mainImage" required/><span class="flaticon-upload"></span></span>
                                         <img id="ImgPreview" src="/images/resource/upload-img.png" class="preview1" alt="" />
                                         <button id="removeImage1" class="btn-rmv1" type="button"><span class="flaticon-delete"></span></button>
                                     </div>

@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.submarket.front.dto.ItemDto" %>
 <%@ page import="com.submarket.front.dto.SalesDto" %>
+<%@ page import="com.submarket.front.dto.OrderDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
@@ -12,6 +13,7 @@
 	int totalPrice = (Integer) request.getAttribute("totalPrice");
 	int nextSales = (Integer) request.getAttribute("nextSales");
 	SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
+
 
 	if (sellerInfo == null) {
 		sellerInfo = new SellerDto();
@@ -34,7 +36,7 @@
 	<!-- Responsive stylesheet -->
 	<link rel="stylesheet" href="/css/responsive.css">
 	<!-- Title -->
-	<title>Guido - Directory & Listing HTML Template</title>
+	<title>Seller Home</title>
 	<!-- Favicon -->
 	<link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
 	<link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
@@ -284,6 +286,7 @@
 							<li><a class="active" href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
 							<li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
 							<li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+							<li><a href="/seller/order"><span class="flaticon-edit"></span>My Order</a></li>
 							<li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
 							<li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
 						</ul>
@@ -305,6 +308,7 @@
 								<li class="active"><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
 								<li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
 								<li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+								<li><a href="/seller/order"><span class="flaticon-edit"></span>My Order</a></li>
 								<li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
 								<li><a href="/logout"><span class="flaticon-logout"></span>Logout</a></li>
 							</ul>
@@ -313,8 +317,7 @@
 				</div>
 				<div class="col-lg-12 mb10">
 					<div class="breadcrumb_content style2">
-						<h2 class="breadcrumb_title float-left">Hello, Cameron!</h2>
-						<p class="float-right">Ready to jump back in!</p>
+						<h2 class="breadcrumb_title float-left">Hello, <%=sellerInfo.getSellerId()%>!</h2>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
@@ -322,7 +325,7 @@
 						<div class="icon"><span class="flaticon-list"></span></div>
 						<div class="detais">
 							<div class="timer"><%=itemDtoList.size()%></div>
-							<p>my Item Count</p>
+							<p>등록한 상품 수</p>
 						</div>
 					</div>
 				</div>
@@ -343,52 +346,10 @@
 				</div>
 				<div class="col-lg-5 col-xl-4">
 					<div class="recent_job_activity">
-						<h4 class="title">Recent Activities</h4>
-						<div class="grid style1">
-							<ul>
-								<li class="list-inline-item"><div class="icon"><span class="fa fa-check"></span></div></li>
-								<li class="list-inline-item"><p>Your listing <span>Hotel Gulshan</span> has been approved!.</p></li>
-							</ul>
-						</div>
-						<div class="grid style2">
-							<ul>
-								<li class="list-inline-item"><div class="icon"><span class="fa fa-check"></span></div></li>
-								<li class="list-inline-item"><p>Your listing <span>Burger House</span> has been approved!.</p></li>
-							</ul>
-						</div>
-						<div class="grid style3">
-							<ul>
-								<li class="list-inline-item"><div class="icon"><span class="flaticon-note"></span></div></li>
-								<li class="list-inline-item"><p>Pitter Parker left a review 3.4 on John's <span>John's Coffee Shop</span></p></li>
-							</ul>
-						</div>
-						<div class="grid style4">
-							<ul>
-								<li class="list-inline-item"><div class="icon"><span class="flaticon-love"></span></div></li>
-								<li class="list-inline-item"><p>Someone bookmarked your <span>Burger House</span> listing!</p></li>
-							</ul>
-						</div>
-						<div class="grid style5">
-							<ul>
-								<li class="list-inline-item"><div class="icon"><span class="fa fa-check"></span></div></li>
-								<li class="list-inline-item"><p><span>Your listing Holiday Home has been approved!</span></p></li>
-							</ul>
-						</div>
-						<div class="grid style6 mb0">
-							<ul class="pb0 mb0 bb_none">
-								<li class="list-inline-item"><div class="icon"><span class="flaticon-love"></span></div></li>
-								<li class="list-inline-item"><p><span>Someone bookmarked your Moonlight Hotel listing!</span></p></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-7 col-md-7 col-lg-7 col-xl-12">
-					<div class="ff_one style2">
-						<div>회원탈퇴</div>
-						<form action="/seller/delete" method="post">
-							<input type="password" class="form-control" name="sellerPassword">
-							<button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
-						</form>
+							<form action="/seller/delete" method="post">
+								<input type="password" class="form-control" name="sellerPassword" placeholder="password" style="margin-bottom: 2%;">
+								<button type="submit" class="btn btn-log btn-block btn-thm">회원탈퇴</button>
+							</form>
 					</div>
 				</div>
 			</div>

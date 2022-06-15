@@ -1,26 +1,33 @@
-<%@ page import="com.submarket.front.dto.UserDto" %>
+<%@ page import="com.submarket.front.dto.SellerDto" %>
+<%@ page import="com.submarket.front.util.CmmUtil" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.submarket.front.dto.ItemReviewDto" %>
+<%@ page import="com.submarket.front.dto.ItemDto" %>
+<%@ page import="com.submarket.front.dto.SalesDto" %>
+<%@ page import="com.submarket.front.dto.OrderDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-
+         pageEncoding="UTF-8"%>
 <%
-    UserDto userInfo = (UserDto) session.getAttribute("SS_USER_INFO");
+    List<ItemDto> itemDtoList = (List<ItemDto>) request.getAttribute("itemDtoList");
+    List<SalesDto> salesDtoList = (List<SalesDto>) request.getAttribute("salesDtoList");
 
-    if (userInfo == null) {
-        userInfo = new UserDto();
+    int totalPrice = (Integer) request.getAttribute("totalPrice");
+    int nextSales = (Integer) request.getAttribute("nextSales");
+    SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
+
+    List<OrderDto> orderDtoList = (List<OrderDto>) request.getAttribute("orderDtoList");
+
+    if (sellerInfo == null) {
+        sellerInfo = new SellerDto();
     }
-
-    List<ItemReviewDto> itemReviewDtoList = (List<ItemReviewDto>) request.getAttribute("itemReviewDtoList");
 %>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-          content="airbnb, booking, city guide, directory, events, hotel booking, listings, marketing, places, restaurant, restaurant">
+    <meta name="keywords" content="airbnb, booking, city guide, directory, events, hotel booking, listings, marketing, places, restaurant, restaurant">
     <meta name="description" content="Guido - Directory & Listing HTML Template">
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
@@ -30,10 +37,10 @@
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/css/responsive.css">
     <!-- Title -->
-    <title>Guido - Directory & Listing HTML Template</title>
+    <title>Order List</title>
     <!-- Favicon -->
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon"/>
-    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon"/>
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+    <link href="/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,12 +48,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <script type="text/javascript">
         function doOnload() {
-            if ('<%=String.valueOf(session.getAttribute("SS_USER_TOKEN"))%>'.length < 10) {
-                alert("로그인된 사용자만 접근 가능합니다.");
-                top.location.href = "/user/page-login";
+            if ('<%=String.valueOf(session.getAttribute("SS_SELLER_TOKEN"))%>'.length < 10) {
+                top.location.href = "/index";
             }
         }
     </script>
@@ -76,35 +81,23 @@
                 </a>
                 <!-- Responsive Menu Structure-->
                 <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-                <div class="ht_left_widget style2 float-left">
-                    <ul>
-                        <li class="list-inline-item">
-                            <div class="ht_search_widget">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
                     <li class="user_setting" style="margin-bottom: 1%;">
                         <div class="dropdown">
-                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span
-                                    class="dn-1366"><%=userInfo.getUserName()%><span
+                            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="dn-1200"><%=CmmUtil.nvl(sellerInfo.getSellerName())%><span
                                     class="fa fa-angle-down"></span></span></a>
                             <div class="dropdown-menu">
                                 <div class="user_set_header">
-                                    <p><%=userInfo.getUserName()%><br><span
-                                            class="address"><%=userInfo.getUserEmail()%></span></p>
+                                    <p><%=CmmUtil.nvl(sellerInfo.getSellerName())%><br><span class="address"><%=CmmUtil.nvl(sellerInfo.getSellerEmail())%></span></p>
                                 </div>
                                 <div class="user_setting_content" style="margin-bottom: 10%">
-                                    <a class="dropdown-item active" href="/user/profile">내 정보</a>
-                                    <a class="dropdown-item" href="/user/sublist">내 구독 정보</a>
-                                    <a class="dropdown-item" href="/logout">Log out</a>
+                                    <a class="dropdown-item" href="/logout" style="color: black">Log out</a>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="list-inline-item add_listing"><a href="/index"><span class="icon"></span><span
-                            class="dn-lg">HOME</span></a></li>
+                    <li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
+                            class="dn-lg">SELLER HOME</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -119,11 +112,8 @@
                     <span class="mt15">SubMarket</span>
                 </div>
                 <ul class="menu_bar_home2">
-                    <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#"
-                                                    data-toggle="modal" data-target="#staticBackdrop"><span
-                            class="flaticon-loupe"></span></a></li>
-                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span
-                            class="flaticon-arrow-pointing-to-left"></span></a></li>
+                    <li class="list-inline-item"><a class="custom_search_with_menu_trigger msearch_icon" href="#" data-toggle="modal" data-target="#staticBackdrop"><span class="flaticon-loupe"></span></a></li>
+                    <li class="list-inline-item"><a class="muser_icon" href="/index"><span class="flaticon-arrow-pointing-to-left"></span></a></li>
                     <li class="list-inline-item"><a class="menubar" href="#menu"><span></span></a></li>
                 </ul>
             </div>
@@ -137,8 +127,7 @@
     </div>
 
     <!-- Search Field Modal -->
-    <section class="modal fade search_dropdown" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-             tabindex="-1" aria-hidden="true">
+    <section class="modal fade search_dropdown" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
@@ -146,8 +135,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img
-                                            src="/images/icons/close.svg" alt=""></span></a>
+                                    <a class="close closer" data-dismiss="modal" aria-label="Close" href="#"><span><img src="/images/icons/close.svg" alt=""></span></a>
                                 </div>
                             </div>
                         </div>
@@ -211,8 +199,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg"
-                                                                alt="pc18.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc18.jpg" alt="pc18.jpg"></div>
                                         <div class="details">
                                             <h4>Miami</h4>
                                             <p>62 Listings</p>
@@ -221,8 +208,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg"
-                                                                alt="pc19.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc19.jpg" alt="pc19.jpg"></div>
                                         <div class="details">
                                             <h4>Roma</h4>
                                             <p>92 Listings</p>
@@ -231,8 +217,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg"
-                                                                alt="pc20.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc20.jpg" alt="pc20.jpg"></div>
                                         <div class="details">
                                             <h4>New Delhi</h4>
                                             <p>12 Listings</p>
@@ -241,8 +226,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg"
-                                                                alt="pc21.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc21.jpg" alt="pc21.jpg"></div>
                                         <div class="details">
                                             <h4>London</h4>
                                             <p>74 Listings</p>
@@ -251,8 +235,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg"
-                                                                alt="pc22.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc22.jpg" alt="pc22.jpg"></div>
                                         <div class="details">
                                             <h4>Amsterdam</h4>
                                             <p>62 Listings</p>
@@ -261,8 +244,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg"
-                                                                alt="pc23.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc23.jpg" alt="pc23.jpg"></div>
                                         <div class="details">
                                             <h4>Berlin</h4>
                                             <p>92 Listings</p>
@@ -271,8 +253,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg"
-                                                                alt="pc24.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc24.jpg" alt="pc24.jpg"></div>
                                         <div class="details">
                                             <h4>Paris</h4>
                                             <p>12 Listings</p>
@@ -281,8 +262,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="property_city_home6 tac-xsd">
-                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg"
-                                                                alt="pc25.jpg"></div>
+                                        <div class="thumb"><img class="w100" src="/images/property/pc25.jpg" alt="pc25.jpg"></div>
                                         <div class="details">
                                             <h4>New Zealand</h4>
                                             <p>74 Listings</p>
@@ -304,10 +284,11 @@
                 <div class="col-lg-12">
                     <div class="ed_menu_list mt5">
                         <ul>
-                            <li><a href="/user/profile"><span class="flaticon-avatar"></span> Profile</a></li>
-                            <li><a href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
-                            <li><a class="active" href="/user/reviewlist"><span class="flaticon-note"></span> My Reviews</a>
-                            </li>
+                            <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
+                            <li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
+                            <li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                            <li><a class="active" href="/seller/order"><span class="flaticon-edit"></span>My Order</a></li>
+                            <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
                             <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                         </ul>
                     </div>
@@ -325,96 +306,57 @@
                         <div class="dropdown">
                             <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
                             <ul id="myDropdown" class="dropdown-content">
-                                <li><a href="/user/profile"><span class="flaticon-avatar"></span> My Profile</a></li>
-                                <li><a href="/user/sublist"><span class="flaticon-list"></span> My SubList</a></li>
-                                <li class="active"><a href="/user/reviewlist"><span class="flaticon-note"></span>My Reviews</a></li>
-                                <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
+                                <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
+                                <li><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
+                                <li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                                <li class="active"><a class="active" href="/seller/order"><span class="flaticon-edit"></span>My Order</a></li>
+                                <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
+                                <li><a href="/logout"><span class="flaticon-logout"></span>Logout</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 mb15">
+                <div class="col-lg-12 mb10">
                     <div class="breadcrumb_content style2">
-                        <h2 class="breadcrumb_title float-left">Reviews</h2>
-                        <p class="float-right">리뷰 내용 및 별점을 클릭하여 수정할 수 있습니다</p>
+                        <h2 class="breadcrumb_title float-left">Order List</h2>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="my_dashboard_review">
-                        <div class="mbp_pagination_comments">
-                            <div class="total_review pt0">
-                                <h4>Your Reviews</h4>
-                            </div>
-                            <%
-                                if (itemReviewDtoList.size() < 1) {
-                            %>
-                            <div class="mbp_first media">
-                                <div class="media-body">
-                                    <h4 class="sub_title mt-0">작성한 리뷰가 없습니다.</h4>
-                                </div>
-                            </div>
-                            <p class="fz14 mt10">상품을 구매후 리뷰를 작성해주세요!</p>
+                <%
+                    for (OrderDto orderDto : orderDtoList) {
+                %>
+                <div class="col-xl-12">
+                    <div class="shop_order_box mt40">
+                        <div class="order_list_raw">
+                            <ul>
+                                <li class="list-inline-item">
+                                    <p>Order Number</p>
+                                    <h5><%=orderDto.getOrderId()%></h5>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p>Date</p>
+                                    <h5><%=orderDto.getOrderDateDetails()%></h5>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p>상품 이름</p>
+                                    <a href="/items/<%=orderDto.getItemSeq()%>"><h5><%=orderDto.getItemTitle()%></h5></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p>사용자 주소</p>
+                                    <h5><%=orderDto.getUserAddress()%><%=orderDto.getUserAddress2()%></h5>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <%
-                    } else {
-                        for (ItemReviewDto itemReviewDto : itemReviewDtoList) {
-
-                    %>
-                    <div class="mbp_first media">
-                        <div class="media-body">
-                            <h4 class="sub_title mt-0"><%=userInfo.getUserName()%>
-                            </h4>
-                            <form action="/user/review/modify" method="post">
-                                <input type="hidden" name="reviewSeq" value="<%=itemReviewDto.getReviewSeq()%>">
-                                <input type="hidden" name="reviewDate" value="<%=itemReviewDto.getReviewDate()%>">
-                            <div class="sspd_postdate fz14 mb20"><%=itemReviewDto.getReviewDate()%>
-                                <div class="sspd_review pull-right">
-                                    <ul class="mb0 pl15">
-                                        <%
-                                            for (int i = 0; i < itemReviewDto.getReviewStar(); i++) {
-                                        %>
-                                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <%
-                                            }
-                                        %>
-                                        <li class="list-inline-item">(
-                                            <select name="reviewStar">
-                                                <option value="<%=itemReviewDto.getReviewStar()%>" selected hidden><%=itemReviewDto.getReviewStar()%></option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                            reviews)
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <p class="fz14 mt10"><input type="text" name="reviewContents" style="border: none;" value="<%=itemReviewDto.getReviewContents()%>"></p>
-                                <input class="text-thm tdu" style="margin-right: 2%; border: none; background: none;" type="submit" value="Edit Review">
-                            <a class="text-thm tdu" href="/user/review/delete/<%=itemReviewDto.getReviewSeq()%>">Delete Review</a>
-                            </form>
-                        </div>
-                    </div>
-                    <%
-                            }
-                        }
-                    %>
                 </div>
+                <%
+                    }
+                %>
             </div>
         </div>
     </section>
-</div>
 
-</div>
-</div>
-</div>
-</section>
-<a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
+    <!-- Our Footer -->
+    <a class="scrollToHome" href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Wrapper End -->
 <script src="/js/jquery-3.6.0.js"></script>
@@ -423,6 +365,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mmenu.all.js"></script>
 <script src="/js/ace-responsive-menu.js"></script>
+<script src="/js/chart.min.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/snackbar.min.js"></script>
 <script src="/js/simplebar.js"></script>

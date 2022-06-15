@@ -351,7 +351,7 @@
                                     </div>
                                     <div class="form-group input-group">
                                         <input type="text" class="form-control" id="userAge" name="userAge"
-                                               placeholder="Age">
+                                               placeholder="Age" required>
                                     </div>
                                     <div class="form-group input-group">
                                         <input type="text" class="form-control" id="userPn" name="userPn"

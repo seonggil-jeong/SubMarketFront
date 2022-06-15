@@ -559,7 +559,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc2.jpg" alt="pc2.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>20</h4>
+								<h4>20대 인기 상품</h4>
 							</div>
 						</div>
 					</div>
@@ -571,7 +571,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc1.jpg" alt="pc1.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>30</h4>
+								<h4>30대 인기 상품</h4>
 							</div>
 						</div>
 					</div>
@@ -593,7 +593,7 @@
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc3.jpg" alt="pc3.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>40</h4>
+								<h4>40대 인기 상품</h4>
 							</div>
 						</div>
 					</div>

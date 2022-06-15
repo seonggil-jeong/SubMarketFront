@@ -74,7 +74,7 @@ public class ItemPageController {
 
 
         model.addAttribute("itemDtoList", itemDtoList);
-        model.addAttribute("title", age + "대 가장 인기 상품");
+        model.addAttribute("title", age + "대 인기 상품");
 
 
 

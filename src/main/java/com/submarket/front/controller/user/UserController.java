@@ -143,9 +143,19 @@ public class UserController {
     }
 
     @PostMapping("/user/join")
-    public String insertUser(UserDto userDto, ModelMap model) throws Exception {
+    public String insertUser(UserDto userDto, ModelMap model, HttpServletRequest request) throws Exception {
         log.info(this.getClass().getName() + ".insertUser Start!");
         String url = env.getProperty("gateway.ip") + "/user-service/users";
+        String userPasswordC1 = userDto.getUserPassword();
+        String userPasswordC2 = String.valueOf(request.getParameter("userPassword2"));
+
+        if (!userPasswordC1.equals(userPasswordC2)) {
+            model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
+            model.addAttribute("url", "/regForm");
+
+            return "/redirect";
+        }
+
         try {
             HttpEntity<UserDto> entity = new HttpEntity<>(userDto);
             ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
@@ -223,6 +233,8 @@ public class UserController {
 
 
             UserDto userDto = userService.getUserInfo(response.getHeaders().get("token").get(0));
+
+            log.info("userName : " + userDto.getUserName());
 
             session.setAttribute("SS_USER_TOKEN", response.getHeaders().get("token").get(0));
             session.setAttribute("SS_USER_INFO", userDto);

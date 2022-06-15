@@ -343,7 +343,6 @@
                 <div class="col-lg-12 mb15">
                     <div class="breadcrumb_content style2">
                         <h2 class="breadcrumb_title float-left">My SubList</h2>
-                        <p class="float-right">Ready to jump back in?</p>
                     </div>
                 </div>
             </div>

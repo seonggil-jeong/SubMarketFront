@@ -284,6 +284,7 @@
                             <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
                             <li><a class="active" href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
                             <li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                            <li><a href="/seller/order"><span class="flaticon-edit"></span>My Order</a></li>
                             <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
                             <li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
                         </ul>
@@ -305,6 +306,7 @@
                                 <li><a href="/seller/main"><span class="flaticon-web-page"></span> Dashboard</a></li>
                                 <li class="active"><a href="/seller/profile"><span class="flaticon-avatar"></span>Profile</a></li>
                                 <li><a href="/seller/my-item"><span class="flaticon-list"></span>My Item List</a></li>
+                                <li><a href="/seller/order"><span class="flaticon-edit"></span>My Order</a></li>
                                 <li><a href="/seller/item"><span class="flaticon-edit"></span>Add Item</a></li>
                                 <li><a href="/logout"><span class="flaticon-logout"></span>Logout</a></li>
                             </ul>
@@ -314,7 +316,6 @@
                 <div class="col-lg-12 mb10">
                     <div class="breadcrumb_content style2">
                         <h2 class="breadcrumb_title float-left">Profile</h2>
-                        <p class="float-right">Ready to jump back in!</p>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -356,7 +357,7 @@
                                     <div class="col-lg-6 col-xl-6">
                                         <div class="my_profile_setting_input form-group">
                                             <label for="formGroupExampleInput9">Home URL</label>
-                                            <input type="text" class="form-control" id="formGroupExampleInput11" name="sellerHome" required value="<%=sellerInfo.getSellerHome()%>">
+                                            <input type="text" class="form-control" id="formGroupExampleInput11" name="sellerHome" value="<%=sellerInfo.getSellerHome()%>">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">

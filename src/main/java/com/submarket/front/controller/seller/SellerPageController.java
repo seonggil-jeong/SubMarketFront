@@ -1,6 +1,7 @@
 package com.submarket.front.controller.seller;
 
 import com.submarket.front.dto.ItemDto;
+import com.submarket.front.dto.OrderDto;
 import com.submarket.front.dto.SalesDto;
 import com.submarket.front.dto.SellerDto;
 import com.submarket.front.service.impl.ItemService;
@@ -32,17 +33,33 @@ public class SellerPageController {
 
         List<SalesDto> salesDtoList = sellerService.findAllSalesDtoBySellerId(token);
 
+        List<OrderDto> orderDtoList = sellerService.getOrderDtoList(sellerDto.getSellerId(), token);
+
         model.addAttribute("salesDtoList", salesDtoList);
 
         // TODO: 2022-06-15 정보를 가지고 다음 달 매출 분석
         model.addAttribute("nextSales", 12345);
         model.addAttribute("itemDtoList", itemDtoList);
         model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("orderDtoList", orderDtoList);
+
+
         if (sellerDto == null) {
             return "/index";
         }
 
         return "/seller/page-main";
+    }
+
+    @RequestMapping("/seller/order")
+    public String sellerOrder(HttpSession session, ModelMap model) throws Exception {
+        SellerDto sellerDto = (SellerDto) session.getAttribute("SS_SELLER_INFO");
+        String token = String.valueOf(session.getAttribute("SS_SELLER_TOKEN"));
+
+        List<OrderDto> orderDtoList = sellerService.getOrderDtoList(sellerDto.getSellerId(), token);
+        model.addAttribute("orderDtoList", orderDtoList);
+
+        return "/seller/page-order";
     }
 
     @RequestMapping("/seller/item")

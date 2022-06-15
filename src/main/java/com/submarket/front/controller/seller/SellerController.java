@@ -49,7 +49,17 @@ public class SellerController {
     }
 
     @PostMapping("/seller/join")
-    public String insertUser(SellerDto sellerDto, ModelMap model, HttpSession session) throws Exception {
+    public String insertUser(SellerDto sellerDto, ModelMap model, HttpSession session, HttpServletRequest request) throws Exception {
+
+        String sellerPasswordC1 = sellerDto.getSellerPassword();
+        String sellerPasswordC2 = String.valueOf(request.getParameter("sellerPassword2"));
+
+        if (! sellerPasswordC1.equals(sellerPasswordC2)) {
+            model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+            model.addAttribute("url", "/seller/regForm");
+            return "/redirect";
+
+        }
         try {
             String url = env.getProperty("gateway.ip") + "/seller-service/sellers";
 

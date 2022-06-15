@@ -67,7 +67,13 @@ public class ItemController {
     public String createReview(HttpSession session, ModelMap model, ItemReviewDto itemReviewDto, @PathVariable int itemSeq) throws Exception {
 
         UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
+        String tokenC = String.valueOf(session.getAttribute("SS_USER_TOKEN"));
         itemReviewDto.setUserAge(userDto.getUserAge());
+
+        if (tokenC.length() < 5) {
+            model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+            model.addAttribute("url", "/user/page-login");
+        }
             
         try {
             RestTemplate restTemplate = new RestTemplate();

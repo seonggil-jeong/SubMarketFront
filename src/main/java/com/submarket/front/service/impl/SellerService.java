@@ -1,6 +1,7 @@
 package com.submarket.front.service.impl;
 
 import com.submarket.front.dto.ItemDto;
+import com.submarket.front.dto.OrderDto;
 import com.submarket.front.dto.SalesDto;
 import com.submarket.front.dto.SellerDto;
 import com.submarket.front.service.ISellerService;
@@ -25,6 +26,7 @@ import java.util.*;
 public class SellerService implements ISellerService {
     private final RestTemplate restTemplate;
     private final Environment env;
+    private final ItemService itemService;
 
 
     @Override
@@ -229,6 +231,41 @@ public class SellerService implements ISellerService {
         } finally {
         log.info(this.getClass().getName() + ".findAllSalesDtoBySellerId End!");
             return salesDtoList;
+        }
+    }
+
+    @Override
+    public List<OrderDto> getOrderDtoList(String sellerId, String token) throws Exception {
+        log.info(this.getClass().getName() + ".getOrderDtoList Start!");
+
+        List<OrderDto> orderDtoList = new LinkedList<>();
+        String url = env.getProperty("gateway.ip") + "/order-service/order/seller/" + sellerId;
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+
+            HttpEntity<HttpHeaders> entity = new HttpEntity<>(headers);
+
+            ResponseEntity<OrderDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, OrderDto.class);
+
+            orderDtoList = response.getBody().getResponse();
+
+            for (int i = 0; i < orderDtoList.size(); i++) {
+                int itemSeq = orderDtoList.get(i).getItemSeq();
+
+                ItemDto itemDto = itemService.getItemInfoDetails(itemSeq);
+                orderDtoList.get(i).setItemTitle(itemDto.getItemTitle());
+            }
+
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+            orderDtoList = new LinkedList<>();
+
+        } finally {
+            log.info(this.getClass().getName() + ".getOrderDtoList End!");
+            return orderDtoList;
         }
     }
 }

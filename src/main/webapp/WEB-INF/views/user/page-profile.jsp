@@ -314,7 +314,6 @@
                 <div class="col-lg-12 mb10">
                     <div class="breadcrumb_content style2">
                         <h2 class="breadcrumb_title float-left">Profile</h2>
-                        <p class="float-right">Ready to jump back in!</p>
                     </div>
                 </div>
                 <div class="col-lg-12">

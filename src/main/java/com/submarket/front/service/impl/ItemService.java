@@ -144,6 +144,30 @@ public class ItemService implements IItemService {
     }
 
     @Override
+    public List<ItemDto> getItemInfoByAge(int age) throws Exception {
+        log.info(this.getClass().getName() + ".getItemInfoByAge Start!");
+        List<ItemDto> itemDtoList = new LinkedList<>();
+        String url = env.getProperty("gateway.ip") + "/item-service/item/read/" + age;
+        try {
+            log.info("url : " + url);
+            ResponseEntity<ItemDto> response = restTemplate.exchange(url, HttpMethod.GET, null, ItemDto.class);
+
+            itemDtoList = response.getBody().getResponse();
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            log.info("HttpStatusCodeException : " + statusCodeException);
+            int code = statusCodeException.getRawStatusCode();
+            itemDtoList = new LinkedList<>();
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+            itemDtoList = new LinkedList<>();
+        } finally {
+        log.info(this.getClass().getName() + ".getItemInfoByAge End!");
+            return itemDtoList;
+        }
+    }
+
+    @Override
     public CategoryDto getItemInfoByCategorySeq(int categorySeq) throws Exception {
         CategoryDto categoryDto = new CategoryDto();
         String url = env.getProperty("gateway.ip") + "/item-service/category/" + categorySeq;

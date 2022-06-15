@@ -10,6 +10,7 @@
 	List<SalesDto> salesDtoList = (List<SalesDto>) request.getAttribute("salesDtoList");
 
 	int totalPrice = (Integer) request.getAttribute("totalPrice");
+	int nextSales = (Integer) request.getAttribute("nextSales");
 	SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
 	if (sellerInfo == null) {
@@ -381,6 +382,15 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-7 col-md-7 col-lg-7 col-xl-12">
+					<div class="ff_one style2">
+						<div>회원탈퇴</div>
+						<form action="/seller/delete" method="post">
+							<input type="password" class="form-control" name="sellerPassword">
+							<button type="submit" class="btn btn-log btn-block btn-thm">Sign Up</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -436,7 +446,7 @@
 
 		%>
 		labelList.push("다음달 예상 매출");
-		dataList.push(50000);
+		dataList.push("<%=nextSales%>");
 		return {
 			type: 'line',
 			data: {

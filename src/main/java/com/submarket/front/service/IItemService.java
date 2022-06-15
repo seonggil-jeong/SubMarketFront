@@ -24,5 +24,7 @@ public interface IItemService {
 
     ItemDto getItemInfoDetails(int itemSeq) throws Exception;
 
+    List<ItemDto> getItemInfoByAge(int age) throws Exception;
+
 
 }

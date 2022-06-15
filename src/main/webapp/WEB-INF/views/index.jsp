@@ -554,6 +554,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6 col-lg-8 col-xl-8">
+				<div onclick="location.href='/items/group/20'">
 					<div class="properti_city">
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc2.jpg" alt="pc2.jpg"></div>
 						<div class="overlay">
@@ -563,7 +564,9 @@
 						</div>
 					</div>
 				</div>
+				</div>
 				<div class="col-md-6 col-lg-4 col-xl-4">
+					<div onclick="location.href='/items/group/30'">
 					<div class="properti_city">
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc1.jpg" alt="pc1.jpg"></div>
 						<div class="overlay">
@@ -572,25 +575,28 @@
 							</div>
 						</div>
 					</div>
+					</div>
 				</div>
 				<div class="col-md-6 col-lg-4 col-xl-4">
 					<div class="properti_city">
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc4.jpg" alt="pc4.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>40</h4>
+								<h4>SubMarket</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6 col-lg-8 col-xl-8">
+					<div onclick="location.href='/items/group/40'">
 					<div class="properti_city">
 						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc3.jpg" alt="pc3.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>리뷰가 가장 많은 상품</h4>
+								<h4>40</h4>
 							</div>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>

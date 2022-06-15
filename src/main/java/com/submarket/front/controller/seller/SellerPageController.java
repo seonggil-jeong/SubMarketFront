@@ -33,6 +33,9 @@ public class SellerPageController {
         List<SalesDto> salesDtoList = sellerService.findAllSalesDtoBySellerId(token);
 
         model.addAttribute("salesDtoList", salesDtoList);
+
+        // TODO: 2022-06-15 정보를 가지고 다음 달 매출 분석
+        model.addAttribute("nextSales", 12345);
         model.addAttribute("itemDtoList", itemDtoList);
         model.addAttribute("totalPrice", totalPrice);
         if (sellerDto == null) {

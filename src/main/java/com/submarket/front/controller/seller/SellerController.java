@@ -114,7 +114,7 @@ public class SellerController {
             log.info("Exception : " + e);
             model.addAttribute("msg", "Server Error");
             model.addAttribute("url", "/seller/profile");
-        }finally {
+        } finally {
             return "/redirect";
         }
     }
@@ -158,6 +158,54 @@ public class SellerController {
             model.addAttribute("url", "/index");
 
         } finally {
+            return "/redirect";
+        }
+    }
+
+    @PostMapping("/seller/delete")
+    public String deleteSeller(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + ".deleteSeller Start!");
+        String token = String.valueOf(session.getAttribute("SS_SELLER_TOKEN"));
+
+        String rStr = "";
+
+        SellerDto sellerDto = new SellerDto();
+
+        String url = env.getProperty("gateway.ip") + "/seller-service/sellers/drop";
+        String sellerPassword = String.valueOf(request.getParameter("sellerPassword"));
+        sellerDto.setSellerPassword(sellerPassword);
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+
+            HttpEntity entity = new HttpEntity(sellerDto, headers);
+
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+            rStr = response.getBody();
+
+            model.addAttribute("msg", rStr);
+            model.addAttribute("url", "/index");
+
+            session.invalidate();
+
+
+        } catch (HttpStatusCodeException statusCodeException) {
+            log.info("HttpStatusCodeException : " + statusCodeException);
+            int code = statusCodeException.getRawStatusCode();
+
+            model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+            model.addAttribute("url", "/seller/main");
+
+
+        } catch (Exception exception) {
+            log.info("Exception : " + exception);
+
+            model.addAttribute("msg", "Server Error");
+            model.addAttribute("url", "/index");
+
+        } finally {
+            log.info(this.getClass().getName() + ".deleteSeller End!");
             return "/redirect";
         }
     }

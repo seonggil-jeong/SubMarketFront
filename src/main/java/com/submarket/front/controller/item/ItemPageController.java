@@ -64,11 +64,22 @@ public class ItemPageController {
 
     }
 
-    @RequestMapping("/items/group/{groupSeq}")
-    public String getItemInfoByGroup(@PathVariable int groupSeq, ModelMap model, HttpSession session) throws Exception {
-        // TODO: 2022-06-02 GroupSeq 로 상품 목록 조회
+    @RequestMapping("/items/group/{age}")
+    public String getItemInfoByAge(@PathVariable int age, ModelMap model, HttpSession session) throws Exception {
+        log.info(this.getClass().getName() + ".getItemInfoByAge Start");
 
-        return "/index";
+        List<ItemDto> itemDtoList = itemService.getItemInfoByAge(age);
+
+        log.info(this.getClass().getName() + ".getItemInfoByAge End");
+
+
+        model.addAttribute("itemDtoList", itemDtoList);
+        model.addAttribute("title", age + "대 가장 인기 상품");
+
+
+
+        return "/page-items";
+
 
     }
 

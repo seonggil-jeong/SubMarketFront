@@ -695,46 +695,6 @@
                                 <li><a href="#">Price: <span class="float-right heading-color"><%=itemDto.getItemPrice()%> 원</span></a></li>
                             </ul>
                         </div>
-                        <div class="sidebar_author_widget">
-                            <h4 class="title mb25">Author</h4>
-                            <div class="media">
-                                <img class="mr-3" src="/images/team/author.png" alt="author.png">
-                                <div class="media-body">
-                                    <h5 class="mt15 mb0">Robert Fox</h5>
-                                    <p class="mb0">Designer at guido</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidebar_contact_business_widget">
-                            <h4 class="title mb25">Contact Business</h4>
-                            <ul class="business_contact mb0">
-                                <li class="search_area">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                                    </div>
-                                </li>
-                                <li class="search_area">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email">
-                                    </div>
-                                </li>
-                                <li class="search_area">
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" id="exampleInputName2" placeholder="Phone">
-                                    </div>
-                                </li>
-                                <li class="search_area">
-                                    <div class="form-group">
-                                        <textarea id="form_message" name="form_message" class="form-control required" rows="5" required="required" placeholder="Message"></textarea>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="search_option_button">
-                                        <button type="submit" class="btn btn-block btn-thm h55">Send Message</button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>

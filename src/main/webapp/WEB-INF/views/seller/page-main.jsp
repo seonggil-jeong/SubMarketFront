@@ -11,7 +11,7 @@
 	List<SalesDto> salesDtoList = (List<SalesDto>) request.getAttribute("salesDtoList");
 
 	int totalPrice = (Integer) request.getAttribute("totalPrice");
-	int nextSales = (Integer) request.getAttribute("nextSales");
+//	int nextSales = (Integer) request.getAttribute("nextSales");
 	SellerDto sellerInfo = (SellerDto) session.getAttribute("SS_SELLER_INFO");
 
 
@@ -406,8 +406,8 @@
 		}
 
 		%>
-		labelList.push("다음달 예상 매출");
-		dataList.push("<%=nextSales%>");
+		// labelList.push("다음달 예상 매출");
+		<%--dataList.push("<%=nextSales%>");--%>
 		return {
 			type: 'line',
 			data: {

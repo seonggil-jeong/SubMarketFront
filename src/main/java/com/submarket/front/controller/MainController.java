@@ -27,6 +27,15 @@ public class MainController {
     private final UserService userService;
     private final ItemService itemService;
 
+    @RequestMapping("/")
+    public String root(ModelMap model) throws Exception {
+        List<ItemDto> itemDtoList = itemService.findItemRandomItem();
+        model.addAttribute("itemDtoList", itemDtoList);
+
+        return "/index";
+
+    }
+
     @RequestMapping("/index")
     public String index(ModelMap model) throws Exception {
         List<ItemDto> itemDtoList = itemService.findItemRandomItem();

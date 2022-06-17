@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.submarket</groupId>
     <artifactId>front</artifactId>
+    <packaging>war</packaging>
     <version>1.0</version>
     <name>SubMarketFront</name>
     <description>SubMarketFront</description>

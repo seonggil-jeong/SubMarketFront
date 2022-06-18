@@ -3,22 +3,14 @@ package com.submarket.front.controller;
 import com.submarket.front.dto.ItemDto;
 import com.submarket.front.service.impl.ItemService;
 import com.submarket.front.service.impl.UserService;
-import com.submarket.front.util.CmmUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -41,6 +33,8 @@ public class MainController {
         List<ItemDto> itemDtoList = itemService.findItemRandomItem();
         model.addAttribute("itemDtoList", itemDtoList);
 
+
+
         return "/index";
 
     }
@@ -49,7 +43,9 @@ public class MainController {
     public String logout(HttpSession session, ModelMap model) throws Exception {
         session.invalidate();
         List<ItemDto> itemDtoList = itemService.findItemRandomItem();
+
         model.addAttribute("itemDtoList", itemDtoList);
+
         return "/index";
     }
 }

@@ -33,12 +33,10 @@ public class SellerPageController {
 
         List<SalesDto> salesDtoList = sellerService.findAllSalesDtoBySellerId(token);
 
-        List<OrderDto> orderDtoList = sellerService.getOrderDtoList(sellerDto.getSellerId(), token);
 
         model.addAttribute("salesDtoList", salesDtoList);
         model.addAttribute("itemDtoList", itemDtoList);
         model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("orderDtoList", orderDtoList);
 
 
         if (sellerDto == null) {

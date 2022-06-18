@@ -632,8 +632,8 @@
 							<span class="flaticon-date"></span>
 						</div>
 						<div class="details">
-							<h4>Subscribe!!</h4>
-							<p>will be delivered on time</p>
+							<h4>Sub Our Items</h4>
+							<p>If you find item you like, Sub that! </p>
 						</div>
 					</div>
 				</div>

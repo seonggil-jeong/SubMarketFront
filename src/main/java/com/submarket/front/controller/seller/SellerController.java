@@ -144,7 +144,6 @@ public class SellerController {
             String token = response.getHeaders().get("token").get(0);
             session.setAttribute("SS_SELLER_TOKEN", token);
 
-            // TODO: 2022-05-31 사용자 정보 세션에 저장하는 로직 추가
 
             model.addAttribute("msg", "로그인 성공");
             model.addAttribute("url", "/seller/main");

@@ -271,7 +271,6 @@ public class UserController {
 
     @PostMapping("/user/findPassword")
     public String findPassword(UserDto userDto, ModelMap model) throws Exception {
-        // TODO: 2022-06-09 아이디 이메일 일치 시 비밀번호 변경, 임시 비밀번호 메일로 발송
         try {
             String url = env.getProperty("gateway.ip") + "/user-service/user/fix/find-password";
 

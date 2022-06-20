@@ -40,5 +40,4 @@ public class ItemDto {
     // 상품 정보 조회
     private int itemTotalPrice;
 
-    // TODO: 2022/05/11 FK 설정
 }

@@ -41,6 +41,7 @@ public class SubMarketFrontApplication {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(factory);
         return restTemplate;
+
     }
 
 

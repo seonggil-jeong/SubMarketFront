@@ -568,7 +568,8 @@
                                     if (itemDto.getItemContents().length() > 100) {
                                 %>
                                 <p class="first-para mb25"><%=itemDto.getItemContents().substring(0, 100)%></p>
-                                <p class="gpara second_para white_goverlay mt10 mb20"><%=itemDto.getItemContents().substring(100, 150)%>...</p>
+                                <p class="gpara second_para white_goverlay mt10 mb20"><%=itemDto.getItemContents().substring(100)%>...</p>
+
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
                                         <p class="mt10 mb10"><%=itemDto.getItemContents().substring(100)%></p>

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.swing.*;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

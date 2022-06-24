@@ -105,7 +105,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a href="index.html" class="navbar_brand float-left dn-smd" style="margin-bottom: 1%">
+                <a href="/index" class="navbar_brand float-left dn-smd" style="margin-bottom: 1%">
                     <img class="logo1 img-fluid" src="/images/header-logo2.svg" alt="header-logo.svg">
                     <img class="logo2 img-fluid" src="/images/header-logo2.svg" alt="header-logo2.svg">
                     <span>SubMarket</span>

@@ -152,9 +152,9 @@
 											<input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
 										</div>
 										<a class="btn-fpswd float-right" href="/findPassword" style="margin-left: 5%">Forgot password?</a>
-										<a class="btn-fpswd float-right" href="#">Forgot id?</a>
+<%--										<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
 										<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
-										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign up</a></p>
+										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/seller/regForm">Sign up</a></p>
 									</form>
 								</div>
 							</div>
@@ -173,9 +173,10 @@
 												<div class="input-group form-group mb5">
 													<input type="password" class="form-control" id="SellerPassword" placeholder="Seller Password" name="sellerPassword">
 												</div>
-												<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>
-												<a class="btn-fpswd float-right" href="#">Forgot id?</a>
-												<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
+<%--												<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>--%>
+<%--												<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
+<%--												<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
+												<button type="submit" class="btn btn-log btn-block btn-thm" style="margin-top: 5%;">Sign in</button>
 												<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign up</a></p>
 											</form>
 										</div>
@@ -327,7 +328,7 @@
 	</section>
 
 	<!-- Home Design -->
-	<section class="home-one home1-overlay bg-img1">
+	<section class="home-one home1-overlay bg-img1" style="background-image: url('/images/index/main.png')">
 		<div class="container">
 			<div class="row posr">
 				<div class="col-lg-12">
@@ -556,7 +557,7 @@
 				<div class="col-md-6 col-lg-8 col-xl-8">
 				<div onclick="location.href='/items/group/20'">
 					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc2.jpg" alt="pc2.jpg"></div>
+						<div class="thumb"><img class="img-fluid w100" src="/images/index/20.png" alt="pc2.jpg"></div>
 						<div class="overlay">
 							<div class="details">
 								<h4>20대 인기 상품</h4>
@@ -568,7 +569,7 @@
 				<div class="col-md-6 col-lg-4 col-xl-4">
 					<div onclick="location.href='/items/group/30'">
 					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc1.jpg" alt="pc1.jpg"></div>
+						<div class="thumb"><img class="img-fluid w100" src="/images/index/30.png" alt="pc1.jpg"></div>
 						<div class="overlay">
 							<div class="details">
 								<h4>30대 인기 상품</h4>
@@ -579,7 +580,7 @@
 				</div>
 				<div class="col-md-6 col-lg-4 col-xl-4">
 					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc4.jpg" alt="pc4.jpg"></div>
+						<div class="thumb"><img class="img-fluid w100" src="/images/index/10.png" alt="pc4.jpg"></div>
 						<div class="overlay">
 							<div class="details">
 								<h4>SubMarket</h4>
@@ -590,7 +591,7 @@
 				<div class="col-md-6 col-lg-8 col-xl-8">
 					<div onclick="location.href='/items/group/40'">
 					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/property/pc3.jpg" alt="pc3.jpg"></div>
+						<div class="thumb"><img class="img-fluid w100" src="/images/index/40.png" alt="pc3.jpg"></div>
 						<div class="overlay">
 							<div class="details">
 								<h4>40대 인기 상품</h4>

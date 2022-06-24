@@ -108,7 +108,7 @@
                             <a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>
                             <a class="btn-fpswd float-right" href="#">Forgot id?</a>
                             <button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
-                            <p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="#">Sign
+                            <p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign
                                 up</a></p>
                         </form>
                     </div>

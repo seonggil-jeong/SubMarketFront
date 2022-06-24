@@ -344,11 +344,11 @@
                                     <small>Maximum file size: 1000kb.</small>
                                 </div>
                                 <div class="col-lg-12 mt50">
-                                    <h5 class="mb20">Gallery Images (optional)</h5>
+                                    <h5 class="mb20">Gallery Images</h5>
                                     <ul class="mb0">
                                         <li class="list-inline-item vat mb30-767">
                                             <div class="upload_file_input_add_remove">
-                                                <span class="btn_upload"><input type="file" id="imag2" title="" class="input-img" name="subImage"/><span class="flaticon-upload"></span></span>
+                                                <span class="btn_upload"><input type="file" id="imag2" title="" class="input-img" name="subImage" required/><span class="flaticon-upload"></span></span>
                                                 <img id="ImgPreview2" src="/images/resource/upload-img.png" class="preview2" alt="" />
                                                 <button id="removeImage2" class="btn-rmv2" type="button"><span class="flaticon-delete"></span></button>
                                             </div>

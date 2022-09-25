@@ -21,8 +21,5 @@ public class UserDto {
     private int userStatus;
     private String userAddress;
     private String userAddress2;
-
-    private String token;
-
 }
 

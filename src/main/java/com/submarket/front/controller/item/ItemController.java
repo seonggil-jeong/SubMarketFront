@@ -53,7 +53,10 @@ public class ItemController {
 
     @PostMapping("/user/review/modify")
     public String modifyReview(HttpSession session, ItemReviewDto itemReviewDto, ModelMap model) throws Exception {
+        log.info("itemReview Contents : " + itemReviewDto.getReviewContents());
         String token = (String) session.getAttribute("SS_USER_TOKEN");
+        UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
+        itemReviewDto.setUserId(userDto.getUserId());
 
         String rStr = itemService.modifyItemReviewByReviewSeq(itemReviewDto, token);
 
@@ -69,6 +72,7 @@ public class ItemController {
         UserDto userDto = (UserDto) session.getAttribute("SS_USER_INFO");
         String tokenC = String.valueOf(session.getAttribute("SS_USER_TOKEN"));
         itemReviewDto.setUserAge(userDto.getUserAge());
+        itemReviewDto.setUserId(userDto.getUserId());
 
         if (tokenC.length() < 5) {
             model.addAttribute("msg", "로그인 후 이용 가능합니다.");

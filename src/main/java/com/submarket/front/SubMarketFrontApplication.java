@@ -27,19 +27,7 @@ public class SubMarketFrontApplication {
 
     @Bean
     public RestTemplate restTemplate() {
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setReadTimeout(5000);
-
-        HttpClient httpClient = HttpClientBuilder.create()
-                .setMaxConnTotal(100)
-                .setMaxConnTotal(5)
-                .evictIdleConnections(60L, TimeUnit.SECONDS)
-                .evictExpiredConnections()
-                .build();
-
-        factory.setHttpClient(httpClient);
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setRequestFactory(factory);
         return restTemplate;
 
     }

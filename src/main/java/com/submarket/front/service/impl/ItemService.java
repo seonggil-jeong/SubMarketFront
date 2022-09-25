@@ -169,7 +169,7 @@ public class ItemService implements IItemService {
     @Override
     public CategoryDto getItemInfoByCategorySeq(int categorySeq) throws Exception {
         CategoryDto categoryDto = new CategoryDto();
-        String url = env.getProperty("gateway.ip") + "/item-service/category/" + categorySeq;
+        String url = env.getProperty("gateway.ip") + "/item-service/categorys/" + categorySeq;
 
         try {
             ResponseEntity<CategoryDto> response = restTemplate.exchange(url, HttpMethod.GET, null, CategoryDto.class);

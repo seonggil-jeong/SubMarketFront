@@ -93,7 +93,7 @@ public class SellerService implements ISellerService {
         SellerDto sellerDto = new SellerDto();
 
         try {
-            String url = env.getProperty("gateway.ip") + "/seller-service/seller";
+            String url = env.getProperty("gateway.ip") + "/seller-service/sellers";
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", token);
@@ -152,7 +152,7 @@ public class SellerService implements ISellerService {
             for (ItemDto itemDto : itemDtoList) {
                 int itemPrice = itemDto.getItemPrice();
 
-                String url = env.getProperty("gateway.ip") + "/user-service/seller/sub/" + itemDto.getItemSeq();
+                String url = env.getProperty("gateway.ip") + "/user-service/sellers/subs/" + itemDto.getItemSeq();
 
                 HttpEntity<Map> entity = new HttpEntity<>(headers);
                 ResponseEntity<Integer> response = restTemplate.exchange(url, HttpMethod.GET, entity, Integer.class);
@@ -180,7 +180,7 @@ public class SellerService implements ISellerService {
 
             for (int i = 0; i < itemDtoList.size(); i++) {
                 int itemPrice = itemDtoList.get(i).getItemPrice();
-                String url = env.getProperty("gateway.ip") + "/user-service/seller/sub/" + itemDtoList.get(i).getItemSeq();
+                String url = env.getProperty("gateway.ip") + "/user-service/sellers/subs/" + itemDtoList.get(i).getItemSeq();
                 HttpEntity<Map> entity = new HttpEntity<>(headers);
 
                 ResponseEntity<Integer> response = restTemplate.exchange(url, HttpMethod.GET, entity, Integer.class);
@@ -203,7 +203,7 @@ public class SellerService implements ISellerService {
     public List<SalesDto> findAllSalesDtoBySellerId(String token) throws Exception {
         log.info(this.getClass().getName() + ".findAllSalesDtoBySellerId Start!");
 
-        String url = env.getProperty("gateway.ip") + "/seller-service/seller/sales";
+        String url = env.getProperty("gateway.ip") + "/seller-service/sellers/sales";
         List<SalesDto> salesDtoList = new ArrayList<>();
 
         HttpHeaders headers = new HttpHeaders();
@@ -237,7 +237,7 @@ public class SellerService implements ISellerService {
         log.info(this.getClass().getName() + ".getOrderDtoList Start!");
 
         List<OrderDto> orderDtoList = new LinkedList<>();
-        String url = env.getProperty("gateway.ip") + "/order-service/order/seller/" + sellerId;
+        String url = env.getProperty("gateway.ip") + "/order-service/sellers/" + sellerId + "/orders";
 
         try {
             HttpHeaders headers = new HttpHeaders();

@@ -10,7 +10,7 @@ import java.util.List;
 public interface IUserService {
     UserDto getUserInfo(String token) throws Exception;
 
-    String modifyUserInfo(UserDto userDto) throws Exception;
+    String modifyUserInfo(UserDto userDto, String token) throws Exception;
 
     List<SubDto> getSubList(String token) throws Exception;
 

@@ -6,6 +6,7 @@ import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
 import com.submarket.front.vo.RequestChangePassword;
 import com.submarket.front.vo.RequestLogin;
+import com.submarket.front.vo.SubDeleteRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.HttpHead;
@@ -39,10 +40,9 @@ public class UserController {
     @PostMapping("/user/modifyUserInfo")
     public String modifyUSerInfo(HttpSession session, UserDto userDto, ModelMap model) throws Exception {
         String token = session.getAttribute("SS_USER_TOKEN").toString();
-        userDto.setToken(token);
         log.info("userEmail : " + userDto.getUserEmail());
 
-        String resultString = userService.modifyUserInfo(userDto);
+        String resultString = userService.modifyUserInfo(userDto, token);
         log.info("result : " + resultString);
 
         UserDto rUserDto = userService.getUserInfo((String) session.getAttribute("SS_USER_TOKEN"));
@@ -123,14 +123,13 @@ public class UserController {
     @GetMapping("/user/sub/delete")
     public String deleteSub(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
 
-        String url = env.getProperty("gateway.ip") + "/user-service/sub/delete";
+        String url = env.getProperty("gateway.ip") + "/user-service/subs/delete";
 
-        SubDto subDto = new SubDto();
-        subDto.setSubSeq(Integer.valueOf(request.getParameter("subSeq")));
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", String.valueOf(session.getAttribute("SS_USER_TOKEN")));
 
-        HttpEntity<SubDto> entity = new HttpEntity<>(subDto, headers);
+        HttpEntity<SubDeleteRequest> entity = new HttpEntity<>(SubDeleteRequest.builder()
+                .subSeq(Integer.valueOf(request.getParameter("subSeq"))).build(), headers);
 
         ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
 
@@ -183,7 +182,7 @@ public class UserController {
     @PostMapping(value = "/user/delete")
     public String deleteUser(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
         // 사용자 Id (TOKEN) and Password (request)로 받아 전송
-        String url = env.getProperty("gateway.ip") + "/user-service/user/delete";
+        String url = env.getProperty("gateway.ip") + "/user-service/users/delete";
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", String.valueOf(session.getAttribute("SS_USER_TOKEN")));
         String rStr = "";
@@ -272,7 +271,7 @@ public class UserController {
     @PostMapping("/user/findPassword")
     public String findPassword(UserDto userDto, ModelMap model) throws Exception {
         try {
-            String url = env.getProperty("gateway.ip") + "/user-service/user/fix/find-password";
+            String url = env.getProperty("gateway.ip") + "/user-service/users/fix/find-password";
 
             HttpEntity<UserDto> entity = new HttpEntity<>(userDto);
 

@@ -93,7 +93,7 @@ public class SellerService implements ISellerService {
         SellerDto sellerDto = new SellerDto();
 
         try {
-            String url = env.getProperty("gateway.ip") + "/seller-service/sellers";
+            String url = env.getProperty("gateway.ip") + "/seller-service/seller";
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", token);

@@ -367,6 +367,8 @@
                         </div>
                         <div class="details">
                             <div class="tc_content">
+                                <div class="badge_icon"><a href="#"><img src="/images/icons/agent1.svg"
+                                                                         alt="agent1.svg"></a></div>
                                 <h4><%=itemDto.getItemTitle()%></h4>
                                 <p><%=itemDto.getItemContents()%></p>
                                 <ul class="prop_details mb0">

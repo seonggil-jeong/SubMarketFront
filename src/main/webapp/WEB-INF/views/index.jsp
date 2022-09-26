@@ -89,7 +89,7 @@
 					<li class="list-inline-item add_listing"><a href="/user/profile"><span class="icon"></span><span
 							class="dn-lg">My Info</span></a></li>
 					<%
-						} else if (CmmUtil.nvl(String.valueOf(session.getAttribute("SS_SELLER_TOKEN"))).length() > 10) {
+					} else if (CmmUtil.nvl(String.valueOf(session.getAttribute("SS_SELLER_TOKEN"))).length() > 10) {
 					%>
 					<li class="user_setting" style="margin-bottom: 1%;">
 						<div class="dropdown">
@@ -108,8 +108,8 @@
 					<li class="list-inline-item add_listing"><a href="/seller/main"><span class="icon"></span><span
 							class="dn-lg">SELLER HOME</span></a></li>
 					<%
-						} else {
-							%>
+					} else {
+					%>
 					<li class="list-inline-item list_s"><a href="#" class="btn flaticon-avatar" data-toggle="modal" data-target=".bd-example-modal-lg"> <span class="dn-1200">Login/Sign Up</span></a></li>
 					<%
 						}
@@ -152,7 +152,7 @@
 											<input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password">
 										</div>
 										<a class="btn-fpswd float-right" href="/findPassword" style="margin-left: 5%">Forgot password?</a>
-<%--										<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
+										<%--										<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
 										<button type="submit" class="btn btn-log btn-block btn-thm">Sign in</button>
 										<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/seller/regForm">Sign up</a></p>
 									</form>
@@ -173,9 +173,9 @@
 												<div class="input-group form-group mb5">
 													<input type="password" class="form-control" id="SellerPassword" placeholder="Seller Password" name="sellerPassword">
 												</div>
-<%--												<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>--%>
-<%--												<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
-<%--												<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
+												<%--												<a class="btn-fpswd float-right" href="#" style="margin-left: 5%">Forgot password?</a>--%>
+												<%--												<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
+												<%--												<a class="btn-fpswd float-right" href="#">Forgot id?</a>--%>
 												<button type="submit" class="btn btn-log btn-block btn-thm" style="margin-top: 5%;">Sign in</button>
 												<p class="text-center mb30 mt20">Don't have an account? <a class="text-thm" href="/regForm">Sign up</a></p>
 											</form>
@@ -240,7 +240,7 @@
 				<li><a href="/logout"><span class="flaticon-logout"></span> Logout</a></li>
 
 				<%
-					} else {
+				} else {
 				%>
 
 				<li><a href="/user/page-login"><span class="flaticon-avatar"></span>Login</a></li>
@@ -555,49 +555,49 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6 col-lg-8 col-xl-8">
-				<div onclick="location.href='/items/group/20'">
-					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/index/20.png" alt="pc2.jpg"></div>
-						<div class="overlay">
-							<div class="details">
-								<h4>20대 인기 상품</h4>
+					<div onclick="location.href='/items/group/20'">
+						<div class="properti_city">
+							<div class="thumb"><img class="img-fluid w100" src="/images/index/20.png" alt="pc2.jpg"></div>
+							<div class="overlay">
+								<div class="details">
+									<h4>20대 인기 상품</h4>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 				<div class="col-md-6 col-lg-4 col-xl-4">
 					<div onclick="location.href='/items/group/30'">
-					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/index/30.png" alt="pc1.jpg"></div>
-						<div class="overlay">
-							<div class="details">
-								<h4>30대 인기 상품</h4>
+						<div class="properti_city">
+							<div class="thumb"><img class="img-fluid w100" src="/images/index/30.png" alt="pc1.jpg"></div>
+							<div class="overlay">
+								<div class="details">
+									<h4>30대 인기 상품</h4>
+								</div>
 							</div>
 						</div>
 					</div>
-					</div>
 				</div>
-				<div class="col-md-6 col-lg-4 col-xl-4">
+				<div class="col-md-6 col-lg-4 col-xl-4" onclick="location.href='/users/items/liked'">
 					<div class="properti_city">
 						<div class="thumb"><img class="img-fluid w100" src="/images/index/10.png" alt="pc4.jpg"></div>
 						<div class="overlay">
 							<div class="details">
-								<h4>SubMarket</h4>
+								<h4>좋아요한 상품 목록 보기</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6 col-lg-8 col-xl-8">
 					<div onclick="location.href='/items/group/40'">
-					<div class="properti_city">
-						<div class="thumb"><img class="img-fluid w100" src="/images/index/40.png" alt="pc3.jpg"></div>
-						<div class="overlay">
-							<div class="details">
-								<h4>40대 인기 상품</h4>
+						<div class="properti_city">
+							<div class="thumb"><img class="img-fluid w100" src="/images/index/40.png" alt="pc3.jpg"></div>
+							<div class="overlay">
+								<div class="details">
+									<h4>40대 인기 상품</h4>
+								</div>
 							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>

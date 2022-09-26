@@ -1,9 +1,11 @@
 package com.submarket.front.controller.user;
 
+import com.submarket.front.dto.ItemDto;
 import com.submarket.front.dto.SubDto;
 import com.submarket.front.dto.UserDto;
 import com.submarket.front.service.impl.UserService;
 import com.submarket.front.util.CmmUtil;
+import com.submarket.front.vo.ItemLikedRequest;
 import com.submarket.front.vo.RequestChangePassword;
 import com.submarket.front.vo.RequestLogin;
 import com.submarket.front.vo.SubDeleteRequest;
@@ -13,6 +15,7 @@ import org.apache.http.client.methods.HttpHead;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.HttpMethod.POST;
@@ -289,5 +293,38 @@ public class UserController {
             model.addAttribute("url", "/index");
             return "/redirect";
         }
+    }
+
+    @RequestMapping("/user/liked/{itemSeq}")
+    public String itemLiked(@PathVariable int itemSeq, Model model, HttpSession session) throws Exception {
+
+        String token = String.valueOf(session.getAttribute("SS_USER_TOKEN"));
+
+        if (token.length() < 10) {
+            model.addAttribute("msg", "로그인이 필요합니다");
+            model.addAttribute("url", "/user/page-login");
+
+            return "/redirect";
+        }
+
+        String url = env.getProperty("gateway.ip") + "/user-service/users/items/liked";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", String.valueOf(session.getAttribute("SS_USER_TOKEN")));
+
+        ItemLikedRequest request = ItemLikedRequest.builder().itemSeq(itemSeq).build();
+
+        HttpEntity<ItemLikedRequest> entity = new HttpEntity<>(request, headers);
+        ResponseEntity<String> response = restTemplate.exchange(url, POST, entity, String.class);
+
+        log.info("msg : " + response.getBody());
+
+        model.addAttribute("msg", response.getBody());
+        model.addAttribute("url", "/items/" + itemSeq);
+
+
+        return "/redirect";
+
+
     }
 }

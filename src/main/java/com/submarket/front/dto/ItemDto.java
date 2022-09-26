@@ -27,6 +27,7 @@ public class ItemDto {
     private int readCount30;
     private int readCount40;
     private int readCountOther;
+    private int isUserLiked;
 
     private int userAge;
 
